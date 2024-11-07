@@ -22,7 +22,7 @@
     },
     "autoload": {
         "classmap": [
-            "C:/Users/User-Hp/Documents/project/phpproject/ValidatePassword.php"
+            "C:/Users/User-Hp/Documents/project/phpproject/HelloWorld.php"
         ],
         "psr-4": {
             "App\\": "app/",

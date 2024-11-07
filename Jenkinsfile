@@ -20,7 +20,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                dir('C:/Users/User-Hp/Documents/project/phpproject/ValidatePassword.php') {
+                dir('C:/Users/User-Hp/Documents/project/phpproject/HelloWorld.php') {
                 bat 'php artisan test' 
              }
             }
