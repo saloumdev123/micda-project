@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'new', url: 'https://github.com/saloumdev123/phpproject.git'
+                git branch: 'code', url: 'https://github.com/saloumdev123/micda-project.git'
             }
         }
 
