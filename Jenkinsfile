@@ -20,7 +20,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                dir('C:/Users/User-Hp/Documents/project/phpproject/HelloWorld.php') {
+                dir('C:/Users/User-Hp/Documents/project/phpproject') {
                 bat 'php artisan test' 
              }
             }
