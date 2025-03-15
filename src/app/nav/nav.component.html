@@ -1,0 +1,123 @@
+<nav class="navbar navbar-expand-lg bg-primary fixed-top" color-on-scroll="500">
+  <div
+    class="container d-flex align-items-center justify-content-between"
+    style="padding: 15px"
+  >
+    <!-- Logo Section -->
+    <a href="/" class="navbar-brand">
+      <img
+        class="navbar-logo"
+        src="../../assets/img/sts_logo_us.png"
+        alt="SARAYA TECH Logo"
+      />
+    </a>
+
+    <!-- Dropdown Toggle Button for Smaller Screens -->
+    <div class="dropdown button-dropdown d-lg-none">
+      <div ngbDropdown>
+        <a class="dropdown-toggle" ngbDropdownToggle>
+          <span class="button-bar"></span>
+          <span class="button-bar"></span>
+          <span class="button-bar"></span>
+        </a>
+        <div ngbDropdownMenu>
+          <a class="dropdown-item" href="/find-jobs">Find Jobs</a>
+          <a class="dropdown-item" href="/resources">Our Resources</a>
+          <a class="dropdown-item" href="/subscriptions-add">Contact Us</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Business Intelligence</a>
+          <a class="dropdown-item" href="#">Manage IT Services</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navbar Brand and Toggler -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarToggler"
+      aria-controls="navbarToggler"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      (click)="sidebarToggle()"
+    >
+      <span class="navbar-toggler-bar bar1"></span>
+      <span class="navbar-toggler-bar bar2"></span>
+      <span class="navbar-toggler-bar bar3"></span>
+    </button>
+
+    <!-- Navbar Links and Social Icons -->
+    <div class="collapse navbar-collapse" id="navbarToggler">
+      <ul class="navbar-nav ml-auto align-items-center">
+        <!-- Main Nav Links -->
+        <li class="nav-item">
+          <a class="nav-link" href="/"
+            ><i class="now-ui-icons ui-1_home-12"></i> Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#services"
+            ><i class="now-ui-icons tech_laptop"></i> Services</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="products"
+            ><i class="now-ui-icons location_world"></i> Products</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="resources"
+            ><i class="now-ui-icons arrows-1_cloud-download-93"></i>
+            Resources</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/find-jobs"
+            ><i class="now-ui-icons files_paper"></i> Careers/Jobs</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact"
+            ><i class="now-ui-icons ui-1_email-85"></i> Contact</a
+          >
+        </li>
+
+        <!-- Language Selection Dropdown -->
+        <li class="nav-item">
+          <select
+            class="nav-link btn btn-neutral"
+            (change)="switchLanguage('en')"
+          >
+            <option value="" disabled selected>Language</option>
+            <option (click)="switchLanguage('en')">English</option>
+            <option (click)="switchLanguage('fr')">Français</option>
+          </select>
+        </li>
+
+        <!-- Social Media Icons -->
+        <li class="nav-item d-flex social-icons">
+          <a
+            class="nav-link"
+            href="https://twitter.com/"
+            target="_blank"
+            aria-label="Twitter"
+          >
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a
+            class="nav-link"
+            href="https://www.facebook.com/"
+            target="_blank"
+            aria-label="Facebook"
+          >
+            <i class="fab fa-facebook-square"></i>
+          </a>
+          <a class="nav-link" href="#" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

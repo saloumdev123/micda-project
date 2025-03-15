@@ -1,0 +1,116 @@
+<div class="container">
+  <h1 class="heading">Job Offers</h1>
+
+  <!-- Filter Section -->
+  <div class="filter-section">
+    <div class="form-group">
+      <label for="nameFilter">Filter by Job Title:</label>
+      <input
+        type="text"
+        id="nameFilter"
+        [(ngModel)]="searchName"
+        (input)="filterJobs()"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="locationFilter">Filter by Location:</label>
+      <input
+        type="text"
+        id="locationFilter"
+        [(ngModel)]="searchLocation"
+        (input)="filterJobs()"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="dateFilter">Filter by Date Posted:</label>
+      <input
+        type="text"
+        id="dateFilter"
+        [(ngModel)]="searchDate"
+        (input)="filterJobs()"
+        class="form-control"
+      />
+    </div>
+    <button class="btn btn-secondary" (click)="clearFilters()">
+      Clear Filters
+    </button>
+  </div>
+
+  <!-- Alert Section with Scroll Effect Navigation -->
+  <div class="alert-section">
+    <div class="alert alert-info" id="noJobsAlert">
+      <span class="alert-icon"><i class="fas fa-info-circle"></i></span>
+      Job available for now.
+    </div>
+  </div>
+
+  <!-- Job Listings and Job Details Panel -->
+  <div class="job-container">
+    <div class="job-listing">
+      <div class="job-cards">
+        <div
+          *ngFor="let job of filteredJobs; let i = index"
+          class="card"
+          (click)="viewJobDetails(job)"
+        >
+          <div class="card-body">
+            <h5 class="card-title">{{ job.title }}</h5>
+            <p class="card-text">{{ job.description }}</p>
+            <button
+              class="btn btn-primary"
+              (click)="viewJobDetails(job); $event.stopPropagation()"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Job Details Panel -->
+    <div *ngIf="selectedJob" class="job-details-panel">
+      <button class="close-btn" (click)="closePanel()">X</button>
+      <div class="job-details-content">
+        <h2>{{ selectedJob.title }}</h2>
+        <p><strong>Description:</strong> {{ selectedJob.description }}</p>
+        <p><strong>Company:</strong> {{ selectedJob.company }}</p>
+        <p><strong>Location:</strong> {{ selectedJob.location }}</p>
+        <p><strong>Job Type:</strong> {{ selectedJob.jobType }}</p>
+        <p><strong>Salary:</strong> {{ selectedJob.salary }}</p>
+        <p><strong>Remote Options:</strong> {{ selectedJob.remoteOptions }}</p>
+        <p>
+          <strong>Experience Level:</strong> {{ selectedJob.experienceLevel }}
+        </p>
+        <p>
+          <strong>Education Level:</strong> {{ selectedJob.educationLevel }}
+        </p>
+        <p><strong>Responsibilities:</strong></p>
+        <ul>
+          <li *ngFor="let responsibility of selectedJob.responsibilities">
+            {{ responsibility }}
+          </li>
+        </ul>
+        <p><strong>Qualifications:</strong></p>
+        <ul>
+          <li *ngFor="let qualification of selectedJob.qualifications">
+            {{ qualification }}
+          </li>
+        </ul>
+        <p><strong>Skills:</strong> {{ selectedJob.skills.join(", ") }}</p>
+        <p><strong>Benefits:</strong> {{ selectedJob.benefits.join(", ") }}</p>
+        <p>
+          <strong>Application Deadline:</strong>
+          {{ selectedJob.applicationDeadline }}
+        </p>
+        <p><strong>Date Posted:</strong> {{ selectedJob.datePosted }}</p>
+
+        <!-- Apply Button -->
+        <button class="btn btn-success" (click)="applyForJob(selectedJob)">
+          Apply Now
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

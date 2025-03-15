@@ -1,0 +1,127 @@
+.testimonials {
+  background-color: #f0f4f8;
+  padding: 60px 0;
+}
+
+.testimonials .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1em; /* Added padding for better spacing on small screens */
+}
+
+.testimonials .heading {
+  margin-bottom: 40px;
+  text-align: center; /* Center align the heading */
+}
+
+.testimonials .heading h2 {
+  font-size: 36px;
+  color: #0a5184;
+  margin-bottom: 10px;
+}
+
+.testimonials .heading h2 span {
+  color: #000;
+}
+
+.testimonials .heading p {
+  color: #5d5d5d;
+  font-size: 16px;
+}
+
+.testimonials .box {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center items vertically */
+}
+
+.testimonials .box:hover {
+  transform: translateY(-10px);
+}
+
+.testimonials .box .content {
+  padding: 20px;
+  flex: 1; /* Allow content to grow */
+}
+
+.testimonials .box .content h3 {
+  font-size: 20px;
+  color: #0a5184;
+  margin-bottom: 10px;
+}
+
+.testimonials .box .content h3 span {
+  display: block;
+  font-size: 14px;
+  color: #777;
+}
+
+.testimonials .box .content p {
+  font-size: 16px;
+  color: #5d5d5d;
+}
+
+.testimonials .box .social {
+  margin-top: 15px;
+}
+
+.testimonials .box .social .icon {
+  width: 40px;
+  height: 40px;
+  background-color: #0a5184;
+  color: #fff;
+  border-radius: 50%;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.testimonials .box .social .icon:hover {
+  background-color: #000;
+}
+
+.testimonials .box .image {
+  flex: 0 0 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.testimonials .box .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  .testimonials .box {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    align-items: center; /* Center items */
+  }
+
+  .testimonials .box .image {
+    margin-bottom: 15px; /* Space between image and content */
+  }
+
+  .testimonials .heading h2 {
+    font-size: 28px; /* Smaller heading for smaller screens */
+  }
+
+  .testimonials .heading p {
+    font-size: 14px; /* Smaller paragraph text */
+  }
+
+  .testimonials .box .content h3 {
+    font-size: 18px; /* Smaller heading for testimonials */
+  }
+
+  .testimonials .box .content p {
+    font-size: 14px; /* Smaller paragraph text */
+  }
+}

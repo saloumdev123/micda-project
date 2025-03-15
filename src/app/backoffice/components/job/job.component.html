@@ -1,0 +1,87 @@
+<p>job works!</p>
+<!--<div class="container">
+    <h1>JOb Offer</h1>
+  
+  @if(jobs.length === 0){
+    <div class="alert alert-info">
+      No Job available for now.
+    </div>
+  }
+  @if(jobs.length >= 0){
+   <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>JobType</th>
+          <th>Location</th>
+          <th>employmentType</th>
+          <th>year of experience</th>
+          <th>Date de publication</th>
+          <th>Subscription</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (job of jobs; track $index) {
+          <tr *for="let job of jobs">
+            <td>{{ job.title }}</td>
+            <td>{{ job.description }}</td>
+            <td>{{ job.employmentType }}</td>
+            <td>{{ job.location }}</td>
+            <td>{{ job.jobType }}</td>
+            <td>{{ job.yearsExperiences }} years</td>
+            <td>{{ job.datePosted }}</td>
+            <td>{{ job.subscriptionType }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+  </div>-->
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Job Listings</h2>
+      <ul class="list-group">
+        @for (job of jobs; track $index) {
+        <li
+          class="list-group-item list-group-item-action"
+          (click)="loadJobById(job.id)"
+        >
+          {{ job.title }} - {{ job.location }}
+        </li>
+        }
+      </ul>
+    </div>
+
+    @if (selectedJob) {
+    <div class="col-md-6" *ngIf="">
+      <h2>Job Details</h2>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ selectedJob.title }}</h5>
+          <p class="card-text">
+            <strong>Description:</strong> {{ selectedJob.description }}
+          </p>
+          <p class="card-text">
+            <strong>Employment Type:</strong> {{ selectedJob.employmentType }}
+          </p>
+          <p class="card-text">
+            <strong>Location:</strong> {{ selectedJob.location }}
+          </p>
+          <p class="card-text">
+            <strong>Job Type:</strong> {{ selectedJob.jobType }}
+          </p>
+          <p class="card-text">
+            <strong>Years of Experience:</strong>
+            {{ selectedJob.yearExperience }}
+          </p>
+          <p class="card-text">
+            <strong>Date Posted:</strong> {{ selectedJob.datePosted | date }}
+          </p>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

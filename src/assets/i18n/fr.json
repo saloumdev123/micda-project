@@ -1,0 +1,248 @@
+{
+  "ABOUT_US": {
+    "TITLE": "Nous sommes Digital Upgrade",
+    "DESCRIPTION": "Nous concevons et développons des solutions logicielles personnalisées adaptées aux besoins de votre entreprise. De la conception au déploiement, notre équipe veille à ce que le logiciel s'aligne parfaitement avec vos exigences opérationnelles et vos objectifs.",
+    "BUTTON_TITLE": "Bouton À Propos de Nous",
+    "BUTTON_TEXT": "À PROPOS"
+  },
+  "HISTORY": {
+    "TITLE": "Préserver l'Histoire Locale",
+    "DESCRIPTION": "Fondé en 2018, le groupe SarayaTech Solutions est une entreprise sénégalo-américaine spécialisée dans la digitalisation et la fourniture de solutions informatiques innovantes pour les établissements éducatifs au Sénégal. Nous proposons une variété de services, notamment la création de sites web gratuits, la gestion de plateformes numériques, la gestion des réseaux sociaux et la fourniture de matériel éducatif. De plus, nous offrons une formation aux enseignants sur les outils numériques et proposons des services de cloud sécurisés pour la gestion des informations scolaires. Notre mission est d'accompagner les écoles dans leur transition numérique avec des solutions adaptées à leurs besoins.",
+    "BUTTON_TITLE": "Bouton Histoire",
+    "BUTTON_TEXT": "HISTOIRE"
+  },
+  "HEADER": {
+    "BRAND": "Marque",
+    "HOME": "Accueil",
+    "FEATURE": "Fonctionnalité",
+    "PRODUCT": "Produit",
+    "SUPPORT": "Assistance",
+    "DISCOVER": "Découvrir"
+  },
+  "BANNER": {
+    "HEADING": "avec des Solutions IT de Pointe",
+    "DESCRIPTION": "Optimisez votre entreprise & Découvrez des solutions technologiques innovantes qui améliorent la productivité, la sécurité et l'efficacité. Notre équipe d'experts fournit des services IT personnalisés conçus pour répondre aux besoins spécifiques de votre entreprise.",
+    "SOCIAL_LINKS": {
+      "FACEBOOK": "Facebook",
+      "INSTAGRAM": "Instagram",
+      "TWITTER": "Twitter",
+      "YOUTUBE": "YouTube"
+    }
+  },
+  "COMPANY": {
+    "TITLE": "Votre partenaire vers l'avenir",
+    "SUBTITLE": "STS votre partenaire pour des solutions innovantes"
+  },
+  "SOCIAL": {
+    "FACEBOOK": "Facebook",
+    "TWITTER": "Twitter",
+    "GOOGLE_PLUS": "Google Plus"
+  },
+  "FUTURE_TECH": {
+    "TITLE": "Technologies Futures",
+    "DESCRIPTION": "L'avenir approche rapidement, et une nouvelle ère d'innovation numérique et de disruption est ici."
+  },
+  "WHY_US": {
+    "TITLE": "Pourquoi nous ?",
+    "SUBTITLE": "Choisir STS signifie...",
+    "DESCRIPTION_1": "s'associer avec une équipe de professionnels expérimentés dédiée à fournir des solutions informatiques innovantes et adaptées qui font avancer votre entreprise.",
+    "DESCRIPTION_2": "Nous utilisons une technologie de pointe et une résolution créative de problèmes pour répondre à vos besoins uniques, offrant des services complets allant du développement de logiciels sur mesure aux services informatiques gérés.",
+    "DESCRIPTION_3": "Notre approche centrée sur le client garantit un support réactif et une satisfaction client à long terme, tout en maintenant des normes de sécurité et de conformité robustes. Avec un bilan éprouvé, une communication transparente et un engagement envers l'amélioration continue, nous fournissons des solutions évolutives, fiables et intégrées qui s'adaptent aux besoins évolutifs de votre entreprise. Laissez-nous vous aider à atteindre vos objectifs d'affaires avec excellence et intégrité.",
+    "BUTTON_TEXT": "Suivez-nous"
+  },
+  "ABOUT": {
+    "YEAR": "2018",
+    "TITLE": "Saraya Tech Solutions",
+    "DESCRIPTION_1": "Fondée en 2018 , SarayaTech solutions a été construite sur une passion pour la technologie et un engagement à aider les entreprises à prospérer dans un monde numérique.",
+    "DESCRIPTION_2": "Avec une équipe de professionnels dédiés, nous offrons des solutions informatiques innovantes qui favorisent le succès. Nous offrons des solutions de talents, de technologie et de formation qui conduisent à la transformation et vous permettent d'atteindre vos objectifs d'affaires.",
+    "BUTTON_TEXT": "Suivez-nous"
+  },
+  "VALUES": {
+    "INNOVATION_TITLE": "INNOVATION : Technologie de pointe et résolution créative de problèmes",
+    "INNOVATION_DESC": "Notre approche de l'innovation est ancrée dans l'utilisation des technologies les plus avancées et l'application de techniques de résolution créative de problèmes. Nous explorons continuellement de nouvelles idées et des tendances émergentes pour développer des solutions qui sont non seulement efficaces mais aussi transformatrices. En adoptant des outils et des méthodologies de pointe, nous veillons à ce que nos clients restent en avance dans un paysage numérique en rapide évolution, transformant les défis en opportunités de croissance.",
+    "INTEGRITY_TITLE": "INTÉGRITÉ : Service transparent, honnête et centré sur le client",
+    "INTEGRITY_DESC": "L'intégrité est au cœur de tout ce que nous faisons. Nous croyons en la construction de la confiance par la transparence et l'honnêteté dans toutes nos interactions. Notre engagement envers des pratiques éthiques garantit que nos clients reçoivent des services qui sont non seulement efficaces mais aussi alignés sur leurs meilleurs intérêts. En maintenant une communication ouverte et en respectant les normes les plus élevées d'intégrité, nous forgeons des relations durables basées sur le respect mutuel et la confiance.",
+    "EXCELLENCE_TITLE": "EXCELLENCE : Engagement à fournir la plus haute qualité",
+    "EXCELLENCE_DESC": "L'excellence motive notre engagement à fournir une qualité supérieure dans chaque aspect de notre travail. Nous fixons des normes élevées pour nous-mêmes, nous efforçant de dépasser les attentes et de livrer des résultats qui ont un impact significatif. Grâce à une attention rigoureuse aux détails, à l'amélioration continue et à un dévouement à maîtriser notre art, nous veillons à ce que chaque projet que nous entreprenons reflète notre quête inébranlable de l'excellence.",
+    "CUSTOMER_FOCUS_TITLE": "Centré sur le client : Votre succès est notre priorité",
+    "CUSTOMER_FOCUS_DESC": "Votre succès est la mesure de notre succès. Nous plaçons nos clients au centre de tout ce que nous faisons, en priorisant leurs besoins et objectifs avant tout. Notre approche centrée sur le client garantit que chaque solution que nous fournissons est conçue dans votre meilleur intérêt. En comprenant vos défis, en anticipant vos besoins et en fournissant un service exceptionnel, nous vous aidons à atteindre les résultats qui comptent le plus."
+  },
+  "GADGETS": {
+    "TITLE": "Gadgets",
+    "SUBTITLE": "Les Gadgets du Futur",
+    "DESCRIPTION": "La technologie se développe à une vitesse énorme, et vous ne savez jamais ce qui va venir, par exemple, en 2020.",
+    "FUTURIST_QUOTE": "L'un de ceux qui aiment contempler l'avenir de la technologie est le designer français Josselin Zaigouche qui a décidé de concevoir ce gadget incroyable, surnommé Apple Black Hole (et ce n'est pas parce qu'il aspirera Apple s'il arrive sur le marché). Le nom a probablement été inspiré par les nombreuses applications que l'on peut trouver dans les appareils d'Apple (comme l'iPhone et l'iPad).",
+    "BUTTON_TEXT": "En savoir plus",
+    "BUTTON_TITLE": "En savoir plus sur le gadget"
+  },
+  "FUTURE_TECHNOLOGIES": {
+    "TITLE": "5 Technologies Futures Qui Deviendront Courantes",
+    "DESCRIPTION": "Les entreprises technologiques ont célébré le début de la nouvelle année en dévoilant certains de leurs projets ambitieux pour les mois à venir. Les startups et les multinationales commencent à ressentir les effets d'innovation dans l'industrie, la technologie devenant de plus en plus intégrée dans la vie quotidienne chaque année. Alors que 2018 progresse, voici 5 technologies futures que vous pouvez vous attendre à voir atteindre le public dans les prochaines années."
+  },
+  "TECHNOLOGIES": {
+    "LIST": [
+      {
+        "TITLE": "1. Internet",
+        "DESCRIPTION": "L'Internet des objets est depuis longtemps évoqué parmi les initiés de la technologie comme la prochaine grande innovation dans la technologie domestique."
+      },
+      {
+        "TITLE": "2. Automatisation",
+        "DESCRIPTION": "Alors que l'innovation à grande échelle dans l'automatisation a traditionnellement été limitée au secteur de la production."
+      },
+      {
+        "TITLE": "3. Cryptomonnaie",
+        "DESCRIPTION": "Après l'augmentation fulgurante du prix du Bitcoin en 2017, les grands acteurs de la technologie ont commencé à prendre les cryptomonnaies au sérieux."
+      },
+      {
+        "TITLE": "4. Blockchain",
+        "DESCRIPTION": "La blockchain, le registre décentralisé qui maintient les cryptomonnaies, a des applications allant bien au-delà de la monnaie."
+      },
+      {
+        "TITLE": "5. IA",
+        "DESCRIPTION": "L'intelligence artificielle commence à voir le jour et des applications de cette technologie sont déjà en cours de développement."
+      }
+    ]
+  },
+  "TESTIMONIAL": {
+    "TEXT": "\"L'équipe de STS est exceptionnelle. Leurs solutions ont considérablement amélioré nos processus commerciaux.\"",
+    "AUTHOR": "- MidWest Accounting"
+  },
+  "services": {
+    "title": "Nos Services",
+    "subtitle": "Petites équipes. Grands résultats.",
+    "description": "Vous travaillerez avec une petite équipe dédiée adaptée aux besoins de votre projet.",
+    "websiteCreation": {
+      "title": "Création de Site Web",
+      "description": "Nous offrons des sites web gratuits pour améliorer la visibilité des écoles.",
+      "icon": "fas fa-globe"
+    },
+    "digitalPlatformManagement": {
+      "title": "Gestion de Plateforme Digitale",
+      "description": "Installation et maintenance des plateformes de gestion administrative et éducative.",
+      "icon": "fas fa-cogs"
+    },
+    "socialMediaManagement": {
+      "title": "Gestion des Réseaux Sociaux",
+      "description": "Création et gestion de comptes pro sur Facebook, Instagram, YouTube et LinkedIn pour promouvoir.",
+      "icon": "fas fa-share-alt"
+    },
+    "educationalMaterialSupply": {
+      "title": "Fourniture de Matériel Éducatif",
+      "description": "Vente de bureaux, tableaux interactifs, ordinateurs et autres équipements pour améliorer l'apprentissage.",
+      "icon": "fas fa-chalkboard-teacher"
+    },
+    "teacherTraining": {
+      "title": "Formation des Enseignants",
+      "description": "Sessions de formation pour aider les enseignants à utiliser efficacement les outils numériques.",
+      "icon": "fas fa-user-graduate"
+    },
+    "cloudAndDataStorageService": {
+      "title": "Service de Stockage et de Cloud",
+      "description": "Solutions sécurisées pour gérer les informations scolaires, comme les bulletins et dossiers des élèves.",
+      "icon": "fas fa-cloud"
+    }
+  },
+  "products": {
+    "title": "Nos Produits",
+    "subtitle": "Solutions innovantes pour les besoins éducatifs.",
+    "description": "Découvrez quelques projets que nous avons réalisés pour nos clients.",
+
+    "smsSchoolWebSite": {
+      "id": 1,
+      "name": "Site Web de Scolaire",
+      "description": "Le site Web scolaire est une plateforme moderne et attrayante spécifiquement conçue pour les établissements éducatifs.",
+      "image": "assets/img/sts.png",
+      "url": "https://school-template.s3.amazonaws.com/index.html",
+      "seeMore": "Voir plus"
+    },
+    "carRentalSite": {
+      "id": 2,
+      "name": "Site de Location de Voitures",
+      "description": "Un site facile à utiliser pour la location de voitures, offrant une large gamme d'options pour tous vos déplacements.",
+      "image": "assets/img/landing.jpg",
+      "url": "",
+      "seeMore": "Voir plus"
+    }
+  },
+
+  "testimonials": {
+    "title": "Our Testimonials",
+    "subtitle": "See what our satisfied clients have to say about our IT services.",
+    "testimonialList": [
+      {
+        "name": "Amina Diallo",
+        "role": "Directrice d'École",
+        "message": "La plateforme numérique a transformé notre manière de gérer l'école. Simple, rapide et efficace !",
+        "socialLinks": {
+          "facebook": "#0",
+          "twitter": "#0",
+          "linkedin": "#0"
+        },
+        "image": "assets/img/img1.jpeg"
+      },
+      {
+        "name": "Fatou Ndao",
+        "role": "Professeur de Mathématiques",
+        "message": "Grâce à leur formation, j'utilise désormais les outils numériques en classe avec mes élèves.",
+        "socialLinks": {
+          "facebook": "#0",
+          "twitter": "#0",
+          "linkedin": "#0"
+        },
+        "image": "assets/img/img1.jpeg"
+      },
+      {
+        "name": "Mamadou Diop",
+        "role": "Coordinateur Scolaire",
+        "message": "Le support client est exceptionnel. Ils sont réactifs et ont toujours une solution adaptée à nos besoins.",
+        "socialLinks": {
+          "facebook": "#0",
+          "twitter": "#0",
+          "linkedin": "#0"
+        },
+        "image": "assets/img/img1.jpeg"
+      },
+      {
+        "name": "Pierre Ndiaye",
+        "role": "Directeur Administratif",
+        "message": "La gestion de nos réseaux sociaux est bien meilleure, et notre visibilité a augmenté.",
+        "socialLinks": {
+          "facebook": "#0",
+          "twitter": "#0",
+          "linkedin": "#0"
+        },
+        "image": "assets/img/img1.jpeg"
+      }
+    ]
+  },
+
+
+  
+  "footer": {
+    "callUsTitle": "Appelez-nous",
+    "findUsTitle": "Nous trouver",
+    "subscribe": {
+      "subscribeTitle": "S'abonner à notre newsletter",
+      "description": "Inscrivez-vous pour recevoir les dernières mises à jour et offres.",
+      "placeholder": "Entrez votre adresse e-mail",
+      "buttonText": "S'abonner"
+    },
+    "usefulLinksTitle": "Liens utiles",
+    "usefulLinks": [
+      {
+        "text": "Accueil",
+        "url": "/"
+      },
+      {
+        "text": "À propos",
+        "url": "/about-us"
+      },
+    
+      {
+        "text": "Contact",
+        "url": "/contact"
+      }
+    ],
+    "followUsTitle": "Suivez-nous"
+  }
+}

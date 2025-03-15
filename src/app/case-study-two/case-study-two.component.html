@@ -1,0 +1,401 @@
+<app-nav *ngif="showNavBar"></app-nav>
+<div class="wrapper">
+  <div class="page-header page-header-small" filter-color="orange">
+    <div
+      class="page-header-image rellax-header"
+      data-rellax-speed="-8"
+      style="background-image: url('assets/img/bg5.jpg')"
+    ></div>
+    <div class="container">
+      <div class="content-center" style="padding-top: 85px">
+        <div class="photo-container" id="referenceDiv">
+          <img src="assets/img/Topface.jpeg" alt="" />
+        </div>
+        <h3 class="title">Cheikh Ahmadou Tidiani Top</h3>
+        <p class="category">Software Engineer & Developer Lead</p>
+        <div class="content">
+          <div class="social-description">
+            <h2>26</h2>
+            <p>Comments</p>
+          </div>
+          <div class="social-description">
+            <h2>26</h2>
+            <p>Comments</p>
+          </div>
+          <div class="social-description">
+            <h2>48</h2>
+            <p>Bookmarks</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="button-container">
+        <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
+        <a
+          href="#button"
+          class="btn btn-default btn-round btn-lg btn-icon"
+          rel="tooltip"
+          title="Follow me on Twitter"
+        >
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a
+          href="#button"
+          class="btn btn-default btn-round btn-lg btn-icon"
+          rel="tooltip"
+          title="Follow me on Instagram"
+        >
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+      <h3 class="title">About me</h3>
+      <h5 class="description">
+        Passionate about leveraging technology to solve complex challenges, As a
+        skilled software engineer with a focus on backend development, I take
+        great pride in adhering to SOLID principles and utilizing design
+        patterns to create well-crafted solutions. My keen analytical skills and
+        experience with design thinking and problem-solving allow me to
+        consistently deliver high-quality results. In addition, my ability to
+        quickly pick up new technologies and my enthusiasm for collaborating on
+        complex challenges make me a versatile and effective team player.
+      </h5>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="title text-center">
+            Case Study: Amazon Connect Contact Center Migration
+          </h4>
+          <ul
+            ngbNav
+            #nav="ngbNav"
+            class="nav-pills nav-pills-primary nav-pills-just-icons justify-content-center"
+            role="tablist"
+          >
+            <!-- Portfolio Item 1 -->
+            <li [ngbNavItem]="1">
+              <a ngbNavLink><i class="now-ui-icons tech_mobile"></i></a>
+              <ng-template ngbNavContent>
+                <div class="row">
+                  <div class="col-md-10 ml-auto mr-auto">
+                    <div class="description">
+                      <h5>Project Overview & Description</h5>
+                      <p><strong>Project Overview:</strong></p>
+                      <p>
+                        The Amazon Connect Contact Center Migration project was
+                        initiated to modernize and enhance an existing contact
+                        center solution by transitioning it to Amazon Connect, a
+                        cloud-based contact center service provided by AWS. The
+                        primary goals were to improve scalability, elevate
+                        customer experience, and take full advantage of the
+                        advanced features offered by Amazon Connect.
+                      </p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <img
+                            src="../../assets/img/amz1.png"
+                            alt="Project Overview"
+                            class="img-raised"
+                          />
+                          <p class="caption">Legacy to Amazon Connect</p>
+                        </div>
+                        <div class="col-md-6">
+                          <img
+                            src="../../assets/img/amz2.png"
+                            alt="Project Description"
+                            class="img-raised"
+                          />
+                          <p class="caption">
+                            Smart interactive voice response(IVR)
+                          </p>
+                        </div>
+                      </div>
+                      <p><strong>Project Description:</strong></p>
+                      <p>
+                        Our objective was to migrate a legacy on-premises
+                        contact center system to Amazon Connect. This migration
+                        required the integration of various functionalities such
+                        as Interactive Voice Response (IVR), intelligent call
+                        routing, callback requests, sentiment analysis, and
+                        real-time analytics. Additionally, we incorporated AWS
+                        services to enhance the system's performance,
+                        reliability, and scalability.
+                      </p>
+
+                      <p>
+                        The project involved extensive planning, from evaluating
+                        the existing infrastructure to designing a robust
+                        architecture that could support the advanced features of
+                        Amazon Connect. We customized IVR flows using Amazon
+                        Connect Contact Flows, implemented intelligent call
+                        routing based on real-time data, and enabled omnichannel
+                        support for voice, chat, and email through Amazon
+                        Connect. Real-time analytics were integrated using
+                        Amazon QuickSight to provide comprehensive reporting and
+                        insights.
+                      </p>
+
+                      <!-- <div class="row">
+                        <div class="col-md-6">
+                          <img
+                            src="../../assets/img/amz1.png"
+                            alt="Project Overview"
+                            class="img-raised"
+                          />
+                          <p class="caption">Legacy to Amazon Connect</p>
+                        </div>
+                        <div class="col-md-6">
+                          <img
+                            src="../../assets/img/amz2.png"
+                            alt="Project Description"
+                            class="img-raised"
+                          />
+                          <p class="caption">
+                            Smart interactive voice response(IVR)
+                          </p>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+
+            <!-- Portfolio Item 2 -->
+            <li [ngbNavItem]="2">
+              <a ngbNavLink><i class="now-ui-icons objects_key-25"></i></a>
+              <ng-template ngbNavContent>
+                <div class="row">
+                  <div class="col-md-10 ml-auto mr-auto">
+                    <div class="description">
+                      <h5>Security & Monitoring</h5>
+                      <p><strong>Security Aspects:</strong></p>
+                      <p>
+                        Security was a key focus in this migration, given the
+                        sensitive nature of customer interactions and data. We
+                        implemented robust security measures, including data
+                        encryption both in transit and at rest using AWS Key
+                        Management Service (KMS). Access control was managed
+                        through AWS Identity and Access Management (IAM),
+                        ensuring that only authorized personnel could access
+                        specific resources. Compliance with industry standards
+                        such as PCI-DSS and GDPR was strictly enforced through
+                        regular audits and security reviews.
+                      </p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <img
+                            src="../../assets/img/amz3.png"
+                            alt="Security Aspects"
+                            class="img-raised"
+                          />
+                          <p class="caption">Key features of AWS KMS</p>
+                        </div>
+                        <div class="col-md-6">
+                          <img
+                            src="../../assets/img/amz4.png"
+                            alt="Monitoring Setup"
+                            class="img-raised"
+                          />
+                          <p class="caption">
+                            VPC with servers in private subnets
+                          </p>
+                        </div>
+                      </div>
+                      <p>
+                        In addition to these measures, we implemented network
+                        isolation using Amazon Virtual Private Cloud (VPC) and
+                        used AWS Shield and AWS WAF to protect against potential
+                        threats. The migration also involved setting up
+                        comprehensive monitoring and auditing tools to ensure
+                        that security protocols were followed rigorously.
+                      </p>
+                      <p><strong>Monitoring and DevOps Strategy:</strong></p>
+                      <p>
+                        To maintain high availability and performance, we
+                        utilized Amazon CloudWatch for real-time monitoring, AWS
+                        X-Ray for debugging, and AWS CloudTrail for logging and
+                        auditing purposes. This setup allowed for continuous
+                        oversight of the system's health, performance, and
+                        security.
+                      </p>
+                      <p>
+                        Our DevOps strategy involved setting up a CI/CD pipeline
+                        using AWS CodePipeline, CodeBuild, and CodeDeploy. This
+                        pipeline facilitated continuous integration and
+                        deployment, ensuring that updates and new features could
+                        be rolled out with minimal downtime. In the production
+                        environment, we emphasized zero-downtime deployments and
+                        automated scaling to handle fluctuating demand. Regular
+                        performance reviews and automated testing, using AWS
+                        Device Farm, were conducted to ensure the system's
+                        reliability and efficiency.
+                      </p>
+
+                      <!-- <div class="row">
+                        <div class="col-md-6">
+                          <img
+                            src="assets/img/security.jpg"
+                            alt="Security Aspects"
+                            class="img-raised"
+                          />
+                          <p class="caption">Security Aspects</p>
+                        </div>
+                        <div class="col-md-6">
+                          <img
+                            src="assets/img/monitoring.jpg"
+                            alt="Monitoring Setup"
+                            class="img-raised"
+                          />
+                          <p class="caption">Monitoring Setup</p>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+
+            <!-- Portfolio Item 3 -->
+            <li [ngbNavItem]="3">
+              <a ngbNavLink><i class="now-ui-icons ui-2_settings-90"></i></a>
+              <ng-template ngbNavContent>
+                <div class="row">
+                  <div class="col-md-10 ml-auto mr-auto">
+                    <div class="description">
+                      <h5>Challenges & Solutions</h5>
+                      <p><strong>Challenges Faced:</strong></p>
+                      <p>
+                        During the migration to Amazon Connect, we encountered
+                        several challenges that required innovative solutions.
+                        One of the main challenges was ensuring system
+                        compatibility and seamless integration between the
+                        existing systems and Amazon Connect, particularly for
+                        custom integrations with third-party applications. This
+                        required a thorough assessment of the current systems,
+                        followed by phased integration testing. We used AWS
+                        Lambda and Amazon API Gateway to achieve smooth
+                        integration.
+                      </p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <img
+                            src="../../assets/img/amz5.png"
+                            alt="Security Aspects"
+                            class="img-raised"
+                          />
+                          <p class="caption">
+                            AWS Lamda Function Alias from Amazon Connect
+                          </p>
+                        </div>
+                        <div class="col-md-6">
+                          <img
+                            src="../../assets/img/amz6.png"
+                            alt="Monitoring Setup"
+                            class="img-raised"
+                          />
+                          <p class="caption">Monitoring Setup</p>
+                        </div>
+                      </div>
+                      <p>
+                        Another significant challenge was the secure migration
+                        of large volumes of historical call data and customer
+                        information to the cloud. To address this, we employed
+                        AWS Data Migration Service (DMS) for efficient data
+                        transfer and ensured data encryption both in transit and
+                        at rest using AWS KMS. Additionally, regular backups and
+                        multi-region replication were implemented to ensure data
+                        durability and disaster recovery capabilities.
+                      </p>
+                      <p>
+                        Scalability and performance were also critical concerns.
+                        The new contact center needed to handle peak loads and
+                        scale dynamically based on demand. We leveraged Amazon
+                        Connect's auto-scaling capabilities and integrated with
+                        Amazon CloudWatch for real-time monitoring and alerting.
+                        Load testing was performed to validate the system's
+                        performance under various scenarios, ensuring it could
+                        meet the high demands of a global customer base.
+                      </p>
+                      <p>
+                        User training and adoption posed another challenge, as
+                        the staff needed to become familiar with the new system.
+                        We developed comprehensive training materials, including
+                        detailed documentation and hands-on workshops, to
+                        facilitate a smooth transition. Continuous support was
+                        provided during the adoption phase to address any issues
+                        that arose.
+                      </p>
+                      <p>
+                        Finally, maintaining high levels of security and
+                        ensuring compliance with industry standards was
+                        paramount. We deployed IAM policies for fine-grained
+                        access control, utilized Amazon VPC for network
+                        isolation, and adhered to encryption standards to
+                        protect data. Compliance with relevant standards such as
+                        PCI-DSS and GDPR was ensured through regular audits and
+                        security reviews.
+                      </p>
+
+                      <p><strong>Solutions Provided:</strong></p>
+                      <p>
+                        We overcame the challenges through advanced integration
+                        techniques, secure data migration, scalability
+                        enhancements, robust training programs, and stringent
+                        security measures. By utilizing AWS Lambda, Amazon API
+                        Gateway, Amazon SQS, and other AWS services, we
+                        successfully integrated Amazon Connect with existing CRM
+                        and ticketing systems. Data was securely migrated using
+                        AWS DMS and KMS, with regular backups and multi-region
+                        replication for added data protection.
+                      </p>
+                      <p>
+                        Scalability was achieved through auto-scaling for Amazon
+                        Connect and related services, while continuous
+                        performance monitoring was facilitated by Amazon
+                        CloudWatch and AWS X-Ray. The training programs ensured
+                        that the staff was well-equipped to handle the new
+                        system, and robust security measures, including IAM
+                        policies and network isolation, provided the necessary
+                        protection for sensitive data.
+                      </p>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <img
+                            src="assets/img/challenges.jpg"
+                            alt="Challenges Faced"
+                            class="img-raised"
+                          />
+                          <p class="caption">Challenges Faced</p>
+                        </div>
+                        <div class="col-md-6">
+                          <img
+                            src="assets/img/solutions.jpg"
+                            alt="Solutions Provided"
+                            class="img-raised"
+                          />
+                          <p class="caption">Solutions Provided</p>
+                        </div>
+                      </div>
+
+                      <p class="mt-4">
+                        <em
+                          >Baye Sabarane LAM, Cloud Solution Architect,
+                          Technical Lead</em
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+          </ul>
+          <div [ngbNavOutlet]="nav"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

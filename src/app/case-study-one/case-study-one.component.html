@@ -1,0 +1,258 @@
+<app-nav *ngif="showNavBar"></app-nav>
+<div class="wrapper">
+  <div class="page-header page-header-small" filter-color="orange">
+    <div
+      class="page-header-image rellax-header"
+      data-rellax-speed="-8"
+      style="background-image: url('assets/img/bg5.jpg')"
+    ></div>
+    <div class="container">
+      <div class="content-center" style="padding-top: 85px">
+        <div class="photo-container" id="referenceDiv">
+          <img src="assets/img/Topface.jpeg" alt="" />
+        </div>
+        <h3 class="title">Cheikh Ahmadou Tidiani Top</h3>
+        <p class="category">Software Engineer & Developer Lead</p>
+        <div class="content">
+          <div class="social-description">
+            <h2>26</h2>
+            <p>Comments</p>
+          </div>
+          <div class="social-description">
+            <h2>26</h2>
+            <p>Comments</p>
+          </div>
+          <div class="social-description">
+            <h2>48</h2>
+            <p>Bookmarks</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="button-container">
+        <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
+        <a
+          href="#button"
+          class="btn btn-default btn-round btn-lg btn-icon"
+          rel="tooltip"
+          title="Follow me on Twitter"
+        >
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a
+          href="#button"
+          class="btn btn-default btn-round btn-lg btn-icon"
+          rel="tooltip"
+          title="Follow me on Instagram"
+        >
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+      <h3 class="title">About me</h3>
+      <h5 class="description">
+        Passionate about leveraging technology to solve complex challenges, As a
+        skilled software engineer with a focus on backend development, I take
+        great pride in adhering to SOLID principles and utilizing design
+        patterns to create well-crafted solutions. My keen analytical skills and
+        experience with design thinking and problem-solving allow me to
+        consistently deliver high-quality results. In addition, my ability to
+        quickly pick up new technologies and my enthusiasm for collaborating on
+        complex challenges make me a versatile and effective team player.
+      </h5>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="title text-center">
+            Case Study: Optimization of a Data Processing Pipeline in a
+            Financial Industry
+          </h4>
+          <ul
+            ngbNav
+            #nav="ngbNav"
+            class="nav-pills nav-pills-primary nav-pills-just-icons justify-content-center"
+            role="tablist"
+          >
+            <!-- Portfolio Item 1 -->
+            <li [ngbNavItem]="1">
+              <a ngbNavLink><i class="now-ui-icons tech_mobile"></i></a>
+              <ng-template ngbNavContent>
+                <div class="row">
+                  <div class="col-md-10 ml-auto mr-auto">
+                    <div class="description">
+                      <h5>Description of the Initial Pipeline</h5>
+                      <p>
+                        At some point of the process, the entry point app sends
+                        a notification to a Messaging broker where other modules
+                        acting as Listeners can consume falling messages and
+                        execute tasks if any.
+                      </p>
+                      <p>
+                        The request contains metadata that defines the type of
+                        processing to be triggered and the data that is stored
+                        in one or multiple files. The Framework supports
+                        multiple file formats.
+                      </p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <img
+                            src="../../assets/img/amz1.png"
+                            alt="Project Overview"
+                            class="img-raised"
+                          />
+                          <p class="caption">Legacy to Amazon Connect</p>
+                        </div>
+                        <div class="col-md-6">
+                          <img
+                            src="../../assets/img/amz2.png"
+                            alt="Project Description"
+                            class="img-raised"
+                          />
+                          <p class="caption">
+                            Smart interactive voice response(IVR)
+                          </p>
+                        </div>
+                      </div>
+                      <p>
+                        At a specific point in the process, the entry point
+                        application sends a notification to a messaging broker.
+                        This enables other modules acting as listeners to
+                        consume messages and execute tasks, if necessary.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+
+            <!-- Portfolio Item 2 -->
+            <li [ngbNavItem]="2">
+              <a ngbNavLink><i class="now-ui-icons objects_key-25"></i></a>
+              <ng-template ngbNavContent>
+                <div class="row">
+                  <div class="col-md-10 ml-auto mr-auto">
+                    <div class="description">
+                      <h5>Challenges Faced</h5>
+                      <p>
+                        In some processes, there were stored SQL procedures to
+                        execute sequentially, which was taking a lot of time.
+                      </p>
+                      <p>
+                        The messaging broker that was actually in use was
+                        outdated and not scaling, so a transition to the newest
+                        was a requirement.
+                      </p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <img
+                            src="../../assets/img/amz1.png"
+                            alt="Project Overview"
+                            class="img-raised"
+                          />
+                          <p class="caption">Legacy to Amazon Connect</p>
+                        </div>
+                        <div class="col-md-6">
+                          <img
+                            src="../../assets/img/amz2.png"
+                            alt="Project Description"
+                            class="img-raised"
+                          />
+                          <p class="caption">
+                            Smart interactive voice response(IVR)
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+
+            <!-- Portfolio Item 3 -->
+            <li [ngbNavItem]="3">
+              <a ngbNavLink><i class="now-ui-icons ui-2_settings-90"></i></a>
+              <ng-template ngbNavContent>
+                <div class="row">
+                  <div class="col-md-10 ml-auto mr-auto">
+                    <div class="description">
+                      <h5>Solutions Provided</h5>
+                      <p>
+                        We initially explored different approaches to address
+                        the issue of long procedure execution times. We focused
+                        on two main options later.
+                      </p>
+                      <p>
+                        The first was about using the reactive programming
+                        approach, which relies on asynchronous event processing
+                        and data streams. We implemented a proof of concept
+                        (POC) using Spring Data R2DBC. R2DBC stands for Reactive
+                        Relational Database Connectivity, which is a
+                        specification for integrating SQL databases using
+                        reactive drivers.
+                      </p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <img
+                            src="../../assets/img/amz1.png"
+                            alt="Project Overview"
+                            class="img-raised"
+                          />
+                          <p class="caption">Legacy to Amazon Connect</p>
+                        </div>
+                        <div class="col-md-6">
+                          <img
+                            src="../../assets/img/amz2.png"
+                            alt="Project Description"
+                            class="img-raised"
+                          />
+                          <p class="caption">
+                            Smart interactive voice response(IVR)
+                          </p>
+                        </div>
+                      </div>
+                      <p>
+                        The second option was to use the Java async library with
+                        the Completable Future. This would allow us to execute
+                        multiple tasks simultaneously, and to treat exceptions
+                        if they occurred during computation.
+                      </p>
+                      <p>
+                        After considering the compatibility of the solution with
+                        an "aged" system and the current DB server, we decided
+                        to go for the second option. This involved integrating
+                        and deploying a solution that manages parallel execution
+                        of stored procedures. This resulted in a significant
+                        impact on the performance of the framework, which in
+                        turn affected the business.
+                      </p>
+                      <p>
+                        In regard to the transition to a new message broker that
+                        facilitates enhanced communication between our
+                        applications, two solutions are deployed. The first,
+                        which is primarily intended for use by developers, is an
+                        Active MQ broker. The second, which is employed in both
+                        test and production environments, is an Amazon SQS
+                        message broker. The advantage of this middleware is that
+                        it supports industry-standard protocols for queuing
+                        across languages and platforms.
+                      </p>
+                      <p>
+                        <em
+                          >Cheikh Ahmadou Tidiani Top, Software Engineer,
+                          Developer Lead</em
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+          </ul>
+          <div [ngbNavOutlet]="nav"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+
+
+  <section class="produits">
+ 
+    <p> {{ "products.description" | translate }} </p>
+    <div class="produits-container">
+      <div class="produit-card">
+        <img src="assets/img/sts.png" alt="Projet 1">
+        <h3> {{ "products.smsSchoolWebSite.name" | translate }}</h3>
+        <p>{{ "products.smsSchoolWebSite.description" | translate }}</p>
+        <button class="voir-plus" (click)="voirPlus(&quot;https://school-template.s3.amazonaws.com/index.html&quot;)">{{ "products.smsSchoolWebSite.seeMore" | translate }}</button>
+
+      </div>
+      <div class="produit-card">
+        <img src="assets/img/carRental.jpeg" alt="Projet 2">
+        <h3> {{ "products.carRentalSite.name" | translate }}</h3>
+        <p>{{ "products.carRentalSite.description" | translate }}</p>
+        <button class="voir-plus" (click)="voirPlus(&quot;https://school-template.s3.amazonaws.com/index.html&quot;)">{{ "products.smsSchoolWebSite.seeMore" | translate }}</button>
+
+      </div>
+      <!-- Ajoutez plus de projets ici -->
+    </div>
+  </section>

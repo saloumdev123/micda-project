@@ -1,0 +1,277 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  animation: fadeIn 1s ease-in-out;
+  background-color: #000000;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 150px;
+  padding: 20px;
+  background-color: #2c9effab;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  animation: slideInUp 0.5s ease-in-out;
+}
+
+.heading {
+  text-align: center;
+  font-size: 2.5em;
+  color: #c3d2dd;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.sub-heading {
+  font-size: 1.5em;
+  color: #c3d2dd;
+  margin-bottom: 20px;
+  animation: fadeInLeft 1s ease-in-out;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  overflow: hidden;
+  animation: fadeInRight 1s ease-in-out;
+}
+
+.table th,
+.table td {
+  padding: 15px 20px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.table th {
+  background-color: #0a5184;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 0.85em;
+}
+
+.table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.list-group {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.list-group-item {
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
+}
+
+.list-group-item:hover {
+  background-color: #e0f7fa;
+  border-color: #0a5184;
+  transform: translateY(-3px);
+}
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  transition: transform 0.3s;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card-body {
+  padding: 20px;
+  background-color: #0094ff47;
+}
+.card-body:hover {
+  padding: 20px;
+  background-color: #e1e5e8;
+}
+
+.card-title {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #00101b;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.card-text {
+  margin-bottom: 10px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.alert {
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: #0a5184;
+  color: #ffffff;
+  animation: pulse 2s infinite;
+}
+.form-control {
+  color: #000000;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animated-table th {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animated-row {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animated-list-item {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animated-card {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animated-alert {
+  animation: pulse 2s infinite;
+}
+/* the show card  */
+.container {
+  padding: 2rem;
+}
+
+.heading {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.filters {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.filters input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.card {
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+.card-text {
+  margin: 1rem 0;
+}
+
+.btn {
+  margin-right: 0.5rem;
+}
+
+.job-details {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ccc;
+}

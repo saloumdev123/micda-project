@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: "Oswald", sans-serif;
+  font-size: 12pt;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Bebas Neue", cursive;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
+}
+
+/* General Styles */
+.we-are-block {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+}
+
+/* About Section */
+#about-section {
+  background-color: #0c4c91;
+}
+
+#about-section .section-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.about-us-image img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+}
+
+.about-us-info {
+  padding: 20px;
+  width: 40%;
+  text-align: center; /* Center text */
+}
+
+.about-us-info h2,
+.about-us-info p {
+  color: white;
+}
+
+.about-us-info a {
+  background-color: white;
+  color: #0c4c91;
+  padding: 10px 20px;
+  font-size: 1rem;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  display: inline-block;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.about-us-info a:hover {
+  background: #404140;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+/* History Section */
+#history-section {
+  background-color: #1a75d1;
+}
+
+#history-section .section-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-direction: row-reverse; /* Invert the order of elements */
+}
+
+.history-image img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+}
+
+.history-info {
+  padding: 20px;
+  width: 40%;
+  text-align: center; /* Center text */
+}
+
+.history-info h2,
+.history-info p {
+  color: white;
+}
+
+.history-info a {
+  background-color: white;
+  color: #1a75d1;
+  padding: 10px 20px;
+  font-size: 1rem;
+  display: inline-block;
+  margin-top: 10px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  text-align: center;
+}
+
+.history-info a:hover {
+  background: #404140;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+/* Responsive */
+@media screen and (max-width: 860px) {
+  .section-content {
+    flex-direction: column; /* Stack vertically on smaller screens */
+  }
+
+  .about-us-info,
+  .history-info {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .about-us-image img,
+  .history-image img {
+    width: 100%;
+    height: auto;
+  }
+}

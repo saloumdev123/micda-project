@@ -1,0 +1,139 @@
+{
+  "ABOUT_US": {
+    "TITLE": "We are Digital Upgrade",
+    "DESCRIPTION": "We design and develop custom software solutions tailored to your business needs. From concept to deployment, our team ensures the software aligns perfectly with your operational requirements and goals.",
+    "BUTTON_TITLE": "About Us Button",
+    "BUTTON_TEXT": "ABOUT US"
+  },
+  "HISTORY": {
+    "TITLE": "Preserving Local History",
+    "DESCRIPTION": "Founded in 2018, SarayaTech solutions was built on a passion for technology and a commitment to helping businesses thrive in a digital world. With a team of dedicated professionals, we offer innovative IT solutions that drive success. We offer talent, technology, and training solutions that drive transformation and enable you to achieve your business goals.",
+    "BUTTON_TITLE": "History Button",
+    "BUTTON_TEXT": "HISTORY"
+  },
+  "HEADER": {
+    "BRAND": "Brand",
+    "HOME": "Home",
+    "FEATURE": "Feature",
+    "PRODUCT": "Product",
+    "SUPPORT": "Support",
+    "DISCOVER": "Discover"
+  },
+  "BANNER": {
+    "HEADING": "with Cutting-Edge IT Solutions",
+    "DESCRIPTION": "Empower Your Business & Discover innovative technology solutions that enhance productivity, security, and efficiency. Our team of experts delivers customized IT services designed to meet your unique business needs.",
+    "SOCIAL_LINKS": {
+      "FACEBOOK": "Facebook",
+      "INSTAGRAM": "Instagram",
+      "TWITTER": "Twitter",
+      "YOUTUBE": "YouTube"
+    }
+  },
+  "COMPANY": {
+    "TITLE": "This is our great company."
+  },
+  "SOCIAL": {
+    "FACEBOOK": "Facebook",
+    "TWITTER": "Twitter",
+    "GOOGLE_PLUS": "Google Plus"
+  },
+  "FUTURE_TECH": {
+    "TITLE": "Future Technologies",
+    "DESCRIPTION": "The future is fast approaching, and a new era of digital innovation and disruption is here."
+  },
+  "WHY_US": {
+    "TITLE": "Why Us?",
+    "SUBTITLE": "Choosing STS means...",
+    "DESCRIPTION_1": "partnering with a team of seasoned professionals dedicated to delivering innovative and tailored IT solutions that drive your business forward.",
+    "DESCRIPTION_2": "We leverage cutting-edge technology and creative problem-solving to meet your unique needs, offering comprehensive services from custom software development to managed IT services.",
+    "DESCRIPTION_3": "Our customer-centric approach ensures responsive support and long-term client satisfaction, all while maintaining robust security and compliance standards. With a proven track record, transparent communication, and a commitment to continuous improvement, we provide scalable, reliable, and integrated solutions that adapt to your business’s evolving needs. Let us help you achieve your business goals with excellence and integrity.",
+    "BUTTON_TEXT": "Follow Us"
+  },
+  "ABOUT": {
+    "YEAR": "20218",
+    "TITLE": "Saraya Tech Solutions",
+    "DESCRIPTION_1": "Founded in 2018, SarayaTech solutions was built on a passion for technology and a commitment to helping businesses thrive in a digital world.",
+    "DESCRIPTION_2": "With a team of dedicated professionals, we offer innovative IT solutions that drive success. We offer talent, technology, and training solutions that drive transformation and enable you to achieve your business goals.",
+    "BUTTON_TEXT": "Follow Us"
+  },
+  "VALUES": {
+    "INNOVATION_TITLE": "INNOVATION: Leading-edge technology and creative problem-solving",
+    "INNOVATION_DESC": "Our approach to innovation is rooted in utilizing the most advanced technologies and applying creative problem-solving techniques. We continuously explore new ideas and emerging trends to develop solutions that are not only effective but also transformative. By embracing cutting-edge tools and methodologies, we ensure that our clients stay ahead in a rapidly evolving digital landscape, turning challenges into opportunities for growth.",
+    "INTEGRITY_TITLE": "INTEGRITY: Transparent, honest, and client-focused service",
+    "INTEGRITY_DESC": "Integrity is at the core of everything we do. We believe in building trust through transparency and honesty in all our interactions. Our commitment to ethical practices ensures that our clients receive services that are not only effective but also aligned with their best interests. By maintaining open communication and upholding the highest standards of integrity, we forge lasting relationships that are built on mutual respect and trust.",
+    "EXCELLENCE_TITLE": "EXCELLENCE: Commitment to delivering the highest quality",
+    "EXCELLENCE_DESC": "Excellence drives our commitment to delivering superior quality in every aspect of our work. We set high standards for ourselves, striving to exceed expectations and deliver results that make a meaningful impact. Through rigorous attention to detail, continuous improvement, and a dedication to mastering our craft, we ensure that every project we undertake reflects our unwavering pursuit of excellence.",
+    "CUSTOMER_FOCUS_TITLE": "Customer Focus: Your success is our priority",
+    "CUSTOMER_FOCUS_DESC": "Your success is the measure of our success. We place our clients at the center of everything we do, prioritizing their needs and goals above all else. Our customer-focused approach ensures that every solution we provide is designed with your best interests in mind. By understanding your challenges, anticipating your needs, and delivering exceptional service, we help you achieve the outcomes that matter most."
+  },
+  "GADGETS": {
+    "TITLE": "Gadgets",
+    "SUBTITLE": "Gadgets of the Future",
+    "DESCRIPTION": "Technology is developing at an enormous speed, and you never know what's next to come, say, for example, in 2020.",
+    "FUTURIST_QUOTE": "One of those who like to contemplate the future of technology is French designer Josselin Zaigouche who decided to design this incredible gadget, dubbed Apple Black Hole (and it's not because it will suck Apple down if it hits the market). The name was probably inspired by the numerous applications one can find in Apple's device (such as iPhone and iPad).",
+    "BUTTON_TEXT": "Read More",
+    "BUTTON_TITLE": "Learn more about the gadget"
+  },
+  "FUTURE_TECHNOLOGIES": {
+    "TITLE": "5 Future Technologies That Will Be Mainstream",
+    "DESCRIPTION": "Tech companies rang in the start of the new year by unveiling some of their ambitious plans for the coming months. Startups and multinational companies alike are beginning to feel the ripple effects of innovation in the industry, with technology becoming more intertwined in everyday lives each year. As 2018 progresses, here are 5 future technologies you can expect to reach the public in the next couple of years."
+  },
+  "TECHNOLOGIES": {
+    "LIST": [
+      {
+        "TITLE": "1. The Internet",
+        "DESCRIPTION": "The Internet of Things has long been talked about amongst tech insiders as the next big innovation in home technology."
+      },
+      {
+        "TITLE": "2. Automation",
+        "DESCRIPTION": "While large-scale innovation in automation has traditionally been limited to the production side of society."
+      },
+      {
+        "TITLE": "3. Cryptocurrency",
+        "DESCRIPTION": "After Bitcoin’s meteoric price jump in 2017, major tech players have begun to take cryptocurrencies seriously."
+      },
+      {
+        "TITLE": "4. Blockchain",
+        "DESCRIPTION": "Blockchain, the decentralized ledger that holds together cryptocurrencies, has applications reaching far beyond currency."
+      },
+      {
+        "TITLE": "5. AI",
+        "DESCRIPTION": "Artificial intelligence is seeing the light and applications of the technology are already being worked on."
+      }
+    ]
+  },
+  "TESTIMONIAL": {
+    "TEXT": "\"The team at STS is exceptional. Their solutions have greatly improved our business processes.\"",
+    "AUTHOR": "- MidWest Accounting"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Small teams. Big results.",
+    "description": "You’ll be working with a small, dedicated team built to fit the needs of your project.",
+    "webDevelopment": {
+      "name": "Web Development",
+      "description": "Creating responsive and dynamic websites.",
+      "skills": {
+        "html": "HTML",
+        "css": "CSS",
+        "javascript": "JavaScript"
+      }
+    },
+    "mobileAppDevelopment": {
+      "name": "Mobile App Development",
+      "description": "Building apps for mobile platforms.",
+      "skills": {
+        "flutter": "Flutter",
+        "reactNative": "React Native"
+      }
+    },
+    "uiUxDesign": {
+      "name": "UI/UX Design",
+      "description": "Designing user-friendly interfaces.",
+      "skills": {
+        "wireframing": "Wireframing",
+        "prototyping": "Prototyping"
+      }
+    }
+  }
+}
