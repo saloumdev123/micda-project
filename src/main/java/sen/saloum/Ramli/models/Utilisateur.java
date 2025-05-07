@@ -24,7 +24,6 @@ public class Utilisateur {
     private String motDePasse;
 
     private String role;
-
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
     private List<Tirage> tirages;
 }
