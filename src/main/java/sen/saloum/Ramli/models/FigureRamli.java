@@ -27,8 +27,7 @@ public class FigureRamli {
     @JoinColumn(name = "tirage_id")
     private Tirage tirage;
 
-    @ManyToOne
-    @JoinColumn(name = "type")
+    @Enumerated(EnumType.STRING)
     private TypeFigure typeFigure;
 
     @OneToMany(mappedBy = "figure", cascade = CascadeType.ALL)
