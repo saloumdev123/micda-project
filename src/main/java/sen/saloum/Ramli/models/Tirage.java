@@ -24,6 +24,10 @@ public class Tirage {
     @Column(columnDefinition = "TEXT")
     private String interpretation;
 
+    private String nom;
+    private String question;
+    private String figureResultats;
+
     // Relations
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
