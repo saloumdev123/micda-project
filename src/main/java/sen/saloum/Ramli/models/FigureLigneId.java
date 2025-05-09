@@ -14,6 +14,4 @@ import java.io.Serializable;
 public class FigureLigneId implements Serializable {
     private Long figure;
     private int ligneIndex;
-
-    // equals() & hashCode()
 }

@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FigureLigne {
-
     @Id
     @ManyToOne
     @JoinColumn(name = "figure_id")
@@ -19,7 +18,6 @@ public class FigureLigne {
 
     @Id
     private int ligneIndex;
+    private String nom;
     private int valeur;
-
-
 }
