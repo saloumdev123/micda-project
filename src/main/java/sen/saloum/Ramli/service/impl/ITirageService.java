@@ -1,6 +1,6 @@
 package sen.saloum.Ramli.service.impl;
 
-import sen.saloum.Ramli.dto.TirageDto;
+import sen.saloum.Ramli.dto.tirage.TirageDto;
 
 import java.util.List;
 

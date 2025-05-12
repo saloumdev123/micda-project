@@ -2,7 +2,7 @@ package sen.saloum.Ramli.mapStruct;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import sen.saloum.Ramli.dto.UtilisateurDto;
+import sen.saloum.Ramli.dto.user.UtilisateurDto;
 import sen.saloum.Ramli.models.Utilisateur;
 
 @Mapper(componentModel = "spring")

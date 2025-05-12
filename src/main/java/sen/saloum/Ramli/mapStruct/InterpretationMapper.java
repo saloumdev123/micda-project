@@ -1,7 +1,7 @@
 package sen.saloum.Ramli.mapStruct;
 
 import org.mapstruct.Mapper;
-import sen.saloum.Ramli.dto.InterpretationDto;
+import sen.saloum.Ramli.dto.figure.InterpretationDto;
 import sen.saloum.Ramli.models.Interpretation;
 
 @Mapper(componentModel = "spring")

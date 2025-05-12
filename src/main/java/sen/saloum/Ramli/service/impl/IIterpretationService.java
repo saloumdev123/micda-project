@@ -1,6 +1,6 @@
 package sen.saloum.Ramli.service.impl;
 
-import sen.saloum.Ramli.dto.InterpretationDto;
+import sen.saloum.Ramli.dto.figure.InterpretationDto;
 
 import java.util.List;
 

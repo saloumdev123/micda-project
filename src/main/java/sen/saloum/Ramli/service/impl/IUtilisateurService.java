@@ -1,6 +1,6 @@
 package sen.saloum.Ramli.service.impl;
 
-import sen.saloum.Ramli.dto.UtilisateurDto;
+import sen.saloum.Ramli.dto.user.UtilisateurDto;
 
 import java.util.List;
 
