@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import sen.saloum.Ramli.enums.Role;
 
 import java.util.HashSet;
 import java.util.List;
@@ -21,22 +22,41 @@ public class Utilisateur {
     private String username;
     private String password;
     private boolean enabled = true;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles = new HashSet<>();
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
     private List<Tirage> tirages;
+    @Version
+    private Long version;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
 
     public Utilisateur() {
     }
 
-    public Utilisateur(Long id, String nom, String username, String password, boolean enabled, Set<Role> roles, List<Tirage> tirages) {
+    public Utilisateur(Long id,Long version, String nom, String username, String password,
+                       boolean enabled,Role role, List<Tirage> tirages) {
         this.id = id;
         this.nom = nom;
         this.username = username;
         this.password = password;
         this.enabled = enabled;
-        this.roles = roles;
+        this.role = role;
         this.tirages = tirages;
     }
 
@@ -48,12 +68,12 @@ public class Utilisateur {
         this.enabled = enabled;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRoles() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRoles(Role roles) {
+        this.role = roles;
     }
 
     public Long getId() {

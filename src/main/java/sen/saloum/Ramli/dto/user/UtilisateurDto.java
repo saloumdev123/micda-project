@@ -1,12 +1,39 @@
 package sen.saloum.Ramli.dto.user;
 
+import sen.saloum.Ramli.enums.Role;
+
 public class UtilisateurDto {
     private Long id;
     private String nom;
     private String username;
     private String password;
     private boolean enabled = true;
-    private String role;
+    private Role role;
+    private Long version;
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    public UtilisateurDto() {
+    }
+
+    public UtilisateurDto(Long id, String nom, String username, String password,
+                          boolean enabled, Role role,Long version) {
+        this.id = id;
+        this.nom = nom;
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.role = role;
+        this.version= version;
+    }
+
+
 
     public Long getId() {
         return id;
@@ -48,11 +75,11 @@ public class UtilisateurDto {
         this.enabled = enabled;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }
