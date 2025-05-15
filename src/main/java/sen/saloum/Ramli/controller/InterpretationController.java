@@ -23,20 +23,19 @@ public class InterpretationController {
 
     @PostMapping("/add")
     public ResponseEntity<InterpretationDto> addInterpretation(
-            @Valid @RequestBody InterpretationDto dto,
-            @RequestParam Long figureId,
-            @RequestParam TypeFigure typeFigure
+            @Valid @RequestBody InterpretationDto dto
     ) {
         FigureRamli figure = new FigureRamli();
-        figure.setId(figureId);
+        figure.setId(dto.getFigureId());
 
-        InterpretationDto saved = interpretationService.addInterpretation(dto, figure, typeFigure);
+        InterpretationDto saved = interpretationService.addInterpretation(dto);
         return ResponseEntity.ok(saved);
     }
 
+
     @GetMapping("/by-figure/{figureId}")
     public ResponseEntity<List<InterpretationDto>> getByFigure(@PathVariable Long figureId) {
-        List<InterpretationDto> list = interpretationService.getByFigureId(figureId);
-        return ResponseEntity.ok(list);
+        List<InterpretationDto> interpretations = interpretationService.getByFigureId(figureId);
+        return ResponseEntity.ok(interpretations);
     }
 }

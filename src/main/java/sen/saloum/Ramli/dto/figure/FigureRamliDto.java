@@ -1,9 +1,13 @@
 package sen.saloum.Ramli.dto.figure;
 
 
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
 import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
 
+import java.util.List;
 public class FigureRamliDto {
     private Long id;
     private int ordre;
@@ -12,11 +16,14 @@ public class FigureRamliDto {
     private Long tirageId;
     private NomFigureBase nomFigureBase;
     private TypeFigure typeFigure;
+    private List<FigureLignesDto> lignes;
 
     public FigureRamliDto() {
     }
 
-    public FigureRamliDto(Long id, int ordre, String nom, String image, Long tirageId, NomFigureBase nomFigureBase, TypeFigure typeFigure) {
+    public FigureRamliDto(Long id,List<FigureLignesDto> lignes, int ordre, String nom,
+                          String image, Long tirageId, NomFigureBase nomFigureBase,
+                          TypeFigure typeFigure) {
         this.id = id;
         this.ordre = ordre;
         this.nom = nom;
@@ -24,6 +31,7 @@ public class FigureRamliDto {
         this.tirageId = tirageId;
         this.nomFigureBase = nomFigureBase;
         this.typeFigure = typeFigure;
+        this.lignes=lignes;
     }
 
     public Long getId() {
@@ -40,6 +48,14 @@ public class FigureRamliDto {
 
     public void setOrdre(int ordre) {
         this.ordre = ordre;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getImage() {
@@ -74,11 +90,11 @@ public class FigureRamliDto {
         this.typeFigure = typeFigure;
     }
 
-    public String getNom() {
-        return nom;
+    public List<FigureLignesDto> getLignes() {
+        return lignes;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setLignes(List<FigureLignesDto> lignes) {
+        this.lignes = lignes;
     }
 }

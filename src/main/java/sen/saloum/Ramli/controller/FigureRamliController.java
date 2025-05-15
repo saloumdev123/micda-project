@@ -15,38 +15,40 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/figure-ramli")
 public class FigureRamliController {
 
-    @Autowired
-    private FigureRamliService figureRamliService; // Injecting the service class
+    private final FigureRamliService figureRamliService;
 
-    // Endpoint to retrieve all FigureRamli
-    @GetMapping("/")
+    public FigureRamliController(FigureRamliService figureRamliService) {
+        this.figureRamliService = figureRamliService;
+    }
+    @GetMapping("/tirage/{tirageId}")
+    public ResponseEntity<List<FigureRamliDto>> getFiguresByTirageIdWithDetails(@PathVariable Long tirageId) {
+        List<FigureRamliDto> figures = figureRamliService.findByTirageIdWithLinesAndInterpretations(tirageId);
+        return ResponseEntity.ok(figures);
+    }
+    @GetMapping("/all")
     public ResponseEntity<List<FigureRamliDto>> getAll() {
         List<FigureRamliDto> figureRamliDtos = figureRamliService.getAll();
         return ResponseEntity.ok(figureRamliDtos);
     }
 
-    // Endpoint to generate FigureRamli from FigureLignesDto
     @PostMapping("/generate")
     public ResponseEntity<List<FigureRamliDto>> generateFigures(@RequestBody List<FigureLignesDto> lignesDto) {
         try {
-            List<FigureRamli> figures = figureRamliService.genererFigures(lignesDto);
-            List<FigureRamliDto> figuresDto = figures.stream()
-                                                     .map(figureRamliService::toDto)
-                                                     .collect(Collectors.toList());
+            List<FigureRamliDto> figuresDto = figureRamliService.genererEtRetournerDto(lignesDto);
             return ResponseEntity.ok(figuresDto);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(null); // Handle errors (e.g., validation failures)
+            return ResponseEntity.badRequest().body(null);
         }
     }
 
-    // Endpoint to save a FigureRamli
-    @PostMapping("/save")
+    @PostMapping(value = "/save", consumes = {"application/json", "application/json;charset=UTF-8"})
     public ResponseEntity<Void> saveFigure(@RequestBody FigureRamli figure) {
         try {
-            figureRamliService.save(figure); // Save the figure
-            return ResponseEntity.noContent().build(); // Return a 204 No Content response
+            figureRamliService.save(figure);
+            return ResponseEntity.noContent().build();
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(null); // If the validation fails
+            return ResponseEntity.badRequest().body(null);
         }
     }
+
 }

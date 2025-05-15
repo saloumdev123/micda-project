@@ -1,15 +1,12 @@
 package sen.saloum.Ramli.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
 
+
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class Interpretation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,23 +23,15 @@ public class Interpretation {
     @JoinColumn(name = "figure_id")
     private FigureRamli figure;
 
-    @Enumerated(EnumType.STRING)
-    private TypeFigure typeFigure;
-
-    @Enumerated(EnumType.STRING)
-    private NomFigureBase nomFigureBase;
-
     public Interpretation() {
     }
-
-    public Interpretation(Long id, String signification, String culture, String source, FigureRamli figure, TypeFigure typeFigure, NomFigureBase nomFigureBase) {
+    public Interpretation(Long id, String signification, String culture, String source,
+                          FigureRamli figure) {
         this.id = id;
         this.signification = signification;
         this.culture = culture;
         this.source = source;
         this.figure = figure;
-        this.typeFigure = typeFigure;
-        this.nomFigureBase = nomFigureBase;
     }
 
     public Long getId() {
@@ -83,21 +72,5 @@ public class Interpretation {
 
     public void setFigure(FigureRamli figure) {
         this.figure = figure;
-    }
-
-    public TypeFigure getTypeFigure() {
-        return typeFigure;
-    }
-
-    public void setTypeFigure(TypeFigure typeFigure) {
-        this.typeFigure = typeFigure;
-    }
-
-    public NomFigureBase getNomFigureBase() {
-        return nomFigureBase;
-    }
-
-    public void setNomFigureBase(NomFigureBase nomFigureBase) {
-        this.nomFigureBase = nomFigureBase;
     }
 }

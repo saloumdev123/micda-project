@@ -6,6 +6,7 @@ import sen.saloum.Ramli.enums.TypeFigure;
 import sen.saloum.Ramli.mapStruct.InterpretationMapper;
 import sen.saloum.Ramli.models.FigureRamli;
 import sen.saloum.Ramli.models.Interpretation;
+import sen.saloum.Ramli.repos.FigureRamliRepository;
 import sen.saloum.Ramli.repos.InterpretationRepository;
 
 import java.util.List;
@@ -15,23 +16,24 @@ import java.util.stream.Collectors;
 public class InterpretationService {
 
     private final InterpretationRepository interpretationRepository;
-
+    private final FigureRamliRepository figureRamliRepository;
     private final InterpretationMapper interpretationMapper;
 
-    public InterpretationService(InterpretationRepository interpretationRepository, InterpretationMapper interpretationMapper) {
+    public InterpretationService(InterpretationRepository interpretationRepository, InterpretationMapper interpretationMapper, FigureRamliRepository figureRamliRepository) {
         this.interpretationRepository = interpretationRepository;
+        this.figureRamliRepository = figureRamliRepository;
         this.interpretationMapper = interpretationMapper;
     }
 
-    public InterpretationDto addInterpretation(InterpretationDto dto, FigureRamli fig, TypeFigure type) {
-        checkIfInterpretationExists(fig, type);
+    public InterpretationDto addInterpretation(InterpretationDto dto) {
+        FigureRamli figure = figureRamliRepository.findById(dto.getFigureId())
+                .orElseThrow(() -> new RuntimeException("Figure not found"));
 
         Interpretation entity = interpretationMapper.toEntity(dto);
-        entity.setFigure(fig);
-        entity.setTypeFigure(type);
+        entity.setFigure(figure);
 
-        entity = interpretationRepository.save(entity);
-        return interpretationMapper.toDto(entity);
+        Interpretation saved = interpretationRepository.save(entity);
+        return interpretationMapper.toDto(saved);
     }
 
 
@@ -40,10 +42,5 @@ public class InterpretationService {
                 .stream()
                 .map(interpretationMapper::toDto)
                 .collect(Collectors.toList());
-    }
-    public void checkIfInterpretationExists(FigureRamli fig, TypeFigure type) {
-        if (interpretationRepository.existsByFigureAndTypeFigure(fig, type)) {
-            throw new IllegalStateException("Interprétation déjà existante pour cette figure et ce rôle.");
-        }
     }
 }

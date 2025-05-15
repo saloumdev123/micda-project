@@ -1,10 +1,11 @@
 package sen.saloum.Ramli.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import sen.saloum.Ramli.dto.figure.FigureLignesDto;
-import sen.saloum.Ramli.mapStruct.FigureLignesMapper;
+import sen.saloum.Ramli.mapStruct.FigureLigneMapper;
 import sen.saloum.Ramli.models.FigureLigne;
-import sen.saloum.Ramli.models.FigureLigneId;
 import sen.saloum.Ramli.models.FigureRamli;
 import sen.saloum.Ramli.repos.FigureLignesRepository;
 import sen.saloum.Ramli.repos.FigureRamliRepository;
@@ -15,32 +16,35 @@ import java.util.stream.Collectors;
 
 @Service
 public class FigureLigneService {
-
+    private static final Logger logger = LoggerFactory.getLogger(FigureLigneService.class);
     private final FigureLignesRepository figureLigneRepository;
     private final FigureRamliRepository figureRamliRepository;
-    private final FigureLignesMapper figureLignesMapper;
+    private final FigureLigneMapper figureLigneMapper;
 
-    public FigureLigneService(FigureLignesRepository figureLigneRepository, FigureRamliRepository figureRamliRepository, FigureLignesMapper figureLignesMapper) {
+    public FigureLigneService(FigureLignesRepository figureLigneRepository,
+                              FigureRamliRepository figureRamliRepository,
+                              FigureLigneMapper figureLigneMapper) {
         this.figureLigneRepository = figureLigneRepository;
         this.figureRamliRepository = figureRamliRepository;
-        this.figureLignesMapper = figureLignesMapper;
+        this.figureLigneMapper = figureLigneMapper;
+
     }
 
-    public FigureLignesDto create(FigureLignesDto dto) {
-        FigureLigne entity = figureLignesMapper.toEntity(dto);
 
-        // This is the fix
+    public FigureLignesDto create(FigureLignesDto dto) {
+        FigureLigne entity = figureLigneMapper.toEntity(dto);
+
         FigureRamli figure = figureRamliRepository.findById(dto.getFigureId())
                 .orElseThrow(() -> new RuntimeException("FigureRamli not found"));
         entity.setFigure(figure);  // set the full entity
 
         entity = figureLigneRepository.save(entity);
-        return figureLignesMapper.toDto(entity);
+        return figureLigneMapper.toDto(entity);
     }
     public List<FigureLignesDto> getByFigureId(Long figureId) {
         return figureLigneRepository.findByFigureId(figureId)
                 .stream()
-                .map(figureLignesMapper::toDto)
+                .map(figureLigneMapper::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -49,34 +53,28 @@ public class FigureLigneService {
             throw new IllegalArgumentException("Le tirage doit contenir un nombre de bits multiple de 4");
         }
 
-        List<FigureLigne> lignes = new ArrayList<>();
+        List<FigureLignesDto> lignesDto = new ArrayList<>();
         int ligneIndex = 0;
 
         for (int i = 0; i < tirage.size(); i += 4) {
-            FigureLigne ligne = new FigureLigne();
-            ligne.setPoint1(tirage.get(i));
-            ligne.setPoint2(tirage.get(i + 1));
-            ligne.setPoint3(tirage.get(i + 2));
-            ligne.setPoint4(tirage.get(i + 3));
-            ligne.setValeur(ligne.getPoint1() + ligne.getPoint2() + ligne.getPoint3() + ligne.getPoint4());
-            ligne.setNomLigne("Ligne " + (ligneIndex + 1));
+            FigureLignesDto dto = new FigureLignesDto();
+            dto.setFigureId(figureId);
+            dto.setLigneIndex(ligneIndex);
+            dto.setPoint1(tirage.get(i));
+            dto.setPoint2(tirage.get(i + 1));
+            dto.setPoint3(tirage.get(i + 2));
+            dto.setPoint4(tirage.get(i + 3));
+            dto.setNomLigne("Ligne " + (ligneIndex + 1));
+            dto.calculerValeur();
 
-            FigureLigneId id = new FigureLigneId();
-            id.setFigureId(figureId);
-            id.setLigneIndex(ligneIndex);
-            ligne.setId(id);
-
-            lignes.add(ligne);
+            lignesDto.add(dto);
             ligneIndex++;
         }
 
-        return lignes.stream()
-                .map(figureLignesMapper::toDto)
-                .collect(Collectors.toList());
+        return lignesDto;
     }
 
-
-    public void saveAll(List<FigureLigne> lignes) {
+    public void saveAll(List<FigureLigne> lignes)  {
         figureLigneRepository.saveAll(lignes);
     }
 }

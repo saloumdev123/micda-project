@@ -1,11 +1,15 @@
 package sen.saloum.Ramli.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import sen.saloum.Ramli.dto.figure.FigureLignesDto;
+import lombok.Getter;
+import lombok.Setter;
 import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
 
 import java.util.List;
+
+
 
 @Entity
 public class FigureRamli {
@@ -18,13 +22,14 @@ public class FigureRamli {
     private Integer ordre;
 
     private String image;
-
     @ManyToOne
     @JoinColumn(name = "tirage_id")
     private Tirage tirage;
-    @OneToMany(mappedBy = "figure", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "figure", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<FigureLigne> lignes;
-    @OneToMany(mappedBy = "figure", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "figure_id")
     private List<Interpretation> interpretations;
     @Enumerated(EnumType.STRING)
     private TypeFigure typeFigure;
@@ -32,9 +37,9 @@ public class FigureRamli {
     private NomFigureBase nomFigureBase;
     private String description;
 
+
     public FigureRamli() {
     }
-
     public FigureRamli(Long id, String nom, Integer ordre, String image, Tirage tirage, List<FigureLigne> lignes, List<Interpretation> interpretations, TypeFigure typeFigure, NomFigureBase nomFigureBase, String description) {
         this.id = id;
         this.nom = nom;
@@ -88,19 +93,12 @@ public class FigureRamli {
         this.tirage = tirage;
     }
 
-    public TypeFigure getTypeFigure() {
-        return typeFigure;
-    }
-
     public List<FigureLigne> getLignes() {
         return lignes;
     }
+
     public void setLignes(List<FigureLigne> lignes) {
         this.lignes = lignes;
-    }
-
-    public void setTypeFigure(TypeFigure typeFigure) {
-        this.typeFigure = typeFigure;
     }
 
     public List<Interpretation> getInterpretations() {
@@ -109,6 +107,14 @@ public class FigureRamli {
 
     public void setInterpretations(List<Interpretation> interpretations) {
         this.interpretations = interpretations;
+    }
+
+    public TypeFigure getTypeFigure() {
+        return typeFigure;
+    }
+
+    public void setTypeFigure(TypeFigure typeFigure) {
+        this.typeFigure = typeFigure;
     }
 
     public NomFigureBase getNomFigureBase() {
