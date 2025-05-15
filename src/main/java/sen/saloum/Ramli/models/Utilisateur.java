@@ -1,14 +1,10 @@
 package sen.saloum.Ramli.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import sen.saloum.Ramli.enums.Role;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 @Entity
 public class Utilisateur {
@@ -30,22 +26,6 @@ public class Utilisateur {
     @Version
     private Long version;
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
     public Utilisateur() {
     }
 
@@ -58,14 +38,7 @@ public class Utilisateur {
         this.enabled = enabled;
         this.role = role;
         this.tirages = tirages;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+        this.version=version;
     }
 
     public Role getRoles() {
@@ -108,7 +81,21 @@ public class Utilisateur {
         this.password = password;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
 
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public List<Tirage> getTirages() {
         return tirages;
@@ -116,5 +103,13 @@ public class Utilisateur {
 
     public void setTirages(List<Tirage> tirages) {
         this.tirages = tirages;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }
