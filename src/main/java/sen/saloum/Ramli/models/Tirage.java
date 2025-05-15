@@ -1,20 +1,20 @@
 package sen.saloum.Ramli.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import sen.saloum.Ramli.enums.NomFigureBase;
+import sen.saloum.Ramli.enums.TypeFigure;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
+
 
 @Entity
 public class Tirage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nomTirage;
     private OffsetDateTime dateTirage;
     @Column(columnDefinition = "TEXT")
@@ -23,17 +23,19 @@ public class Tirage {
     private String figureResultats;
     private String nomConsultant;
     private String valeurs;
-
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
+    private TypeFigure typeFigure;
+    @Enumerated(EnumType.STRING)
+    private NomFigureBase nomFigureBase;
+    private Long version;
 
-    @OneToMany(mappedBy = "tirage", cascade = CascadeType.ALL)
-    private List<FigureRamli> figures;
     public Tirage() {
     }
-
-    public Tirage(Long id, String nomTirage, OffsetDateTime dateTirage, String interpretation, String question, String figureResultats, String nomConsultant, String valeurs, Utilisateur utilisateur, List<FigureRamli> figures) {
+    public Tirage(Long id,Long version, String nomTirage,NomFigureBase nomFigureBase,TypeFigure typeFigure, OffsetDateTime dateTirage, String interpretation,
+                  String question, String figureResultats, String nomConsultant, String valeurs,
+                  Utilisateur utilisateur) {
         this.id = id;
         this.nomTirage = nomTirage;
         this.dateTirage = dateTirage;
@@ -43,7 +45,9 @@ public class Tirage {
         this.nomConsultant = nomConsultant;
         this.valeurs = valeurs;
         this.utilisateur = utilisateur;
-        this.figures = figures;
+        this.nomFigureBase=nomFigureBase;
+        this.typeFigure=typeFigure;
+        this.version = version;
     }
 
     public Long getId() {
@@ -78,14 +82,6 @@ public class Tirage {
         this.interpretation = interpretation;
     }
 
-    public String getNomConsultant() {
-        return nomConsultant;
-    }
-
-    public void setNomConsultant(String nomConsultant) {
-        this.nomConsultant = nomConsultant;
-    }
-
     public String getQuestion() {
         return question;
     }
@@ -102,20 +98,12 @@ public class Tirage {
         this.figureResultats = figureResultats;
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public String getNomConsultant() {
+        return nomConsultant;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
-    }
-
-    public List<FigureRamli> getFigures() {
-        return figures;
-    }
-
-    public void setFigures(List<FigureRamli> figures) {
-        this.figures = figures;
+    public void setNomConsultant(String nomConsultant) {
+        this.nomConsultant = nomConsultant;
     }
 
     public String getValeurs() {
@@ -126,4 +114,35 @@ public class Tirage {
         this.valeurs = valeurs;
     }
 
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public TypeFigure getTypeFigure() {
+        return typeFigure;
+    }
+
+    public void setTypeFigure(TypeFigure typeFigure) {
+        this.typeFigure = typeFigure;
+    }
+
+    public NomFigureBase getNomFigureBase() {
+        return nomFigureBase;
+    }
+
+    public void setNomFigureBase(NomFigureBase nomFigureBase) {
+        this.nomFigureBase = nomFigureBase;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
 }

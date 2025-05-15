@@ -19,11 +19,7 @@ public class TirageController {
         this.tirageService = tirageService;
     }
 
-    @PostMapping
-    public ResponseEntity<TirageDto> create(@Valid @RequestBody TirageDto dto) {
-        TirageDto created = tirageService.createTirage(dto);
-        return ResponseEntity.ok(created);
-    }
+
 
     @GetMapping
     public ResponseEntity<List<TirageDto>> getAll() {
@@ -40,9 +36,13 @@ public class TirageController {
         tirageService.deleteTirage(id);
         return ResponseEntity.noContent().build();
     }
-
+    @PostMapping("/aleatoire/{utilisateurId}")
+    public ResponseEntity<TirageDto> creerTirageAleatoire(@PathVariable Long utilisateurId,@RequestBody TirageDto dto) {
+        TirageDto tirageDto = tirageService.creerTirageAleatoire(utilisateurId,dto);
+        return ResponseEntity.ok(tirageDto);
+    }
     @PostMapping("/generate")
     public ResponseEntity<List<Integer>> generateTirage() {
-        return ResponseEntity.ok(tirageService.genererTirage());
+        return ResponseEntity.ok(tirageService.genererTirageValeurs());
     }
 }
