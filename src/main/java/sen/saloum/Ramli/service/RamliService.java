@@ -5,7 +5,7 @@ import sen.saloum.Ramli.dto.figure.FigureLignesDto;
 import sen.saloum.Ramli.dto.tirage.DonneesDeBaseDto;
 import sen.saloum.Ramli.dto.figure.FigureRamliDto;
 import sen.saloum.Ramli.dto.tirage.TirageDto;
-import sen.saloum.Ramli.mapStruct.FigureLignesMapper;
+import sen.saloum.Ramli.mapStruct.FigureLigneMapper;
 import sen.saloum.Ramli.models.FigureLigne;
 import sen.saloum.Ramli.models.FigureRamli;
 import sen.saloum.Ramli.models.Utilisateur;
@@ -19,29 +19,27 @@ public class RamliService {
     private final TirageService tirageService;
     private final FigureLigneService figureLigneService;
     private final FigureRamliService figureRamliService;
-    private final FigureLignesMapper figureLignesMapper;
+    private final FigureLigneMapper figureLigneMapper;
 
     public RamliService(TirageService tirageService,
                         FigureLigneService figureLigneService,
-                        FigureRamliService figureRamliService, FigureLignesMapper figureLignesMapper) {
+                        FigureRamliService figureRamliService, FigureLigneMapper figureLigneMapper) {
         this.tirageService = tirageService;
         this.figureLigneService = figureLigneService;
         this.figureRamliService = figureRamliService;
-        this.figureLignesMapper = figureLignesMapper;
+        this.figureLigneMapper = figureLigneMapper;
     }
 
     public List<FigureRamliDto> effectuerTirageEtGenererFigures() {
-        List<Integer> tirage = tirageService.genererTirage();
+        List<Integer> tirage = tirageService.genererTirageValeurs();
 
         // Créez et sauvegardez une nouvelle figure pour générer un ID
         FigureRamli figure = new FigureRamli();
-        figureRamliService.save(figure);
-        Long figureId = figure.getId();
+        FigureRamli savedFigure = figureRamliService.saveAndReturn(figure); // 👈 crée cette méthode
+        Long figureId = savedFigure.getId(); // 👈 id généré après save
 
-        // Utilisez le bon appel de méthode
         List<FigureLignesDto> lignesDTO = figureLigneService.genererLignesDepuisTirage(tirage, figureId);
-
-        List<FigureRamli> figures = figureRamliService.genererFigures(lignesDTO);
+        List<FigureRamli> figures = figureRamliService.genererFigures(lignesDTO, savedFigure);
 
         return figures.stream()
                 .map(figureRamliService::toDto)
@@ -50,7 +48,7 @@ public class RamliService {
 
     public TirageDto realiserTirage(Utilisateur utilisateur, DonneesDeBaseDto lignesDeDepart) {
         // Étape 1 : Générer le tirage aléatoire
-        List<Integer> tirage = tirageService.genererTirage();
+        List<Integer> tirage = tirageService.genererTirageValeurs();
 
 // Étape 2 : Créer une figure vide pour obtenir un ID
         FigureRamli figure = new FigureRamli();
@@ -63,7 +61,7 @@ public class RamliService {
 
 // Étape 4 : Mapper les DTOs vers des entités
         List<FigureLigne> lignesEntity = lignesDto.stream()
-                .map(figureLignesMapper::toEntity)
+                .map(figureLigneMapper::toEntity)
                 .collect(Collectors.toList());
 
 // Étape 5 : Sauvegarder les lignes et mettre à jour la figure
@@ -73,7 +71,7 @@ public class RamliService {
 // Étape 6 : Créer et retourner le DTO du tirage
         TirageDto tirageDto = new TirageDto();
         tirageDto.setValeurs(tirage.stream().map(String::valueOf).collect(Collectors.joining()));
-        tirageDto.setUtilisateur(utilisateur);
+        tirageDto.setUtilisateurId(utilisateur.getId());
 
         return tirageDto;
 

@@ -1,5 +1,8 @@
 package sen.saloum.Ramli.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum TypeFigure {
     TEMOIN_DROIT("Témoin Droit"),
     TEMOIN_GAUCHE("Témoin Gauche"),
@@ -14,7 +17,4 @@ public enum TypeFigure {
         this.label = label;
     }
 
-    public String getLabel() {
-        return label;
-    }
-  }
+}

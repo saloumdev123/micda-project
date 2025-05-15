@@ -1,6 +1,8 @@
 package sen.saloum.Ramli.models;
 
 import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -38,7 +40,7 @@ public class FigureLigneId implements Serializable {
     }
 
     public void setFigureId(Long figureId) {
-     this.figureId = figureId;
+        this.figureId = figureId;
     }
 
     public int getLigneIndex() {

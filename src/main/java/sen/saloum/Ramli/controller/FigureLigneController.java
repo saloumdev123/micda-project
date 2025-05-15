@@ -1,11 +1,10 @@
 package sen.saloum.Ramli.controller;
 
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sen.saloum.Ramli.dto.figure.FigureLignesDto;
-import sen.saloum.Ramli.mapStruct.FigureLignesMapper;
+import sen.saloum.Ramli.mapStruct.FigureLigneMapper;
 import sen.saloum.Ramli.models.FigureLigne;
 import sen.saloum.Ramli.service.FigureLigneService;
 
@@ -17,11 +16,11 @@ import java.util.stream.Collectors;
 public class FigureLigneController {
 
     private final FigureLigneService figureLigneService;
-    private final FigureLignesMapper figureLignesMapper;
+    private final FigureLigneMapper figureLigneMapper;
 
-    public FigureLigneController(FigureLigneService figureLigneService, FigureLignesMapper figureLignesMapper) {
+    public FigureLigneController(FigureLigneService figureLigneService, FigureLigneMapper figureLigneMapper) {
         this.figureLigneService = figureLigneService;
-        this.figureLignesMapper = figureLignesMapper;
+        this.figureLigneMapper = figureLigneMapper;
     }
 
     @PostMapping
@@ -38,7 +37,7 @@ public class FigureLigneController {
     @PostMapping("/saveAll")
     public ResponseEntity<?> saveAll(@RequestBody List<FigureLignesDto> lignesDto) {
         List<FigureLigne> lignesEntity = lignesDto.stream()
-                .map(figureLignesMapper::toEntity)
+                .map(figureLigneMapper::toEntity)
                 .collect(Collectors.toList());
 
         figureLigneService.saveAll(lignesEntity);

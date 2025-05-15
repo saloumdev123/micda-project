@@ -1,8 +1,11 @@
 package sen.saloum.Ramli.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 public class FigureLigne {
@@ -13,6 +16,7 @@ public class FigureLigne {
     @ManyToOne
     @MapsId("figureId")
     @JoinColumn(name = "figure_id")
+    @JsonBackReference
     private FigureRamli figure;
     private String nomLigne;
     private int valeur;
@@ -33,6 +37,49 @@ public class FigureLigne {
         this.point2 = point2;
         this.point3 = point3;
         this.point4 = point4;
+    }
+
+    public int getLigneIndex() {
+        return id != null ? id.getLigneIndex() : 0;
+    }
+
+    public void setLigneIndex(int ligneIndex) {
+        if (id == null) {
+            id = new FigureLigneId();
+        }
+        id.setLigneIndex(ligneIndex);
+    }
+
+    public FigureLigneId getId() {
+        return id;
+    }
+
+    public void setId(FigureLigneId id) {
+        this.id = id;
+    }
+
+    public FigureRamli getFigure() {
+        return figure;
+    }
+
+    public void setFigure(FigureRamli figure) {
+        this.figure = figure;
+    }
+
+    public String getNomLigne() {
+        return nomLigne;
+    }
+
+    public void setNomLigne(String nomLigne) {
+        this.nomLigne = nomLigne;
+    }
+
+    public int getValeur() {
+        return valeur;
+    }
+
+    public void setValeur(int valeur) {
+        this.valeur = valeur;
     }
 
     public int getPoint1() {
@@ -65,48 +112,5 @@ public class FigureLigne {
 
     public void setPoint4(int point4) {
         this.point4 = point4;
-    }
-
-    public FigureRamli getFigure() {
-        return figure;
-    }
-
-    public void setFigure(FigureRamli figure) {
-        this.figure = figure;
-    }
-
-    public int getLigneIndex() {
-        return id != null ? id.getLigneIndex() : 0;
-    }
-
-    public void setLigneIndex(int ligneIndex) {
-        if (id == null) {
-            id = new FigureLigneId();
-        }
-        id.setLigneIndex(ligneIndex);
-    }
-
-    public String getNomLigne() {
-        return nomLigne;
-    }
-
-    public void setNomLigne(String nomLigne) {
-        this.nomLigne = nomLigne;
-    }
-
-    public int getValeur() {
-        return valeur;
-    }
-
-    public void setValeur(int valeur) {
-        this.valeur = valeur;
-    }
-
-    public FigureLigneId getId() {
-        return id;
-    }
-
-    public void setId(FigureLigneId id) {
-        this.id = id;
     }
 }

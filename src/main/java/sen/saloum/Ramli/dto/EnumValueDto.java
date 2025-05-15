@@ -1,6 +1,5 @@
 package sen.saloum.Ramli.dto;
 
-
 public class EnumValueDto {
     private String name;
     private String label;

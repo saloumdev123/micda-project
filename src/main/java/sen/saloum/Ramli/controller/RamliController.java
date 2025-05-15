@@ -1,5 +1,7 @@
 package sen.saloum.Ramli.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -7,6 +9,7 @@ import sen.saloum.Ramli.dto.figure.FigureRamliDto;
 import sen.saloum.Ramli.dto.tirage.DonneesDeBaseDto;
 import sen.saloum.Ramli.dto.tirage.TirageDto;
 import sen.saloum.Ramli.models.Utilisateur;
+import sen.saloum.Ramli.service.FigureLigneService;
 import sen.saloum.Ramli.service.RamliService;
 
 import java.util.List;
@@ -14,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/ramli")
 public class RamliController {
-
+    private static final Logger logger = LoggerFactory.getLogger(FigureLigneService.class);
     private final RamliService ramliService;
 
     @Autowired
@@ -23,15 +26,17 @@ public class RamliController {
     }
 
     // Endpoint to perform a draw and generate figures
-    @GetMapping("/effectuer-tirage-et-generer-figures")
-    public ResponseEntity<List<FigureRamliDto>> effectuerTirageEtGenererFigures() {
+    @GetMapping("/figures/generation") // RESTful et explicite
+    public ResponseEntity<List<FigureRamliDto>> genererFiguresDepuisTirage() {
         try {
             List<FigureRamliDto> figures = ramliService.effectuerTirageEtGenererFigures();
             return ResponseEntity.ok(figures);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(null); // Internal server error if something goes wrong
+            logger.error("Erreur lors de la génération des figures : {}", e.getMessage());
+            return ResponseEntity.status(500).build();
         }
     }
+
 
     // Endpoint to realize a draw and return a TirageDto
     @PostMapping("/realiser-tirage")
