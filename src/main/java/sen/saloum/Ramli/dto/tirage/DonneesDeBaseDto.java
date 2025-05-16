@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Component
 public class DonneesDeBaseDto {
-    private List<Integer> valeursInitiales;  // Exemple de liste de valeurs initiales pour le tirage
+    private List<Integer> valeursInitiales;
     private String question;                  // Question pour le tirage (optionnel, mais souvent utilisé)
     private String typeTirage;               // Type de tirage (par exemple, "tirage aléatoire", "tirage par sélection", etc.)
     private Integer nombreDeLignes;          // Nombre de lignes à générer dans le tirage
