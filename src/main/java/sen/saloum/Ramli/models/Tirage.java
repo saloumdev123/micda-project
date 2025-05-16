@@ -7,6 +7,8 @@ import sen.saloum.Ramli.enums.TypeFigure;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -26,10 +28,13 @@ public class Tirage {
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
+    @Enumerated(EnumType.STRING)
     private TypeFigure typeFigure;
     @Enumerated(EnumType.STRING)
     private NomFigureBase nomFigureBase;
     private Long version;
+    @OneToMany(mappedBy = "tirage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<FigureRamli> figures = new ArrayList<>();
 
     public Tirage() {
     }
@@ -144,5 +149,14 @@ public class Tirage {
 
     public void setVersion(Long version) {
         this.version = version;
+    }
+
+    public Collection<FigureRamli> getFigures() {
+        return figures;
+    }
+
+    // 🔽 AJOUTE CECI :
+    public void setFigures(Collection<FigureRamli> figures) {
+        this.figures = figures;
     }
 }

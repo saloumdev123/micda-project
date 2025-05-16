@@ -22,16 +22,21 @@ public class Interpretation {
     @ManyToOne
     @JoinColumn(name = "figure_id")
     private FigureRamli figure;
-
+    @Enumerated(EnumType.STRING)
+    private NomFigureBase nomFigureBase;
+    @Enumerated(EnumType.STRING)
+    private TypeFigure typeFigure;
     public Interpretation() {
     }
-    public Interpretation(Long id, String signification, String culture, String source,
+    public Interpretation(Long id, TypeFigure typeFigure,NomFigureBase nomFigureBase,String signification, String culture, String source,
                           FigureRamli figure) {
         this.id = id;
         this.signification = signification;
         this.culture = culture;
         this.source = source;
         this.figure = figure;
+        this.nomFigureBase=nomFigureBase;
+        this.typeFigure=typeFigure;
     }
 
     public Long getId() {
@@ -40,6 +45,22 @@ public class Interpretation {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public NomFigureBase getNomFigureBase() {
+        return nomFigureBase;
+    }
+
+    public void setNomFigureBase(NomFigureBase nomFigureBase) {
+        this.nomFigureBase = nomFigureBase;
+    }
+
+    public TypeFigure getTypeFigure() {
+        return typeFigure;
+    }
+
+    public void setTypeFigure(TypeFigure typeFigure) {
+        this.typeFigure = typeFigure;
     }
 
     public String getSignification() {

@@ -20,8 +20,10 @@ public interface FigureRamliRepository extends JpaRepository<FigureRamli, Long> 
             "WHERE f.tirage.id = :tirageId")
     List<FigureRamli> findByTirageIdWithLinesAndInterpretations(@Param("tirageId") Long tirageId);
 
+
     @Query("SELECT f FROM FigureRamli f LEFT JOIN FETCH f.lignes")
     List<FigureRamli> findAllWithLignes();
 
     Optional<FigureRamli> findById(Long fingureId);
+
 }

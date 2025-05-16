@@ -9,7 +9,6 @@ import sen.saloum.Ramli.models.FigureRamli;
 import sen.saloum.Ramli.service.FigureRamliService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/figure-ramli")
@@ -21,10 +20,16 @@ public class FigureRamliController {
         this.figureRamliService = figureRamliService;
     }
     @GetMapping("/tirage/{tirageId}")
-    public ResponseEntity<List<FigureRamliDto>> getFiguresByTirageIdWithDetails(@PathVariable Long tirageId) {
-        List<FigureRamliDto> figures = figureRamliService.findByTirageIdWithLinesAndInterpretations(tirageId);
-        return ResponseEntity.ok(figures);
+    public ResponseEntity<?> getFiguresByTirageIdWithDetails(@PathVariable Long tirageId) {
+        try {
+            List<FigureRamliDto> figures = figureRamliService.findByTirageIdWithLinesAndInterpretations(tirageId);
+            return ResponseEntity.ok(figures);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("ID de tirage invalide ou autre erreur : " + e.getMessage());
+        }
     }
+
+
     @GetMapping("/all")
     public ResponseEntity<List<FigureRamliDto>> getAll() {
         List<FigureRamliDto> figureRamliDtos = figureRamliService.getAll();

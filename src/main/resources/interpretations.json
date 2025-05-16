@@ -1,0 +1,674 @@
+[
+    {
+        "nomFigure": "VIA",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "La Voie",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de La Voie en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "VIA",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "La Voie",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de La Voie en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "VIA",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "La Voie",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de La Voie en tant que Juge."
+    },
+    {
+        "nomFigure": "VIA",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "La Voie",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de La Voie en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "VIA",
+        "typeFigure": "TETE",
+        "labelNomFigure": "La Voie",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de La Voie en tant que Tête."
+    },
+    {
+        "nomFigure": "VIA",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "La Voie",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de La Voie en tant que Queue."
+    },
+    {
+        "nomFigure": "POPULUS",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "Le Peuple",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de Le Peuple en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "POPULUS",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "Le Peuple",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de Le Peuple en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "POPULUS",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "Le Peuple",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de Le Peuple en tant que Juge."
+    },
+    {
+        "nomFigure": "POPULUS",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "Le Peuple",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de Le Peuple en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "POPULUS",
+        "typeFigure": "TETE",
+        "labelNomFigure": "Le Peuple",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de Le Peuple en tant que Tête."
+    },
+    {
+        "nomFigure": "POPULUS",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "Le Peuple",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de Le Peuple en tant que Queue."
+    },
+    {
+        "nomFigure": "FORTUNA_MAJOR",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "Grande Fortune",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de Grande Fortune en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "FORTUNA_MAJOR",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "Grande Fortune",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de Grande Fortune en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "FORTUNA_MAJOR",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "Grande Fortune",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de Grande Fortune en tant que Juge."
+    },
+    {
+        "nomFigure": "FORTUNA_MAJOR",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "Grande Fortune",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de Grande Fortune en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "FORTUNA_MAJOR",
+        "typeFigure": "TETE",
+        "labelNomFigure": "Grande Fortune",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de Grande Fortune en tant que Tête."
+    },
+    {
+        "nomFigure": "FORTUNA_MAJOR",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "Grande Fortune",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de Grande Fortune en tant que Queue."
+    },
+    {
+        "nomFigure": "FORTUNA_MINOR",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "Petite Fortune",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de Petite Fortune en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "FORTUNA_MINOR",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "Petite Fortune",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de Petite Fortune en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "FORTUNA_MINOR",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "Petite Fortune",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de Petite Fortune en tant que Juge."
+    },
+    {
+        "nomFigure": "FORTUNA_MINOR",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "Petite Fortune",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de Petite Fortune en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "FORTUNA_MINOR",
+        "typeFigure": "TETE",
+        "labelNomFigure": "Petite Fortune",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de Petite Fortune en tant que Tête."
+    },
+    {
+        "nomFigure": "FORTUNA_MINOR",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "Petite Fortune",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de Petite Fortune en tant que Queue."
+    },
+    {
+        "nomFigure": "ACQUISITIO",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "Acquisition",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de Acquisition en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "ACQUISITIO",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "Acquisition",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de Acquisition en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "ACQUISITIO",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "Acquisition",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de Acquisition en tant que Juge."
+    },
+    {
+        "nomFigure": "ACQUISITIO",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "Acquisition",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de Acquisition en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "ACQUISITIO",
+        "typeFigure": "TETE",
+        "labelNomFigure": "Acquisition",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de Acquisition en tant que Tête."
+    },
+    {
+        "nomFigure": "ACQUISITIO",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "Acquisition",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de Acquisition en tant que Queue."
+    },
+    {
+        "nomFigure": "LAETITIA",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "Joie",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de Joie en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "LAETITIA",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "Joie",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de Joie en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "LAETITIA",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "Joie",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de Joie en tant que Juge."
+    },
+    {
+        "nomFigure": "LAETITIA",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "Joie",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de Joie en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "LAETITIA",
+        "typeFigure": "TETE",
+        "labelNomFigure": "Joie",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de Joie en tant que Tête."
+    },
+    {
+        "nomFigure": "LAETITIA",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "Joie",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de Joie en tant que Queue."
+    },
+    {
+        "nomFigure": "TRISTITIA",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "Tristesse",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de Tristesse en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "TRISTITIA",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "Tristesse",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de Tristesse en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "TRISTITIA",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "Tristesse",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de Tristesse en tant que Juge."
+    },
+    {
+        "nomFigure": "TRISTITIA",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "Tristesse",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de Tristesse en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "TRISTITIA",
+        "typeFigure": "TETE",
+        "labelNomFigure": "Tristesse",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de Tristesse en tant que Tête."
+    },
+    {
+        "nomFigure": "TRISTITIA",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "Tristesse",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de Tristesse en tant que Queue."
+    },
+    {
+        "nomFigure": "PUELLA",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "La Jeune Fille",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de La Jeune Fille en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "PUELLA",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "La Jeune Fille",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de La Jeune Fille en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "PUELLA",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "La Jeune Fille",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de La Jeune Fille en tant que Juge."
+    },
+    {
+        "nomFigure": "PUELLA",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "La Jeune Fille",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de La Jeune Fille en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "PUELLA",
+        "typeFigure": "TETE",
+        "labelNomFigure": "La Jeune Fille",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de La Jeune Fille en tant que Tête."
+    },
+    {
+        "nomFigure": "PUELLA",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "La Jeune Fille",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de La Jeune Fille en tant que Queue."
+    },
+    {
+        "nomFigure": "PUER",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "Le Jeune Homme",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de Le Jeune Homme en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "PUER",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "Le Jeune Homme",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de Le Jeune Homme en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "PUER",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "Le Jeune Homme",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de Le Jeune Homme en tant que Juge."
+    },
+    {
+        "nomFigure": "PUER",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "Le Jeune Homme",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de Le Jeune Homme en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "PUER",
+        "typeFigure": "TETE",
+        "labelNomFigure": "Le Jeune Homme",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de Le Jeune Homme en tant que Tête."
+    },
+    {
+        "nomFigure": "PUER",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "Le Jeune Homme",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de Le Jeune Homme en tant que Queue."
+    },
+    {
+        "nomFigure": "RUBEUS",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "Rouge",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de Rouge en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "RUBEUS",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "Rouge",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de Rouge en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "RUBEUS",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "Rouge",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de Rouge en tant que Juge."
+    },
+    {
+        "nomFigure": "RUBEUS",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "Rouge",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de Rouge en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "RUBEUS",
+        "typeFigure": "TETE",
+        "labelNomFigure": "Rouge",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de Rouge en tant que Tête."
+    },
+    {
+        "nomFigure": "RUBEUS",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "Rouge",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de Rouge en tant que Queue."
+    },
+    {
+        "nomFigure": "ALBUS",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "Blanc",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de Blanc en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "ALBUS",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "Blanc",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de Blanc en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "ALBUS",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "Blanc",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de Blanc en tant que Juge."
+    },
+    {
+        "nomFigure": "ALBUS",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "Blanc",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de Blanc en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "ALBUS",
+        "typeFigure": "TETE",
+        "labelNomFigure": "Blanc",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de Blanc en tant que Tête."
+    },
+    {
+        "nomFigure": "ALBUS",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "Blanc",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de Blanc en tant que Queue."
+    },
+    {
+        "nomFigure": "CONJUNCTIO",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "Conjonction",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de Conjonction en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "CONJUNCTIO",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "Conjonction",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de Conjonction en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "CONJUNCTIO",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "Conjonction",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de Conjonction en tant que Juge."
+    },
+    {
+        "nomFigure": "CONJUNCTIO",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "Conjonction",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de Conjonction en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "CONJUNCTIO",
+        "typeFigure": "TETE",
+        "labelNomFigure": "Conjonction",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de Conjonction en tant que Tête."
+    },
+    {
+        "nomFigure": "CONJUNCTIO",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "Conjonction",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de Conjonction en tant que Queue."
+    },
+    {
+        "nomFigure": "AMISSIO",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "Perte",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de Perte en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "AMISSIO",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "Perte",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de Perte en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "AMISSIO",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "Perte",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de Perte en tant que Juge."
+    },
+    {
+        "nomFigure": "AMISSIO",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "Perte",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de Perte en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "AMISSIO",
+        "typeFigure": "TETE",
+        "labelNomFigure": "Perte",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de Perte en tant que Tête."
+    },
+    {
+        "nomFigure": "AMISSIO",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "Perte",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de Perte en tant que Queue."
+    },
+    {
+        "nomFigure": "CAPUT_DRACONIS",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "Tête du Dragon",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de Tête du Dragon en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "CAPUT_DRACONIS",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "Tête du Dragon",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de Tête du Dragon en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "CAPUT_DRACONIS",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "Tête du Dragon",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de Tête du Dragon en tant que Juge."
+    },
+    {
+        "nomFigure": "CAPUT_DRACONIS",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "Tête du Dragon",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de Tête du Dragon en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "CAPUT_DRACONIS",
+        "typeFigure": "TETE",
+        "labelNomFigure": "Tête du Dragon",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de Tête du Dragon en tant que Tête."
+    },
+    {
+        "nomFigure": "CAPUT_DRACONIS",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "Tête du Dragon",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de Tête du Dragon en tant que Queue."
+    },
+    {
+        "nomFigure": "CAUDA_DRACONIS",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "Queue du Dragon",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de Queue du Dragon en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "CAUDA_DRACONIS",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "Queue du Dragon",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de Queue du Dragon en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "CAUDA_DRACONIS",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "Queue du Dragon",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de Queue du Dragon en tant que Juge."
+    },
+    {
+        "nomFigure": "CAUDA_DRACONIS",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "Queue du Dragon",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de Queue du Dragon en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "CAUDA_DRACONIS",
+        "typeFigure": "TETE",
+        "labelNomFigure": "Queue du Dragon",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de Queue du Dragon en tant que Tête."
+    },
+    {
+        "nomFigure": "CAUDA_DRACONIS",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "Queue du Dragon",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de Queue du Dragon en tant que Queue."
+    },
+    {
+        "nomFigure": "CARCER",
+        "typeFigure": "TEMOIN_DROIT",
+        "labelNomFigure": "Prison",
+        "labelTypeFigure": "Témoin Droit",
+        "interpretation": "Interprétation de Prison en tant que Témoin Droit."
+    },
+    {
+        "nomFigure": "CARCER",
+        "typeFigure": "TEMOIN_GAUCHE",
+        "labelNomFigure": "Prison",
+        "labelTypeFigure": "Témoin Gauche",
+        "interpretation": "Interprétation de Prison en tant que Témoin Gauche."
+    },
+    {
+        "nomFigure": "CARCER",
+        "typeFigure": "JUGE",
+        "labelNomFigure": "Prison",
+        "labelTypeFigure": "Juge",
+        "interpretation": "Interprétation de Prison en tant que Juge."
+    },
+    {
+        "nomFigure": "CARCER",
+        "typeFigure": "JUGE_TEMOIN",
+        "labelNomFigure": "Prison",
+        "labelTypeFigure": "Juge Témoin",
+        "interpretation": "Interprétation de Prison en tant que Juge Témoin."
+    },
+    {
+        "nomFigure": "CARCER",
+        "typeFigure": "TETE",
+        "labelNomFigure": "Prison",
+        "labelTypeFigure": "Tête",
+        "interpretation": "Interprétation de Prison en tant que Tête."
+    },
+    {
+        "nomFigure": "CARCER",
+        "typeFigure": "QUEUE",
+        "labelNomFigure": "Prison",
+        "labelTypeFigure": "Queue",
+        "interpretation": "Interprétation de Prison en tant que Queue."
+    }
+]

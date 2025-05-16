@@ -16,11 +16,9 @@ public class FigureRamli {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nom;
-
-    private Integer ordre;
-
+    private Integer  ordre;
+    private String valeurs;
     private String image;
     @ManyToOne
     @JoinColumn(name = "tirage_id")
@@ -131,5 +129,14 @@ public class FigureRamli {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    public String getValeurs() {
+        return valeurs;
+    }
+
+    public void setValeurs(String valeurs) {
+        this.valeurs = valeurs;
     }
 }
