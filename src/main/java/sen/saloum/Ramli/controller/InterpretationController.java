@@ -2,6 +2,7 @@ package sen.saloum.Ramli.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sen.saloum.Ramli.dto.figure.InterpretationDto;
@@ -21,21 +22,45 @@ public class InterpretationController {
         this.interpretationService = interpretationService;
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<InterpretationDto> addInterpretation(
-            @Valid @RequestBody InterpretationDto dto
-    ) {
-        FigureRamli figure = new FigureRamli();
-        figure.setId(dto.getFigureId());
-
-        InterpretationDto saved = interpretationService.addInterpretation(dto);
-        return ResponseEntity.ok(saved);
+    // Créer une nouvelle interprétation
+    @PostMapping
+    public ResponseEntity<InterpretationDto> createInterpretation(@RequestBody InterpretationDto dto) {
+        InterpretationDto created = interpretationService.addInterpretation(dto);
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
+    // Récupérer toutes les interprétations
+    @GetMapping
+    public ResponseEntity<List<InterpretationDto>> getAllInterpretations() {
+        List<InterpretationDto> list = interpretationService.getAllInterpretations();
+        return ResponseEntity.ok(list);
+    }
 
-    @GetMapping("/by-figure/{figureId}")
-    public ResponseEntity<List<InterpretationDto>> getByFigure(@PathVariable Long figureId) {
-        List<InterpretationDto> interpretations = interpretationService.getByFigureId(figureId);
-        return ResponseEntity.ok(interpretations);
+    // Récupérer interprétations par figureId
+    @GetMapping("/figure/{figureId}")
+    public ResponseEntity<List<InterpretationDto>> getByFigureId(@PathVariable Long figureId) {
+        List<InterpretationDto> list = interpretationService.getByFigureId(figureId);
+        return ResponseEntity.ok(list);
+    }
+
+    // Récupérer interprétations par TypeFigure (ex: TYPE1, TYPE2...)
+    @GetMapping("/type/{type}")
+    public ResponseEntity<List<InterpretationDto>> getByTypeFigure(@PathVariable TypeFigure type) {
+        List<InterpretationDto> list = interpretationService.getByTypeFigure(type);
+        return ResponseEntity.ok(list);
+    }
+
+    // Mettre à jour une interprétation
+    @PutMapping("/{id}")
+    public ResponseEntity<InterpretationDto> updateInterpretation(@PathVariable Long id, @RequestBody InterpretationDto dto) {
+        InterpretationDto updated = interpretationService.updateInterpretation(id, dto);
+        return ResponseEntity.ok(updated);
+    }
+
+    // Supprimer une interprétation
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteInterpretation(@PathVariable Long id) {
+        interpretationService.deleteInterpretation(id);
+        return ResponseEntity.noContent().build();
     }
 }

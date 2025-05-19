@@ -28,7 +28,8 @@ public class Interpretation {
     private TypeFigure typeFigure;
     public Interpretation() {
     }
-    public Interpretation(Long id, TypeFigure typeFigure,NomFigureBase nomFigureBase,String signification, String culture, String source,
+    public Interpretation(Long id, TypeFigure typeFigure,NomFigureBase nomFigureBase,
+                          String signification, String culture, String source,
                           FigureRamli figure) {
         this.id = id;
         this.signification = signification;
