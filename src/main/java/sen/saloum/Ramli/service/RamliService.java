@@ -39,7 +39,7 @@ public class RamliService {
         Long figureId = savedFigure.getId(); // 👈 id généré après save
 
         List<FigureLignesDto> lignesDTO = figureLigneService.genererLignesDepuisTirage(tirage, figureId);
-        List<FigureRamli> figures = figureRamliService.genererFigures(lignesDTO, savedFigure);
+        List<FigureRamli> figures = figureRamliService.genererFigures(lignesDTO);
 
         return figures.stream()
                 .map(figureRamliService::toDto)
