@@ -20,7 +20,6 @@ public enum NomFigureBase {
     CAPUT_DRACONIS("Tête du Dragon"),
     CAUDA_DRACONIS("Queue du Dragon"),
     CARCER("Prison");
-
     private final String label;
 
     NomFigureBase(String label) {
