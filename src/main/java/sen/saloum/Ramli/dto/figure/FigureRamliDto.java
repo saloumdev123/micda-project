@@ -13,6 +13,7 @@ public class FigureRamliDto {
     private int ordre;
     private String nom;
     private String image;
+    private String valeurs;
     private Long tirageId;
     private NomFigureBase nomFigureBase;
     private TypeFigure typeFigure;
@@ -22,7 +23,7 @@ public class FigureRamliDto {
     }
 
     public FigureRamliDto(Long id,List<FigureLignesDto> lignes, int ordre, String nom,
-                          String image, Long tirageId, NomFigureBase nomFigureBase,
+                          String image,String valeurs, Long tirageId, NomFigureBase nomFigureBase,
                           TypeFigure typeFigure) {
         this.id = id;
         this.ordre = ordre;
@@ -32,6 +33,7 @@ public class FigureRamliDto {
         this.nomFigureBase = nomFigureBase;
         this.typeFigure = typeFigure;
         this.lignes=lignes;
+        this.valeurs=valeurs;
     }
 
     public Long getId() {

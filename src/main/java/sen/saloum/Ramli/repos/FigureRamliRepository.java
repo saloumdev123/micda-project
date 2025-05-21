@@ -26,4 +26,7 @@ public interface FigureRamliRepository extends JpaRepository<FigureRamli, Long> 
 
     Optional<FigureRamli> findById(Long fingureId);
 
+    @Query("SELECT MAX(f.ordre) FROM FigureRamli f WHERE f.tirage.id = :tirageId")
+    Integer findMaxOrdreByTirageId(@Param("tirageId") Long tirageId);
+
 }

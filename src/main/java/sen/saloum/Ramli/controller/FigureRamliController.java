@@ -1,11 +1,14 @@
 package sen.saloum.Ramli.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sen.saloum.Ramli.dto.figure.FigureLignesDto;
 import sen.saloum.Ramli.dto.figure.FigureRamliDto;
+import sen.saloum.Ramli.enums.NomFigureBase;
+import sen.saloum.Ramli.enums.TypeFigure;
 import sen.saloum.Ramli.models.FigureRamli;
 import sen.saloum.Ramli.service.FigureRamliService;
 
@@ -39,7 +42,8 @@ public class FigureRamliController {
         }
     }
     @GetMapping("/interpretation")
-    public ResponseEntity<String> getInterpretation(@RequestParam String nomFigureBase, @RequestParam String typeFigure) {
+    public ResponseEntity<String> getInterpretation(@RequestParam NomFigureBase nomFigureBase,
+                                                    @RequestParam TypeFigure typeFigure) {
         try {
             String interpretation = figureRamliService.getInterpretation(nomFigureBase, typeFigure);
             return interpretation != null ?
@@ -57,17 +61,20 @@ public class FigureRamliController {
     }
 
     @PostMapping("/generate")
-    public ResponseEntity<List<FigureRamliDto>> generateFigures(@RequestBody List<FigureLignesDto> lignesDto) {
+    public ResponseEntity<List<FigureRamliDto>> generateFigures(
+            @Valid @RequestBody List<FigureLignesDto> lignesDto,
+            @RequestParam("tirageId") Long tirageId) {
         try {
-            List<FigureRamliDto> figuresDto = figureRamliService.genererEtRetournerDto(lignesDto);
+            List<FigureRamliDto> figuresDto = figureRamliService.genererEtRetournerDto(lignesDto, tirageId);
             return ResponseEntity.ok(figuresDto);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
         }
     }
 
+
     @PostMapping(value = "/save", consumes = {"application/json", "application/json;charset=UTF-8"})
-    public ResponseEntity<Void> saveFigure(@RequestBody FigureRamli figure) {
+    public ResponseEntity<Void> saveFigure(@Valid @RequestBody FigureRamli figure) {
         try {
             figureRamliService.save(figure);
             return ResponseEntity.status(HttpStatus.CREATED).build();

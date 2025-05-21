@@ -15,7 +15,7 @@ public class FigureLigne {
 
     @ManyToOne
     @MapsId("figureId")
-    @JoinColumn(name = "figure_id")
+    @JoinColumn(name = "figure_id", nullable = false)
     @JsonBackReference
     private FigureRamli figure;
     private String nomLigne;

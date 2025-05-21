@@ -13,8 +13,10 @@ import sen.saloum.Ramli.mapStruct.FigureRamliMapper;
 import sen.saloum.Ramli.models.FigureLigne;
 import sen.saloum.Ramli.models.FigureRamli;
 import sen.saloum.Ramli.models.Interpretation;
+import sen.saloum.Ramli.models.Tirage;
 import sen.saloum.Ramli.repos.FigureRamliRepository;
 import sen.saloum.Ramli.repos.InterpretationRepository;
+import sen.saloum.Ramli.repos.TirageRepository;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -27,6 +29,7 @@ public class FigureRamliService {
     private final FigureLigneMapper figureLigneMapper;
     private final InterpretationRepository interpretationRepository;
     private final ImageConfig imageConfig;
+    private final TirageRepository tirageRepository;
 
     // Map qui contient toutes les interprétations chargées une fois
     private final Map<NomFigureBase, Map<TypeFigure, Interpretation>> interpretationMap = new HashMap<>();
@@ -35,13 +38,14 @@ public class FigureRamliService {
             FigureRamliRepository figureRamliRepository,
             FigureRamliMapper figureRamliMapper,
             FigureLigneMapper figureLigneMapper,
-            InterpretationRepository interpretationRepository, ImageConfig imageConfig
+            InterpretationRepository interpretationRepository, ImageConfig imageConfig, TirageRepository tirageRepository
     ) {
         this.figureRamliRepository = figureRamliRepository;
         this.figureRamliMapper = figureRamliMapper;
         this.figureLigneMapper = figureLigneMapper;
         this.interpretationRepository = interpretationRepository;
         this.imageConfig = imageConfig;
+        this.tirageRepository = tirageRepository;
     }
 
     @PostConstruct
@@ -90,17 +94,6 @@ public class FigureRamliService {
                     .put(type, interp);
         });
     }
-//    public void reloadInterpretationMap() {
-//        interpretationMap.clear();
-//        interpretationRepository.findAll().forEach(interp -> {
-//            NomFigureBase nomBase = interp.getNomFigureBase();
-//            TypeFigure type = interp.getTypeFigure();
-//
-//            interpretationMap
-//                    .computeIfAbsent(nomBase, k -> new HashMap<>())
-//                    .put(type, interp);
-//        });
-//    }
 
     public void validerFigure(FigureRamli figure) {
         if (figure == null) {
@@ -167,9 +160,17 @@ public class FigureRamliService {
         figure.setImage(imageUrl);
     }
     @Transactional
-    public List<FigureRamli> genererFigures(List<FigureLignesDto> lignesDto) {
+    public List<FigureRamli> genererFigures(List<FigureLignesDto> lignesDto, Long  tirageId) {
         if (lignesDto == null || lignesDto.isEmpty()) {
             throw new IllegalArgumentException("La liste des lignes ne peut pas être vide.");
+        }
+        Tirage tirage = tirageRepository.findById(tirageId)
+                .orElseThrow(() -> new IllegalArgumentException("Tirage non trouvé avec ID: " + tirageId));
+
+        // Récupérer l'ordre maximum déjà existant
+        Integer maxOrdre = figureRamliRepository.findMaxOrdreByTirageId(tirageId);
+        if (maxOrdre == null) {
+            maxOrdre = 0;
         }
 
         // Diviser en groupes de 4
@@ -193,7 +194,9 @@ public class FigureRamliService {
 
             for (List<FigureLignesDto> groupLignes : groupes) {
                 FigureRamli figure = new FigureRamli();
-
+                figure.setTirage(tirage);
+                maxOrdre++;
+                figure.setOrdre(maxOrdre);
                 List<FigureLigne> lignesEntity = groupLignes.stream()
                         .map(figureLigneMapper::toEntity)
                         .peek(ligne -> ligne.setFigure(figure))
@@ -214,18 +217,19 @@ public class FigureRamliService {
 
 
 
-    public List<FigureRamliDto> genererEtRetournerDto(List<FigureLignesDto> lignesDto) {
-        List<FigureRamli> figures = genererFigures(lignesDto);
+    public List<FigureRamliDto> genererEtRetournerDto(List<FigureLignesDto> lignesDto, Long tirageId) {
+        Tirage tirage = tirageRepository.findById(tirageId)
+                .orElseThrow(() -> new IllegalArgumentException("Tirage non trouvé avec ID: " + tirageId));
 
-        for (FigureRamli figure : figures) {
-            validerFigure(figure);
-            figureRamliRepository.save(figure);
-        }
+        // figures déjà persistées dans genererFigures via saveAll
+        List<FigureRamli> figures = genererFigures(lignesDto, tirage.getId());
 
+        // Suppression du save inutile
         return figures.stream()
                 .map(figureRamliMapper::toDto)
                 .collect(Collectors.toList());
     }
+
 
     private static final Map<String, NomFigureBase> FIGURE_MAP = Map.ofEntries(
             Map.entry("1000", NomFigureBase.AMISSIO),
@@ -306,6 +310,7 @@ public class FigureRamliService {
             throw new IllegalArgumentException("Le nom de la figure est obligatoire.");
         }
         validerFigure(figure);
+        enrichirFigure(figure);
         figureRamliRepository.save(figure);
     }
     @Transactional
@@ -314,10 +319,11 @@ public class FigureRamliService {
         return figureRamliRepository.save(figure);
     }
 
-    public String getInterpretation(String nomFigureBase, String typeFigure) {
+    public String getInterpretation(NomFigureBase nomFigureBase, TypeFigure typeFigure) {
         if (interpretationsMap.containsKey(nomFigureBase)) {
             return interpretationsMap.get(nomFigureBase).get(typeFigure);
         }
         return null;
     }
+
 }
