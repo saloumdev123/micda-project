@@ -31,7 +31,7 @@ public class RamliService {
     }
 
     public List<FigureRamliDto> effectuerTirageEtGenererFigures() {
-        List<Integer> tirage = tirageService.genererTirageValeurs();
+        List<Integer> tirage = tirageService.genererTirageBits();
 
         // Créez et sauvegardez une nouvelle figure pour générer un ID
         FigureRamli figure = new FigureRamli();
@@ -48,7 +48,7 @@ public class RamliService {
 
     public TirageDto realiserTirage(Utilisateur utilisateur, DonneesDeBaseDto lignesDeDepart) {
         // Étape 1 : Générer le tirage aléatoire
-        List<Integer> tirage = tirageService.genererTirageValeurs();
+        List<Integer> tirage = tirageService.genererTirageBits();
 
 // Étape 2 : Créer une figure vide pour obtenir un ID
         FigureRamli figure = new FigureRamli();

@@ -30,7 +30,8 @@ public class TirageService {
         this.tirageMapper = tirageMapper;
         this.utilisateurRepository = utilisateurRepository;
     }
-    public List<Integer> genererTirageValeurs() {
+
+    public List<Integer> genererTirageBits() {
         List<Integer> tirage = new ArrayList<>();
         Random random = new Random();
         for (int i = 0; i < 16; i++) {
@@ -41,7 +42,7 @@ public class TirageService {
 
     @Transactional
     public TirageDto creerTirageAleatoire(Long utilisateurId, TirageDto dto) {
-        List<Integer> tirage = genererTirageValeurs();
+        List<Integer> tirage = genererTirageBits();
         String tirageString = tirage.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining());
@@ -55,27 +56,29 @@ public class TirageService {
         tirageEntity.setUtilisateur(utilisateur);
         tirageEntity.setNomConsultant(utilisateur.getNom());
 
-        // valeurs venant du JSON
+        // valeurs venant du JSON dto
         tirageEntity.setNomTirage(dto.getNomTirage());
         tirageEntity.setQuestion(dto.getQuestion());
         tirageEntity.setInterpretation(dto.getInterpretation());
         tirageEntity.setNomFigureBase(dto.getNomFigureBase());
         tirageEntity.setTypeFigure(dto.getTypeFigure());
-        // 🔽 GÉNÉRATION DES FIGURES À PARTIR DES 16 VALEURS BINAIRES
+
+        // Génération des figures à partir des 16 bits
         List<List<Integer>> figures = genererFiguresDepuis16Bits(tirage);
-        tirageEntity.setFigures(new ArrayList<>()); // méthode à créer
+        tirageEntity.setFigures(new ArrayList<>());
         int ordre = 1;
         for (List<Integer> figure : figures) {
             FigureRamli f = new FigureRamli();
             f.setOrdre(ordre++);
-            f.setValeurs(figureToString(figure)); // méthode utilitaire à écrire
+            f.setValeurs(figureToString(figure));
             f.setTirage(tirageEntity);
-            tirageEntity.getFigures().add(f); // assure-toi que tirageEntity.setFigures(new ArrayList<>()) a été fait avant
+            tirageEntity.getFigures().add(f);
         }
 
         tirageEntity = tirageRepository.save(tirageEntity);
         return tirageMapper.toDto(tirageEntity);
     }
+
     private String figureToString(List<Integer> figure) {
         return figure.stream()
                 .map(String::valueOf)
@@ -83,18 +86,16 @@ public class TirageService {
     }
 
     private List<List<Integer>> genererFiguresDepuis16Bits(List<Integer> tirage) {
-
         List<List<Integer>> figures = new ArrayList<>();
 
-        // Générer les 4 figures témoins : chaque figure est composée de 4 bits
+        // Découpage des 16 bits en 4 figures témoins de 4 bits chacune
         for (int i = 0; i < 16; i += 4) {
-            List<Integer> figure = tirage.subList(i, i + 4); // sous-liste de 4 bits
-            figures.add(new ArrayList<>(figure)); // copier la sous-liste
+            List<Integer> figure = new ArrayList<>(tirage.subList(i, i + 4));
+            figures.add(figure);
         }
 
-        // Générer les figures dérivées à partir des figures témoins
+        // Génération des figures dérivées
         List<List<Integer>> derivees = genererFiguresDerivees(figures);
-
         return derivees;
     }
 
@@ -104,13 +105,20 @@ public class TirageService {
                 .map(tirageMapper::toDto)
                 .collect(Collectors.toList());
     }
+
     public TirageDto getTirageById(Long id) {
         Tirage entity = tirageRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tirage not found"));
+                .orElseThrow(() -> new RuntimeException("Tirage non trouvé"));
         return tirageMapper.toDto(entity);
     }
+
+    /**
+     * Génère les figures dérivées à partir des figures témoins selon les règles de composition.
+     * @param temoins Liste des figures témoins (4 bits chacune)
+     * @return Liste complète des figures incluant témoins et dérivées
+     */
     private List<List<Integer>> genererFiguresDerivees(List<List<Integer>> temoins) {
-        List<List<Integer>> figures = new ArrayList<>(temoins); // Ajouter les témoins
+        List<List<Integer>> figures = new ArrayList<>(temoins);
 
         // Filles
         List<Integer> f1 = FigureUtils.creerFigureComposee(temoins.get(0), temoins.get(1));
@@ -132,5 +140,4 @@ public class TirageService {
     public void deleteTirage(Long id) {
         tirageRepository.deleteById(id);
     }
-
 }

@@ -43,6 +43,6 @@ public class TirageController {
     }
     @PostMapping("/generate")
     public ResponseEntity<List<Integer>> generateTirage() {
-        return ResponseEntity.ok(tirageService.genererTirageValeurs());
+        return ResponseEntity.ok(tirageService.genererTirageBits());
     }
 }

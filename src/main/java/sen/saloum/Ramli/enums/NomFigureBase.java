@@ -1,8 +1,5 @@
 package sen.saloum.Ramli.enums;
 
-import lombok.Getter;
-
-@Getter
 public enum NomFigureBase {
     VIA("La Voie"),
     POPULUS("Le Peuple"),
@@ -26,4 +23,7 @@ public enum NomFigureBase {
         this.label = label;
     }
 
+    public String getLabel() {
+        return label;
+    }
 }

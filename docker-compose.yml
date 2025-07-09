@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-ramli
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: saloum
+      MYSQL_DATABASE: ramli_db
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - ramli-net
+
+  springboot-app:
+    build: .
+    container_name: springboot-ramli
+    depends_on:
+      - mysql
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/ramli_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: saloum
+    networks:
+      - ramli-net
+
+volumes:
+  mysql_data:
+
+networks:
+  ramli-net:
