@@ -2,8 +2,8 @@ package sen.saloum.Ramli.service;
 
 import org.springframework.stereotype.Service;
 import sen.saloum.Ramli.dto.figure.FigureLignesDto;
-import sen.saloum.Ramli.dto.tirage.DonneesDeBaseDto;
 import sen.saloum.Ramli.dto.figure.FigureRamliDto;
+import sen.saloum.Ramli.dto.tirage.DonneesDeBaseDto;
 import sen.saloum.Ramli.dto.tirage.TirageDto;
 import sen.saloum.Ramli.mapStruct.FigureLigneMapper;
 import sen.saloum.Ramli.models.FigureLigne;

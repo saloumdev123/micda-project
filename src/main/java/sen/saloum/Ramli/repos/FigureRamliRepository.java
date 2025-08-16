@@ -6,7 +6,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
 import sen.saloum.Ramli.models.FigureRamli;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 

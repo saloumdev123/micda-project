@@ -2,7 +2,12 @@ package sen.saloum.Ramli.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import sen.saloum.Ramli.dto.figure.InterpretationDto;
+import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
 import sen.saloum.Ramli.mapStruct.InterpretationMapper;
 import sen.saloum.Ramli.models.FigureRamli;
@@ -10,6 +15,9 @@ import sen.saloum.Ramli.models.Interpretation;
 import sen.saloum.Ramli.repos.FigureRamliRepository;
 import sen.saloum.Ramli.repos.InterpretationRepository;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,6 +72,7 @@ public class InterpretationService {
                 .map(interpretationMapper::toDto)
                 .collect(Collectors.toList());
     }
+
     @Transactional
     public InterpretationDto updateInterpretation(Long id, InterpretationDto dto) {
         Interpretation existing = interpretationRepository.findById(id)
@@ -83,18 +92,22 @@ public class InterpretationService {
         Interpretation updated = interpretationRepository.save(existing);
         return interpretationMapper.toDto(updated);
     }
+
+
     public List<InterpretationDto> getAllInterpretations() {
         return interpretationRepository.findAll()
                 .stream()
                 .map(interpretationMapper::toDto)
                 .collect(Collectors.toList());
     }
+
     public void deleteInterpretation(Long id) {
         if (!interpretationRepository.existsById(id)) {
             throw new RuntimeException("Interpretation not found");
         }
         interpretationRepository.deleteById(id);
     }
+
     public List<InterpretationDto> getByTypeFigure(TypeFigure type) {
         List<Interpretation> interpretations = interpretationRepository.findByTypeFigure(type);
         return interpretations.stream()
@@ -102,6 +115,62 @@ public class InterpretationService {
                 .collect(Collectors.toList());
     }
 
+    public InterpretationDto findByNomFigureBaseAndTypeFigure(NomFigureBase nom, TypeFigure type) {
+        Interpretation interpretation = interpretationRepository
+            .findByNomFigureBaseAndTypeFigure(nom, type)
+            .orElseThrow(() -> new RuntimeException("Aucune interprétation trouvée"));
+        return interpretationMapper.toDto(interpretation);
+    }
+
+@Transactional
+public List<InterpretationDto> generateAllInterpretations() {
+    List<InterpretationDto> interpretations = new ArrayList<>();
+
+    for (NomFigureBase nomFigure : NomFigureBase.values()) {
+        for (TypeFigure type : TypeFigure.values()) {
+            Interpretation interpretation = new Interpretation();
+            interpretation.setNomFigureBase(nomFigure);
+            interpretation.setTypeFigure(type);
+            interpretation.setSignification("Interprétation de " + nomFigure.getLabel() + " en " + type.getLabel());
+            interpretation.setCulture("Tradition");
+            interpretation.setSource("Source générée");
+
+            // Pas de figure associée ici → setFigure(null) volontairement
+            interpretationRepository.save(interpretation);
+
+            interpretations.add(interpretationMapper.toDto(interpretation));
+        }
+    }
+
+    return interpretations;
+}
+
+@Transactional
+public List<InterpretationDto> importFromJson() throws IOException {
+    ObjectMapper objectMapper = new ObjectMapper();
+    InputStream inputStream = getClass().getResourceAsStream("/data/interpretations_cartesiennes.json");
+
+    if (inputStream == null) {
+        throw new RuntimeException("Fichier JSON non trouvé");
+    }
+
+    List<InterpretationDto> dtos = objectMapper.readValue(inputStream, new TypeReference<>() {});
+    List<Interpretation> savedInterpretations = new ArrayList<>();
+
+    for (InterpretationDto dto : dtos) {
+        boolean exists = interpretationRepository
+                .findByNomFigureBaseAndTypeFigure(dto.getNomFigureBase(), dto.getTypeFigure())
+                .isPresent();
+
+        if (!exists) {
+            Interpretation interpretation = interpretationMapper.toEntity(dto);
+            interpretation.setFigure(null); // Pas de figure associée
+            savedInterpretations.add(interpretationRepository.save(interpretation));
+        }
+    }
+
+    return savedInterpretations.stream().map(interpretationMapper::toDto).collect(Collectors.toList());
+}
 
 
 }

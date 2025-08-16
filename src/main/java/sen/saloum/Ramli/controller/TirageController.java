@@ -1,7 +1,5 @@
 package sen.saloum.Ramli.controller;
 
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sen.saloum.Ramli.dto.tirage.TirageDto;
@@ -18,8 +16,6 @@ public class TirageController {
     public TirageController(TirageService tirageService) {
         this.tirageService = tirageService;
     }
-
-
 
     @GetMapping
     public ResponseEntity<List<TirageDto>> getAll() {

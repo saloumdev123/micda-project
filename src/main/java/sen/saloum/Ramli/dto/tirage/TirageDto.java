@@ -1,7 +1,5 @@
 package sen.saloum.Ramli.dto.tirage;
 
-import lombok.Getter;
-import lombok.Setter;
 import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
 
@@ -9,8 +7,8 @@ import java.time.OffsetDateTime;
 
 
 public class TirageDto {
+    
     private Long id;
-    private String nomTirage;
     private String question;
     private String nomConsultant;
     private OffsetDateTime dateTirage;
@@ -23,12 +21,11 @@ public class TirageDto {
     public TirageDto() {
     }
 
-    public TirageDto(Long id,Long version, NomFigureBase nomFigureBase,TypeFigure typeFigure, String nomTirage,
+    public TirageDto(Long id,Long version, NomFigureBase nomFigureBase,TypeFigure typeFigure, 
                      String question, String nomConsultant, OffsetDateTime dateTirage,
                      String interpretation, Long utilisateurId, String valeurs
     ) {
         this.id = id;
-        this.nomTirage = nomTirage;
         this.question = question;
         this.nomConsultant = nomConsultant;
         this.dateTirage = dateTirage;
@@ -48,13 +45,6 @@ public class TirageDto {
         this.id = id;
     }
 
-    public String getNomTirage() {
-        return nomTirage;
-    }
-
-    public void setNomTirage(String nomTirage) {
-        this.nomTirage = nomTirage;
-    }
 
     public String getQuestion() {
         return question;

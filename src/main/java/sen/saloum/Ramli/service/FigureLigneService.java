@@ -32,15 +32,20 @@ public class FigureLigneService {
 
 
     public FigureLignesDto create(FigureLignesDto dto) {
-        FigureLigne entity = figureLigneMapper.toEntity(dto);
+    // Calcul explicite de la valeur avant conversion
+    int valeur = dto.getValeur();
 
-        FigureRamli figure = figureRamliRepository.findById(dto.getFigureId())
-                .orElseThrow(() -> new RuntimeException("FigureRamli not found"));
-        entity.setFigure(figure);  // set the full entity
+    FigureLigne entity = figureLigneMapper.toEntity(dto);
+    entity.setValeur(valeur); // S'assurer que l'entité a bien cette donnée
 
-        entity = figureLigneRepository.save(entity);
-        return figureLigneMapper.toDto(entity);
-    }
+    FigureRamli figure = figureRamliRepository.findById(dto.getFigureId())
+            .orElseThrow(() -> new RuntimeException("FigureRamli not found"));
+    entity.setFigure(figure);  // set the full entity
+
+    entity = figureLigneRepository.save(entity);
+    return figureLigneMapper.toDto(entity);
+}
+
     public List<FigureLignesDto> getByFigureId(Long figureId) {
         return figureLigneRepository.findByFigureId(figureId)
                 .stream()
@@ -65,7 +70,6 @@ public class FigureLigneService {
             dto.setPoint3(tirage.get(i + 2));
             dto.setPoint4(tirage.get(i + 3));
             dto.setNomLigne("Ligne " + (ligneIndex + 1));
-            dto.calculerValeur();
 
             lignesDto.add(dto);
             ligneIndex++;

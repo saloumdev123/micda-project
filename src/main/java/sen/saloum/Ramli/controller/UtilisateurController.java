@@ -1,6 +1,9 @@
 package sen.saloum.Ramli.controller;
 
 import jakarta.validation.Valid;
+
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +24,24 @@ public class UtilisateurController {
     public ResponseEntity<UtilisateurDto> create(@Valid @RequestBody UtilisateurDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(utilisateurService.create(dto));
     }
+    @GetMapping("/search") 
+    public ResponseEntity<UtilisateurDto> searchByUsername(@RequestParam String username) {
+        UtilisateurDto dto = utilisateurService.searchByUsername(username);
+        return ResponseEntity.ok(dto);
+    }
+
+
+    @GetMapping("/all")
+    public ResponseEntity<List<UtilisateurDto>> getAll() {
+        List<UtilisateurDto> utilisateurs = utilisateurService.getAll();
+        return ResponseEntity.ok(utilisateurs);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<UtilisateurDto> getById(@PathVariable Long id) {
         return ResponseEntity.ok(utilisateurService.getById(id));
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<UtilisateurDto> update(@PathVariable Long id, @RequestBody UtilisateurDto dto) {

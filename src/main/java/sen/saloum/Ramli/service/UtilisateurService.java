@@ -1,6 +1,11 @@
 package sen.saloum.Ramli.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import sen.saloum.Ramli.dto.user.UtilisateurDto;
 import sen.saloum.Ramli.mapStruct.UtilisateurMapper;
 import sen.saloum.Ramli.models.Utilisateur;
@@ -16,6 +21,19 @@ public class UtilisateurService {
         this.utilisateurRepository = utilisateurRepository;
         this.utilisateurMapper = utilisateurMapper;
     }
+
+    public List<UtilisateurDto> getAll() {
+    return utilisateurRepository.findAll()
+            .stream()
+            .map(utilisateurMapper::toDto)
+            .collect(Collectors.toList());
+    }
+    public UtilisateurDto searchByUsername(String username) {
+        Utilisateur utilisateur = utilisateurRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé avec le username: " + username));
+        return utilisateurMapper.toDto(utilisateur);
+    }
+
 
     public UtilisateurDto create(UtilisateurDto dto) {
         dto.setId(null);
@@ -44,10 +62,6 @@ public class UtilisateurService {
         Utilisateur updated = utilisateurRepository.save(existing);
         return utilisateurMapper.toDto(updated);
     }
-
-
-
-
 
     public void delete(Long id) {
         utilisateurRepository.deleteById(id);

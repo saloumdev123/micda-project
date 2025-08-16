@@ -1,0 +1,770 @@
+[
+  {
+    "id": 1,
+    "signification": "La figure VIA placée en TETE symbolise un changement de direction ou un mouvement rapide.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "VIA",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 2,
+    "signification": "La figure VIA placée en TEMPS symbolise un changement de direction ou un mouvement rapide.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "VIA",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 3,
+    "signification": "La figure VIA placée en MAISON symbolise un changement de direction ou un mouvement rapide.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "VIA",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 4,
+    "signification": "La figure VIA placée en JUGEMENT symbolise un changement de direction ou un mouvement rapide.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "VIA",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 5,
+    "signification": "La figure VIA placée en TEMOIN_DROIT symbolise un changement de direction ou un mouvement rapide.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "VIA",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 6,
+    "signification": "La figure VIA placée en TEMOIN_GAUCHE symbolise un changement de direction ou un mouvement rapide.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "VIA",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 7,
+    "signification": "La figure PUELLA placée en TETE évoque la beauté, la douceur mais aussi l’indécision.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "PUELLA",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 8,
+    "signification": "La figure PUELLA placée en TEMPS évoque la beauté, la douceur mais aussi l’indécision.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "PUELLA",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 9,
+    "signification": "La figure PUELLA placée en MAISON évoque la beauté, la douceur mais aussi l’indécision.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "PUELLA",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 10,
+    "signification": "La figure PUELLA placée en JUGEMENT évoque la beauté, la douceur mais aussi l’indécision.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "PUELLA",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 11,
+    "signification": "La figure PUELLA placée en TEMOIN_DROIT évoque la beauté, la douceur mais aussi l’indécision.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "PUELLA",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 12,
+    "signification": "La figure PUELLA placée en TEMOIN_GAUCHE évoque la beauté, la douceur mais aussi l’indécision.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "PUELLA",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 13,
+    "signification": "La figure PUER placée en TETE représente l'impulsivité, le courage et parfois l'agressivité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "PUER",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 14,
+    "signification": "La figure PUER placée en TEMPS représente l'impulsivité, le courage et parfois l'agressivité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "PUER",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 15,
+    "signification": "La figure PUER placée en MAISON représente l'impulsivité, le courage et parfois l'agressivité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "PUER",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 16,
+    "signification": "La figure PUER placée en JUGEMENT représente l'impulsivité, le courage et parfois l'agressivité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "PUER",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 17,
+    "signification": "La figure PUER placée en TEMOIN_DROIT représente l'impulsivité, le courage et parfois l'agressivité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "PUER",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 18,
+    "signification": "La figure PUER placée en TEMOIN_GAUCHE représente l'impulsivité, le courage et parfois l'agressivité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "PUER",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 19,
+    "signification": "La figure FORTUNA_MAJOR placée en TETE indique un succès durable et bien mérité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "FORTUNA_MAJOR",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 20,
+    "signification": "La figure FORTUNA_MAJOR placée en TEMPS indique un succès durable et bien mérité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "FORTUNA_MAJOR",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 21,
+    "signification": "La figure FORTUNA_MAJOR placée en MAISON indique un succès durable et bien mérité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "FORTUNA_MAJOR",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 22,
+    "signification": "La figure FORTUNA_MAJOR placée en JUGEMENT indique un succès durable et bien mérité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "FORTUNA_MAJOR",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 23,
+    "signification": "La figure FORTUNA_MAJOR placée en TEMOIN_DROIT indique un succès durable et bien mérité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "FORTUNA_MAJOR",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 24,
+    "signification": "La figure FORTUNA_MAJOR placée en TEMOIN_GAUCHE indique un succès durable et bien mérité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "FORTUNA_MAJOR",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 25,
+    "signification": "La figure FORTUNA_MINOR placée en TETE annonce une chance temporaire ou une aide inattendue.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "FORTUNA_MINOR",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 26,
+    "signification": "La figure FORTUNA_MINOR placée en TEMPS annonce une chance temporaire ou une aide inattendue.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "FORTUNA_MINOR",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 27,
+    "signification": "La figure FORTUNA_MINOR placée en MAISON annonce une chance temporaire ou une aide inattendue.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "FORTUNA_MINOR",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 28,
+    "signification": "La figure FORTUNA_MINOR placée en JUGEMENT annonce une chance temporaire ou une aide inattendue.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "FORTUNA_MINOR",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 29,
+    "signification": "La figure FORTUNA_MINOR placée en TEMOIN_DROIT annonce une chance temporaire ou une aide inattendue.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "FORTUNA_MINOR",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 30,
+    "signification": "La figure FORTUNA_MINOR placée en TEMOIN_GAUCHE annonce une chance temporaire ou une aide inattendue.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "FORTUNA_MINOR",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 31,
+    "signification": "La figure ALBUS placée en TETE exprime la clarté, la sagesse et la réflexion.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "ALBUS",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 32,
+    "signification": "La figure ALBUS placée en TEMPS exprime la clarté, la sagesse et la réflexion.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "ALBUS",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 33,
+    "signification": "La figure ALBUS placée en MAISON exprime la clarté, la sagesse et la réflexion.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "ALBUS",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 34,
+    "signification": "La figure ALBUS placée en JUGEMENT exprime la clarté, la sagesse et la réflexion.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "ALBUS",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 35,
+    "signification": "La figure ALBUS placée en TEMOIN_DROIT exprime la clarté, la sagesse et la réflexion.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "ALBUS",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 36,
+    "signification": "La figure ALBUS placée en TEMOIN_GAUCHE exprime la clarté, la sagesse et la réflexion.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "ALBUS",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 37,
+    "signification": "La figure RUBEUS placée en TETE suggère le danger, la passion ou la confusion.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "RUBEUS",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 38,
+    "signification": "La figure RUBEUS placée en TEMPS suggère le danger, la passion ou la confusion.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "RUBEUS",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 39,
+    "signification": "La figure RUBEUS placée en MAISON suggère le danger, la passion ou la confusion.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "RUBEUS",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 40,
+    "signification": "La figure RUBEUS placée en JUGEMENT suggère le danger, la passion ou la confusion.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "RUBEUS",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 41,
+    "signification": "La figure RUBEUS placée en TEMOIN_DROIT suggère le danger, la passion ou la confusion.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "RUBEUS",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 42,
+    "signification": "La figure RUBEUS placée en TEMOIN_GAUCHE suggère le danger, la passion ou la confusion.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "RUBEUS",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 43,
+    "signification": "La figure ACQUISITIO placée en TETE prédit des gains, une amélioration ou une acquisition.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "ACQUISITIO",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 44,
+    "signification": "La figure ACQUISITIO placée en TEMPS prédit des gains, une amélioration ou une acquisition.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "ACQUISITIO",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 45,
+    "signification": "La figure ACQUISITIO placée en MAISON prédit des gains, une amélioration ou une acquisition.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "ACQUISITIO",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 46,
+    "signification": "La figure ACQUISITIO placée en JUGEMENT prédit des gains, une amélioration ou une acquisition.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "ACQUISITIO",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 47,
+    "signification": "La figure ACQUISITIO placée en TEMOIN_DROIT prédit des gains, une amélioration ou une acquisition.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "ACQUISITIO",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 48,
+    "signification": "La figure ACQUISITIO placée en TEMOIN_GAUCHE prédit des gains, une amélioration ou une acquisition.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "ACQUISITIO",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 49,
+    "signification": "La figure AMISSIO placée en TETE signifie une perte ou un détachement nécessaire.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "AMISSIO",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 50,
+    "signification": "La figure AMISSIO placée en TEMPS signifie une perte ou un détachement nécessaire.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "AMISSIO",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 51,
+    "signification": "La figure AMISSIO placée en MAISON signifie une perte ou un détachement nécessaire.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "AMISSIO",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 52,
+    "signification": "La figure AMISSIO placée en JUGEMENT signifie une perte ou un détachement nécessaire.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "AMISSIO",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 53,
+    "signification": "La figure AMISSIO placée en TEMOIN_DROIT signifie une perte ou un détachement nécessaire.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "AMISSIO",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 54,
+    "signification": "La figure AMISSIO placée en TEMOIN_GAUCHE signifie une perte ou un détachement nécessaire.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "AMISSIO",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 55,
+    "signification": "La figure CAUDA_DRACONIS placée en TETE indique la fin, le détachement ou une transition difficile.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CAUDA_DRACONIS",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 56,
+    "signification": "La figure CAUDA_DRACONIS placée en TEMPS indique la fin, le détachement ou une transition difficile.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CAUDA_DRACONIS",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 57,
+    "signification": "La figure CAUDA_DRACONIS placée en MAISON indique la fin, le détachement ou une transition difficile.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CAUDA_DRACONIS",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 58,
+    "signification": "La figure CAUDA_DRACONIS placée en JUGEMENT indique la fin, le détachement ou une transition difficile.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CAUDA_DRACONIS",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 59,
+    "signification": "La figure CAUDA_DRACONIS placée en TEMOIN_DROIT indique la fin, le détachement ou une transition difficile.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CAUDA_DRACONIS",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 60,
+    "signification": "La figure CAUDA_DRACONIS placée en TEMOIN_GAUCHE indique la fin, le détachement ou une transition difficile.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CAUDA_DRACONIS",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 61,
+    "signification": "La figure CAPUT_DRACONIS placée en TETE annonce un nouveau départ, une ouverture ou une opportunité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CAPUT_DRACONIS",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 62,
+    "signification": "La figure CAPUT_DRACONIS placée en TEMPS annonce un nouveau départ, une ouverture ou une opportunité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CAPUT_DRACONIS",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 63,
+    "signification": "La figure CAPUT_DRACONIS placée en MAISON annonce un nouveau départ, une ouverture ou une opportunité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CAPUT_DRACONIS",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 64,
+    "signification": "La figure CAPUT_DRACONIS placée en JUGEMENT annonce un nouveau départ, une ouverture ou une opportunité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CAPUT_DRACONIS",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 65,
+    "signification": "La figure CAPUT_DRACONIS placée en TEMOIN_DROIT annonce un nouveau départ, une ouverture ou une opportunité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CAPUT_DRACONIS",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 66,
+    "signification": "La figure CAPUT_DRACONIS placée en TEMOIN_GAUCHE annonce un nouveau départ, une ouverture ou une opportunité.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CAPUT_DRACONIS",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 67,
+    "signification": "La figure CARCER placée en TETE symbolise les limitations, l’enfermement ou l’introspection.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CARCER",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 68,
+    "signification": "La figure CARCER placée en TEMPS symbolise les limitations, l’enfermement ou l’introspection.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CARCER",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 69,
+    "signification": "La figure CARCER placée en MAISON symbolise les limitations, l’enfermement ou l’introspection.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CARCER",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 70,
+    "signification": "La figure CARCER placée en JUGEMENT symbolise les limitations, l’enfermement ou l’introspection.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CARCER",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 71,
+    "signification": "La figure CARCER placée en TEMOIN_DROIT symbolise les limitations, l’enfermement ou l’introspection.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CARCER",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 72,
+    "signification": "La figure CARCER placée en TEMOIN_GAUCHE symbolise les limitations, l’enfermement ou l’introspection.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CARCER",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 73,
+    "signification": "La figure CONJUNCTIO placée en TETE évoque l’union, les alliances ou les rencontres.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CONJUNCTIO",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 74,
+    "signification": "La figure CONJUNCTIO placée en TEMPS évoque l’union, les alliances ou les rencontres.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CONJUNCTIO",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 75,
+    "signification": "La figure CONJUNCTIO placée en MAISON évoque l’union, les alliances ou les rencontres.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CONJUNCTIO",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 76,
+    "signification": "La figure CONJUNCTIO placée en JUGEMENT évoque l’union, les alliances ou les rencontres.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CONJUNCTIO",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 77,
+    "signification": "La figure CONJUNCTIO placée en TEMOIN_DROIT évoque l’union, les alliances ou les rencontres.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CONJUNCTIO",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 78,
+    "signification": "La figure CONJUNCTIO placée en TEMOIN_GAUCHE évoque l’union, les alliances ou les rencontres.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "CONJUNCTIO",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 79,
+    "signification": "La figure LAETITIA placée en TETE représente la joie, l’élévation et la satisfaction.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "LAETITIA",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 80,
+    "signification": "La figure LAETITIA placée en TEMPS représente la joie, l’élévation et la satisfaction.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "LAETITIA",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 81,
+    "signification": "La figure LAETITIA placée en MAISON représente la joie, l’élévation et la satisfaction.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "LAETITIA",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 82,
+    "signification": "La figure LAETITIA placée en JUGEMENT représente la joie, l’élévation et la satisfaction.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "LAETITIA",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 83,
+    "signification": "La figure LAETITIA placée en TEMOIN_DROIT représente la joie, l’élévation et la satisfaction.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "LAETITIA",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 84,
+    "signification": "La figure LAETITIA placée en TEMOIN_GAUCHE représente la joie, l’élévation et la satisfaction.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "LAETITIA",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 85,
+    "signification": "La figure TRISTITIA placée en TETE annonce des épreuves, des blocages ou une solitude.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "TRISTITIA",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 86,
+    "signification": "La figure TRISTITIA placée en TEMPS annonce des épreuves, des blocages ou une solitude.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "TRISTITIA",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 87,
+    "signification": "La figure TRISTITIA placée en MAISON annonce des épreuves, des blocages ou une solitude.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "TRISTITIA",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 88,
+    "signification": "La figure TRISTITIA placée en JUGEMENT annonce des épreuves, des blocages ou une solitude.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "TRISTITIA",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 89,
+    "signification": "La figure TRISTITIA placée en TEMOIN_DROIT annonce des épreuves, des blocages ou une solitude.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "TRISTITIA",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 90,
+    "signification": "La figure TRISTITIA placée en TEMOIN_GAUCHE annonce des épreuves, des blocages ou une solitude.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "TRISTITIA",
+    "typeFigure": "TEMOIN_GAUCHE"
+  },
+  {
+    "id": 91,
+    "signification": "La figure POPULUS placée en TETE signifie l’adaptation, la masse ou une instabilité extérieure.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "POPULUS",
+    "typeFigure": "TETE"
+  },
+  {
+    "id": 92,
+    "signification": "La figure POPULUS placée en TEMPS signifie l’adaptation, la masse ou une instabilité extérieure.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "POPULUS",
+    "typeFigure": "TEMPS"
+  },
+  {
+    "id": 93,
+    "signification": "La figure POPULUS placée en MAISON signifie l’adaptation, la masse ou une instabilité extérieure.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "POPULUS",
+    "typeFigure": "MAISON"
+  },
+  {
+    "id": 94,
+    "signification": "La figure POPULUS placée en JUGEMENT signifie l’adaptation, la masse ou une instabilité extérieure.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "POPULUS",
+    "typeFigure": "JUGEMENT"
+  },
+  {
+    "id": 95,
+    "signification": "La figure POPULUS placée en TEMOIN_DROIT signifie l’adaptation, la masse ou une instabilité extérieure.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "POPULUS",
+    "typeFigure": "TEMOIN_DROIT"
+  },
+  {
+    "id": 96,
+    "signification": "La figure POPULUS placée en TEMOIN_GAUCHE signifie l’adaptation, la masse ou une instabilité extérieure.",
+    "culture": "Tradition",
+    "source": "Géomancie africaine",
+    "nomFigureBase": "POPULUS",
+    "typeFigure": "TEMOIN_GAUCHE"
+  }
+]

@@ -1,9 +1,5 @@
 package sen.saloum.Ramli.dto.figure;
 
-
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.stereotype.Component;
 import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
 
@@ -34,6 +30,14 @@ public class FigureRamliDto {
         this.typeFigure = typeFigure;
         this.lignes=lignes;
         this.valeurs=valeurs;
+    }
+
+    public String getValeurs() {
+        return this.valeurs;
+    }
+
+    public void setValeurs(String valeurs) {
+        this.valeurs = valeurs;
     }
 
     public Long getId() {

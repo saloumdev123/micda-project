@@ -1,15 +1,11 @@
 package sen.saloum.Ramli.models;
 
 import jakarta.persistence.*;
-import lombok.*;
 import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
-
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 
 @Entity
@@ -17,7 +13,6 @@ public class Tirage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nomTirage;
     private OffsetDateTime dateTirage;
     @Column(columnDefinition = "TEXT")
     private String interpretation;
@@ -28,8 +23,10 @@ public class Tirage {
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
+
     @Enumerated(EnumType.STRING)
     private TypeFigure typeFigure;
+    
     @Enumerated(EnumType.STRING)
     private NomFigureBase nomFigureBase;
     private Long version;
@@ -38,11 +35,10 @@ public class Tirage {
 
     public Tirage() {
     }
-    public Tirage(Long id,Long version, String nomTirage,NomFigureBase nomFigureBase,TypeFigure typeFigure, OffsetDateTime dateTirage, String interpretation,
+    public Tirage(Long id,Long version,NomFigureBase nomFigureBase,TypeFigure typeFigure, OffsetDateTime dateTirage, String interpretation,
                   String question, String figureResultats, String nomConsultant, String valeurs,
                   Utilisateur utilisateur) {
         this.id = id;
-        this.nomTirage = nomTirage;
         this.dateTirage = dateTirage;
         this.interpretation = interpretation;
         this.question = question;
@@ -63,13 +59,6 @@ public class Tirage {
         this.id = id;
     }
 
-    public String getNomTirage() {
-        return nomTirage;
-    }
-
-    public void setNomTirage(String nomTirage) {
-        this.nomTirage = nomTirage;
-    }
 
     public OffsetDateTime getDateTirage() {
         return dateTirage;

@@ -2,16 +2,14 @@ package sen.saloum.Ramli.dto.figure;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.stereotype.Component;
 import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
-@Component
+
 public class InterpretationDto {
 
     private Long id;
     @NotNull(message = "meaning is required")
+    @NotBlank
     private String signification;
     @NotBlank(message = "Culture is required")
     private String culture;

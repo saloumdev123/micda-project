@@ -14,7 +14,7 @@ public interface FigureRamliMapper {
     @Mapping(source = "lignes", target = "lignes")
     FigureRamliDto toDto(FigureRamli figureRamli);
 
-    @Mapping(target = "tirage", ignore = true) // si pas nécessaire à ce moment
+    @Mapping(target = "tirage", ignore = true) 
     FigureRamli toEntity(FigureRamliDto dto);
 
 }

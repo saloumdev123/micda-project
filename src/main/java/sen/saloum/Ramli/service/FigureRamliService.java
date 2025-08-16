@@ -249,10 +249,10 @@ public class FigureRamliService {
             Map.entry("0100", NomFigureBase.ALBUS)
     );
 
-    private NomFigureBase detectNomFigureBase(boolean p1, boolean p2, boolean p3, boolean p4) {
-        String key = "" + (p1 ? 1 : 0) + (p2 ? 1 : 0) + (p3 ? 1 : 0) + (p4 ? 1 : 0);
-        return FIGURE_MAP.getOrDefault(key, NomFigureBase.VIA);
-    }
+    // private NomFigureBase detectNomFigureBase(boolean p1, boolean p2, boolean p3, boolean p4) {
+    //     String key = "" + (p1 ? 1 : 0) + (p2 ? 1 : 0) + (p3 ? 1 : 0) + (p4 ? 1 : 0);
+    //     return FIGURE_MAP.getOrDefault(key, NomFigureBase.VIA);
+    // }
 
     private NomFigureBase detectNomFigureBase(List<FigureLignesDto> lignesDto) {
         if (lignesDto == null || lignesDto.size() != 4) {

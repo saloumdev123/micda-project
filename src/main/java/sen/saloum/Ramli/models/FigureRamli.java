@@ -2,14 +2,10 @@ package sen.saloum.Ramli.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
 
 import java.util.List;
-
-
 
 @Entity
 public class FigureRamli {
@@ -23,12 +19,15 @@ public class FigureRamli {
     @ManyToOne
     @JoinColumn(name = "tirage_id")
     private Tirage tirage;
-    @OneToMany(mappedBy = "figure", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "figure", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<FigureLigne> lignes;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "figure_id")
     private List<Interpretation> interpretations;
+    
     @Enumerated(EnumType.STRING)
     private TypeFigure typeFigure;
     @Enumerated(EnumType.STRING)
@@ -91,8 +90,9 @@ public class FigureRamli {
         this.tirage = tirage;
     }
 
+
     public List<FigureLigne> getLignes() {
-        return lignes;
+        return this.lignes;
     }
 
     public void setLignes(List<FigureLigne> lignes) {
@@ -100,12 +100,12 @@ public class FigureRamli {
     }
 
     public List<Interpretation> getInterpretations() {
-        return interpretations;
+        return this.interpretations;
     }
 
     public void setInterpretations(List<Interpretation> interpretations) {
         this.interpretations = interpretations;
-    }
+    }   
 
     public TypeFigure getTypeFigure() {
         return typeFigure;

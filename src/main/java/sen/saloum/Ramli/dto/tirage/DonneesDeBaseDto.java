@@ -2,14 +2,12 @@ package sen.saloum.Ramli.dto.tirage;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 @Setter
 @Getter
-@Component
 public class DonneesDeBaseDto {
-    private List<Integer> valeursInitiales;
+     private List<Integer> valeursInitiales;
     private String question;                  // Question pour le tirage (optionnel, mais souvent utilisé)
     private String typeTirage;               // Type de tirage (par exemple, "tirage aléatoire", "tirage par sélection", etc.)
     private Integer nombreDeLignes;          // Nombre de lignes à générer dans le tirage

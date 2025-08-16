@@ -1,7 +1,6 @@
 package sen.saloum.Ramli.models;
 
 import jakarta.persistence.*;
-import lombok.*;
 import sen.saloum.Ramli.enums.Role;
 import java.util.List;
 

@@ -1,15 +1,15 @@
 package sen.saloum.Ramli.controller;
 
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sen.saloum.Ramli.dto.figure.InterpretationDto;
+import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
-import sen.saloum.Ramli.models.FigureRamli;
 import sen.saloum.Ramli.service.InterpretationService;
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -27,6 +27,12 @@ public class InterpretationController {
     public ResponseEntity<InterpretationDto> createInterpretation(@RequestBody InterpretationDto dto) {
         InterpretationDto created = interpretationService.addInterpretation(dto);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
+    }
+    @GetMapping("/search")
+    public ResponseEntity<InterpretationDto> search(
+            @RequestParam NomFigureBase nom,
+            @RequestParam TypeFigure type) {
+        return ResponseEntity.ok(interpretationService.findByNomFigureBaseAndTypeFigure(nom, type));
     }
 
     // Récupérer toutes les interprétations
@@ -63,4 +69,19 @@ public class InterpretationController {
         interpretationService.deleteInterpretation(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/generate-defaults")
+    public ResponseEntity<List<InterpretationDto>> generateDefaults() {
+        return ResponseEntity.ok(interpretationService.generateAllInterpretations());
+    }
+    @PostMapping("/import")
+        public ResponseEntity<List<InterpretationDto>> importFromJson() {
+            try {
+                List<InterpretationDto> result = interpretationService.importFromJson();
+                return ResponseEntity.ok(result);
+            } catch (IOException e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(Collections.emptyList());
+            }
+        }
 }

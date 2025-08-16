@@ -1,11 +1,18 @@
 package sen.saloum.Ramli.dto.user;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import sen.saloum.Ramli.enums.Role;
 
 public class UtilisateurDto {
     private Long id;
+    @NotBlank(message = "Le nom est obligatoire")
     private String nom;
+    @NotBlank(message = "Le username est obligatoire")
+    @Size(min = 4, max = 20)
     private String username;
+    @NotBlank(message = "Le mot de passe est obligatoire")
+    @Size(min = 6, message = "Le mot de passe doit contenir au moins 6 caractères")
     private String password;
     private boolean enabled = true;
     private Role role;

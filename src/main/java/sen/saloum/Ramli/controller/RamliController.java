@@ -46,7 +46,7 @@ public class RamliController {
             TirageDto tirageDto = ramliService.realiserTirage(utilisateur, lignesDeDepart);
             return ResponseEntity.ok(tirageDto);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(null); // Internal server error if something goes wrong
+            return ResponseEntity.status(500).body(null); 
         }
     }
 }

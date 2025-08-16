@@ -3,6 +3,8 @@ package sen.saloum.Ramli.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import sen.saloum.Ramli.service.loader.InterpretationLoader;
 import sen.saloum.Ramli.dto.tirage.TirageDto;
 import sen.saloum.Ramli.mapStruct.TirageMapper;
 import sen.saloum.Ramli.models.FigureRamli;
@@ -24,11 +26,15 @@ public class TirageService {
     private final TirageRepository tirageRepository;
     private final TirageMapper tirageMapper;
     private final UtilisateurRepository utilisateurRepository;
+    private final InterpretationLoader interpretationLoader;
 
-    public TirageService(TirageRepository tirageRepository, TirageMapper tirageMapper, UtilisateurRepository utilisateurRepository) {
+
+    public TirageService(InterpretationLoader interpretationLoader,TirageRepository tirageRepository,
+                         TirageMapper tirageMapper, UtilisateurRepository utilisateurRepository) {
         this.tirageRepository = tirageRepository;
         this.tirageMapper = tirageMapper;
         this.utilisateurRepository = utilisateurRepository;
+        this.interpretationLoader=interpretationLoader;
     }
 
     public List<Integer> genererTirageBits() {
@@ -41,43 +47,52 @@ public class TirageService {
     }
 
     @Transactional
-    public TirageDto creerTirageAleatoire(Long utilisateurId, TirageDto dto) {
-        List<Integer> tirage = genererTirageBits();
-        String tirageString = tirage.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining());
+public TirageDto creerTirageAleatoire(Long utilisateurId, TirageDto dto) {
+    // Génération des 16 bits de tirage
+    List<Integer> tirage = genererTirageBits();
+    String tirageString = tirage.stream()
+            .map(String::valueOf)
+            .collect(Collectors.joining());
 
-        Utilisateur utilisateur = utilisateurRepository.findById(utilisateurId)
-                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
+    // Récupération de l'utilisateur
+    Utilisateur utilisateur = utilisateurRepository.findById(utilisateurId)
+            .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
 
-        Tirage tirageEntity = new Tirage();
-        tirageEntity.setValeurs(tirageString);
-        tirageEntity.setDateTirage(OffsetDateTime.now());
-        tirageEntity.setUtilisateur(utilisateur);
-        tirageEntity.setNomConsultant(utilisateur.getNom());
+    // Création du tirage
+    Tirage tirageEntity = new Tirage();
+    tirageEntity.setValeurs(tirageString);
+    tirageEntity.setDateTirage(OffsetDateTime.now());
+    tirageEntity.setUtilisateur(utilisateur);
+    tirageEntity.setNomConsultant(utilisateur.getNom());
+    tirageEntity.setQuestion(dto.getQuestion());
+    tirageEntity.setNomFigureBase(dto.getNomFigureBase());
+    tirageEntity.setTypeFigure(dto.getTypeFigure());
 
-        // valeurs venant du JSON dto
-        tirageEntity.setNomTirage(dto.getNomTirage());
-        tirageEntity.setQuestion(dto.getQuestion());
-        tirageEntity.setInterpretation(dto.getInterpretation());
-        tirageEntity.setNomFigureBase(dto.getNomFigureBase());
-        tirageEntity.setTypeFigure(dto.getTypeFigure());
+    // 🔽 Ajout automatique de l’interprétation
+    String interpretation = interpretationLoader
+            .getInterpretation(dto.getNomFigureBase(), dto.getTypeFigure())
+            .orElse("Interprétation non trouvée pour cette combinaison");
+    tirageEntity.setInterpretation(interpretation);
 
-        // Génération des figures à partir des 16 bits
-        List<List<Integer>> figures = genererFiguresDepuis16Bits(tirage);
-        tirageEntity.setFigures(new ArrayList<>());
-        int ordre = 1;
-        for (List<Integer> figure : figures) {
-            FigureRamli f = new FigureRamli();
-            f.setOrdre(ordre++);
-            f.setValeurs(figureToString(figure));
-            f.setTirage(tirageEntity);
-            tirageEntity.getFigures().add(f);
-        }
+    // 🔽 Génération des figures
+    List<List<Integer>> figures = genererFiguresDepuis16Bits(tirage);
+    tirageEntity.setFigures(new ArrayList<>());
 
-        tirageEntity = tirageRepository.save(tirageEntity);
-        return tirageMapper.toDto(tirageEntity);
+    int ordre = 1;
+    for (List<Integer> figure : figures) {
+        FigureRamli f = new FigureRamli();
+        f.setOrdre(ordre++);
+        f.setValeurs(figureToString(figure));
+        f.setTirage(tirageEntity);
+        tirageEntity.getFigures().add(f);
     }
+
+    // 🔽 Sauvegarde du tirage
+    tirageEntity = tirageRepository.save(tirageEntity);
+
+    return tirageMapper.toDto(tirageEntity);
+}
+
 
     private String figureToString(List<Integer> figure) {
         return figure.stream()

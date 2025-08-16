@@ -17,16 +17,10 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity<String> handleValidation(MethodArgumentNotValidException ex) {
-//        String errors = ex.getBindingResult()
-//                .getFieldErrors()
-//                .stream()
-//                .map(e -> e.getField() + ": " + e.getDefaultMessage())
-//                .collect(Collectors.joining(", "));
-//        return ResponseEntity.badRequest().body(errors);
-//    }
-
+@ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
     // Gestion des erreurs de validation @Valid sur @RequestBody
 
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
@@ -44,8 +38,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
-
-    // Gestion des erreurs de validation sur @PathVariable ou @RequestParam (ConstraintViolationException)
+    
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException ex) {
         Map<String, String> errors = new HashMap<>();

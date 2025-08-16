@@ -10,7 +10,6 @@ import sen.saloum.Ramli.models.Utilisateur;
 public interface TirageMapper {
 
     @Mapping(source = "id", target = "id")
-    @Mapping(source = "nomTirage", target = "nomTirage")
     @Mapping(source = "question", target = "question")
     @Mapping(source = "nomConsultant", target = "nomConsultant")
     @Mapping(source = "dateTirage", target = "dateTirage")
@@ -24,7 +23,6 @@ public interface TirageMapper {
     default Tirage convertToEntity(TirageDto tirageDto, Utilisateur utilisateur) {
         Tirage tirage = new Tirage();
         tirage.setId(tirageDto.getId());
-        tirage.setNomTirage(tirageDto.getNomTirage());
         tirage.setQuestion(tirageDto.getQuestion());
         tirage.setNomConsultant(tirageDto.getNomConsultant());
         tirage.setDateTirage(tirageDto.getDateTirage());
