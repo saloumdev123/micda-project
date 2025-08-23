@@ -1,0 +1,178 @@
+    <div class="profile-container">
+      <div class="container">
+        <div class="profile-header fade-in">
+          <h1 class="page-title">Mon Profil</h1>
+          <p class="page-subtitle">Gérez vos informations personnelles</p>
+        </div>
+
+        <div class="profile-content">
+          <div class="profile-card card fade-in">
+            <div class="avatar-section">
+              <div class="user-avatar">
+                {{ getUserInitials() }}
+              </div>
+              <h2 class="user-name">{{ currentUser?.prenom }} {{ currentUser?.nom }}</h2>
+              <p class="user-role">{{ getRoleLabel() }}</p>
+            </div>
+
+            <form class="profile-form" (ngSubmit)="updateProfile()">
+              <div class="form-section">
+                <h3 class="section-title">Informations personnelles</h3>
+                
+                <div class="form-row">
+                  <div class="input-group">
+                    <label for="prenom">Prénom</label>
+                    <input
+                      id="prenom"
+                      type="text"
+                      class="form-input"
+                      [(ngModel)]="formData.prenom"
+                      name="prenom"
+                      required
+                    />
+                  </div>
+
+                  <div class="input-group">
+                    <label for="nom">Nom</label>
+                    <input
+                      id="nom"
+                      type="text"
+                      class="form-input"
+                      [(ngModel)]="formData.nom"
+                      name="nom"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <label for="email">Adresse email</label>
+                  <input
+                    id="email"
+                    type="email"
+                    class="form-input"
+                    [(ngModel)]="formData.email"
+                    name="email"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h3 class="section-title">Sécurité</h3>
+                
+                <div class="input-group">
+                  <label for="currentPassword">Mot de passe actuel</label>
+                  <input
+                    id="currentPassword"
+                    type="password"
+                    class="form-input"
+                    [(ngModel)]="passwordData.currentPassword"
+                    name="currentPassword"
+                    placeholder="Laissez vide pour ne pas modifier"
+                  />
+                </div>
+
+                <div class="form-row" *ngIf="passwordData.currentPassword">
+                  <div class="input-group">
+                    <label for="newPassword">Nouveau mot de passe</label>
+                    <input
+                      id="newPassword"
+                      type="password"
+                      class="form-input"
+                      [(ngModel)]="passwordData.newPassword"
+                      name="newPassword"
+                      placeholder="Nouveau mot de passe"
+                    />
+                  </div>
+
+                  <div class="input-group">
+                    <label for="confirmPassword">Confirmer le mot de passe</label>
+                    <input
+                      id="confirmPassword"
+                      type="password"
+                      class="form-input"
+                      [(ngModel)]="passwordData.confirmPassword"
+                      name="confirmPassword"
+                      placeholder="Confirmer le nouveau mot de passe"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-secondary" (click)="resetForm()">
+                  Annuler
+                </button>
+                <button type="submit" class="btn btn-primary" [disabled]="!isFormValid()">
+                  Sauvegarder les modifications
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="info-card card fade-in">
+            <h3 class="info-title">Informations du compte</h3>
+            <div class="info-list">
+              <div class="info-item">
+                <span class="info-label">Date d'inscription</span>
+                <span class="info-value">{{ currentUser?.dateInscription | date:'dd/MM/yyyy' }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Statut du compte</span>
+                <span class="info-value status-active">Actif</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Type de compte</span>
+                <span class="info-value">{{ getRoleLabel() }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="preferences-card card fade-in">
+            <h3 class="preferences-title">Préférences</h3>
+            <div class="preferences-list">
+              <div class="preference-item">
+                <div class="preference-info">
+                  <span class="preference-label">Notifications par email</span>
+                  <span class="preference-description">Recevoir des notifications pour les nouvelles interprétations</span>
+                </div>
+                <div class="preference-toggle">
+                  <input type="checkbox" id="emailNotifications" [(ngModel)]="preferences.emailNotifications" />
+                  <label for="emailNotifications" class="toggle-label"></label>
+                </div>
+              </div>
+
+              <div class="preference-item">
+                <div class="preference-info">
+                  <span class="preference-label">Historique automatique</span>
+                  <span class="preference-description">Sauvegarder automatiquement tous les tirages</span>
+                </div>
+                <div class="preference-toggle">
+                  <input type="checkbox" id="autoSave" [(ngModel)]="preferences.autoSave" />
+                  <label for="autoSave" class="toggle-label"></label>
+                </div>
+              </div>
+
+              <div class="preference-item">
+                <div class="preference-info">
+                  <span class="preference-label">Mode sombre</span>
+                  <span class="preference-description">Interface avec thème sombre</span>
+                </div>
+                <div class="preference-toggle">
+                  <input type="checkbox" id="darkMode" [(ngModel)]="preferences.darkMode" />
+                  <label for="darkMode" class="toggle-label"></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="preferences-actions">
+              <button class="btn btn-secondary" (click)="savePreferences()">
+                Sauvegarder les préférences
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  

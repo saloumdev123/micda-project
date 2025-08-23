@@ -1,0 +1,189 @@
+.dashboard-container {
+      min-height: calc(100vh - 80px);
+      padding: var(--space-8) 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    .welcome-section {
+      margin-bottom: var(--space-16);
+    }
+
+    .welcome-card {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(217, 119, 6, 0.1));
+    }
+
+    .welcome-title {
+      font-size: 2.5rem;
+      margin-bottom: var(--space-4);
+      background: linear-gradient(135deg, var(--secondary-300), var(--primary-300));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .welcome-message {
+      font-size: 1.1rem;
+      color: var(--neutral-300);
+      line-height: 1.8;
+    }
+
+    .actions-section {
+      margin-bottom: var(--space-16);
+    }
+
+    .actions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-8);
+    }
+
+    .action-card {
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .action-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-mystical);
+    }
+
+    .action-icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-4);
+      filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.5));
+    }
+
+    .action-title {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-3);
+      color: var(--primary-300);
+    }
+
+    .action-description {
+      color: var(--neutral-400);
+      margin-bottom: var(--space-6);
+      line-height: 1.6;
+    }
+
+    .action-button {
+      display: inline-block;
+      padding: var(--space-3) var(--space-6);
+      background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
+      border-radius: 0.5rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .action-button:hover {
+      background: linear-gradient(135deg, var(--primary-700), var(--primary-900));
+    }
+
+    .stats-section {
+      margin-bottom: var(--space-16);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: var(--space-8);
+      color: var(--secondary-300);
+    }
+
+    .recent-tirages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-6);
+    }
+
+    .tirage-card {
+      padding: var(--space-6);
+    }
+
+    .tirage-date {
+      color: var(--neutral-500);
+      font-size: 0.875rem;
+      margin-bottom: var(--space-2);
+    }
+
+    .tirage-figure {
+      color: var(--primary-300);
+      margin-bottom: var(--space-2);
+      font-size: 1.2rem;
+    }
+
+    .tirage-description {
+      color: var(--neutral-400);
+      font-size: 0.9rem;
+      margin-bottom: var(--space-4);
+    }
+
+    .btn-small {
+      padding: var(--space-2) var(--space-4);
+      font-size: 0.875rem;
+    }
+
+    .info-section {
+      margin-bottom: var(--space-8);
+    }
+
+    .info-card {
+      text-align: center;
+    }
+
+    .info-title {
+      font-size: 2rem;
+      margin-bottom: var(--space-6);
+      color: var(--secondary-300);
+    }
+
+    .info-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--neutral-300);
+      margin-bottom: var(--space-8);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .info-features {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--neutral-300);
+    }
+
+    .feature-icon {
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 767px) {
+      .welcome-title {
+        font-size: 2rem;
+      }
+      
+      .actions-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .info-features {
+        flex-direction: column;
+        align-items: center;
+      }
+    }

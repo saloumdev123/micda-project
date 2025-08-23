@@ -1,0 +1,110 @@
+    <div class="tirage-container mystical-pattern">
+      <div class="container">
+        <div class="tirage-card card fade-in" *ngIf="!loading && !currentTirage">
+          <div class="tirage-header">
+            <h1 class="tirage-title">Nouveau Tirage Ramli</h1>
+            <p class="tirage-subtitle">
+              Concentrez-vous sur votre question et laissez les figures Ramli vous guider
+            </p>
+          </div>
+
+          <div class="preparation-steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h3>Préparation mentale</h3>
+                <p>Prenez un moment pour vous concentrer et formuler clairement votre question</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h3>Intention pure</h3>
+                <p>Videz votre esprit de toute distraction et focalisez-vous sur votre demande</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h3>Lancement du tirage</h3>
+                <p>Cliquez sur le bouton ci-dessous quand vous vous sentez prêt(e)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tirage-action">
+            <button class="btn btn-primary tirage-button" (click)="startTirage()">
+              <span class="mystical-symbol">✨</span>
+              Effectuer le Tirage
+              <span class="mystical-symbol">✨</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="loading-card card fade-in" *ngIf="loading">
+          <div class="loading-content">
+            <div class="mystical-loader">
+              <div class="loader-symbol spin">☪</div>
+            </div>
+            <h2 class="loading-title">Consultation des figures...</h2>
+            <p class="loading-message">Les esprits révèlent les secrets de votre destinée</p>
+            <div class="loading-progress">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card card fade-in" 
+     *ngIf="currentTirage && !loading && currentTirage.figures?.length as figuresCount" 
+     [hidden]="figuresCount === 0">
+
+  <div class="result-header">
+    <h1 class="result-title">Votre Tirage Ramli</h1>
+    <p class="result-date">{{ currentTirage.dateTirage | date:'dd/MM/yyyy à HH:mm' }}</p>
+  </div>
+
+  <div class="figure-display">
+    <div class="figure-info">
+      <h4 class="tirage-figure">{{ currentTirage.figures[0].nomFigure }}</h4>
+      <p class="tirage-description">{{ currentTirage.figures[0].description }}</p>
+    </div>
+
+    <div class="figure-visual">
+      <div class="ramli-lines">
+        <div class="ramli-line" *ngFor="let ligne of currentTirage.figures[0].lignes">
+          <div class="line-dots">
+            <span 
+              class="dot" 
+              *ngFor="let dot of getDots(ligne.valeurs)"
+              [class.active]="dot"
+            ></span>
+          </div>
+          <span class="line-position">{{ ligne.position }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="interpretation-section">
+    <h3 class="interpretation-title">Interprétation</h3>
+    <div class="interpretation-content">
+      <p class="symbolisme">{{ currentTirage.figures[0].symbolisme }}</p>
+      <div class="interpretation-text" *ngIf="currentTirage.interpretation">
+        <p>{{ currentTirage.interpretation.texteInterpretation }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-actions">
+    <button class="btn btn-secondary" (click)="newTirage()">Nouveau Tirage</button>
+    <button class="btn btn-primary" (click)="saveToHistory()">Sauvegarder</button>
+  </div>
+
+</div>
+
+
+</div>
+</div>
+

@@ -1,0 +1,98 @@
+    <div class="historique-container">
+      <div class="container">
+        <div class="header-section">
+          <h1 class="page-title fade-in">Mon Historique</h1>
+          <p class="page-subtitle">Consultez vos tirages précédents et leurs interprétations</p>
+        </div>
+
+        <div class="empty-state" *ngIf="tirages.length === 0">
+          <div class="empty-card card fade-in">
+            <div class="empty-icon">🔮</div>
+            <h2 class="empty-title">Aucun tirage effectué</h2>
+            <p class="empty-message">
+              Vous n'avez pas encore effectué de tirage divinatoire. 
+              Commencez votre première consultation pour découvrir les messages des figures Ramli.
+            </p>
+            <button class="btn btn-primary" (click)="navigateToTirage()">
+              Effectuer un tirage
+            </button>
+          </div>
+        </div>
+
+        <div class="tirages-grid" 
+     *ngIf="tirages.length > 0 && tirages[0].figures?.length as firstFiguresCount" 
+     [hidden]="firstFiguresCount === 0">
+
+  <div 
+    class="tirage-card card fade-in" 
+    *ngFor="let tirage of tirages; trackBy: trackByTirageId"
+    (click)="viewTirageDetails(tirage)"
+  >
+    <div class="tirage-header">
+      <div class="tirage-date">
+        {{ tirage.dateTirage | date:'dd/MM/yyyy' }}
+      </div>
+      <div class="tirage-time">
+        {{ tirage.dateTirage | date:'HH:mm' }}
+      </div>
+    </div>
+
+    <div class="tirage-content">
+      <div class="figure-info" *ngIf="tirage.figures?.length">
+        <h3 class="figure-name">{{ tirage.figures[0].nomFigure }}</h3>
+        <p class="figure-description">{{ tirage.figures[0].description }}</p>
+      </div>
+
+      <div class="figure-visual" *ngIf="tirage.figures?.length">
+        <div class="mini-ramli">
+          <div class="mini-line" *ngFor="let ligne of tirage.figures[0].lignes">
+            <span 
+              class="mini-dot" 
+              *ngFor="let dot of getDots(ligne.valeurs)"
+              [class.active]="dot"
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tirage-preview" *ngIf="tirage.interpretation">
+      <p class="interpretation-preview">
+        {{ getInterpretationPreview(tirage.interpretation.texteInterpretation) }}
+      </p>
+    </div>
+
+    <div class="tirage-actions">
+      <button class="btn btn-secondary btn-small" (click)="viewTirageDetails(tirage, $event)">
+        Voir détails
+      </button>
+      <button class="btn btn-primary btn-small" (click)="repeatTirage($event)">
+        Répéter
+      </button>
+    </div>
+  </div>
+</div>
+
+
+        <div class="stats-section" *ngIf="tirages.length > 0">
+          <div class="stats-card card">
+            <h3 class="stats-title">Statistiques de vos consultations</h3>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-number">{{ tirages.length }}</div>
+                <div class="stat-label">Tirages effectués</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">{{ getUniqueFigures() }}</div>
+                <div class="stat-label">Figures différentes</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">{{ getFavoriteDay() }}</div>
+                <div class="stat-label">Jour préféré</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 

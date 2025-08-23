@@ -1,0 +1,97 @@
+    <div class="auth-container mystical-pattern">
+      <div class="auth-card card fade-in">
+        <div class="auth-header">
+          <h1 class="auth-title">Inscription</h1>
+          <p class="auth-subtitle">Rejoignez la communauté spirituelle</p>
+        </div>
+
+        <form (ngSubmit)="onSubmit()" class="auth-form">
+          <div class="name-group">
+            <div class="input-group">
+              <label for="prenom">Prénom</label>
+              <input
+                id="prenom"
+                type="text"
+                class="form-input"
+                [(ngModel)]="userData.prenom"
+                name="prenom"
+                placeholder="Votre prénom"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="nom">Nom</label>
+              <input
+                id="nom"
+                type="text"
+                class="form-input"
+                [(ngModel)]="userData.nom"
+                name="nom"
+                placeholder="Votre nom"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="email">Adresse email</label>
+            <input
+              id="email"
+              type="email"
+              class="form-input"
+              [(ngModel)]="userData.email"
+              name="email"
+              placeholder="votre@email.com"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="password">Mot de passe</label>
+            <input
+              id="password"
+              type="password"
+              class="form-input"
+              [(ngModel)]="userData.password"
+              name="password"
+              placeholder="••••••••"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="confirmPassword">Confirmer le mot de passe</label>
+            <input
+              id="confirmPassword"
+              type="password"
+              class="form-input"
+              [(ngModel)]="confirmPassword"
+              name="confirmPassword"
+              placeholder="••••••••"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary auth-button"
+            [disabled]="loading"
+          >
+            <span *ngIf="loading" class="loading-spinner">⟳</span>
+            {{ loading ? 'Création...' : 'Créer mon compte' }}
+          </button>
+
+          <div class="auth-links">
+            <a (click)="navigateToLogin()" class="auth-link">
+              Déjà un compte ? Se connecter
+            </a>
+          </div>
+        </form>
+
+        <div class="mystical-quote">
+          <p>"Le voyage de mille lieues commence par un pas"</p>
+          <cite>- Lao Tzu</cite>
+        </div>
+      </div>
+    </div>

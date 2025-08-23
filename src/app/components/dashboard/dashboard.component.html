@@ -1,0 +1,100 @@
+<div class="dashboard-container">
+      <div class="welcome-section">
+        <div class="container">
+          <div class="welcome-card card fade-in">
+            <h1 class="welcome-title">
+              Bienvenue, {{ currentUser?.prenom }}
+            </h1>
+            <p class="welcome-message">
+              Explorez les mystères de la divination Ramli et découvrez ce que l'avenir vous réserve.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions-section">
+        <div class="container">
+          <div class="actions-grid">
+            <div class="action-card card" (click)="navigateToTirage()">
+              <div class="action-icon">🔮</div>
+              <h3 class="action-title">Nouveau Tirage</h3>
+              <p class="action-description">
+                Effectuez un tirage divinatoire et découvrez les messages des figures Ramli
+              </p>
+              <div class="action-button">
+                <span>Commencer →</span>
+              </div>
+            </div>
+
+            <div class="action-card card" (click)="navigateToHistorique()">
+              <div class="action-icon">📚</div>
+              <h3 class="action-title">Mon Historique</h3>
+              <p class="action-description">
+                Consultez vos tirages précédents et relisez leurs interprétations
+              </p>
+              <div class="action-button">
+                <span>Consulter →</span>
+              </div>
+            </div>
+
+            <div class="action-card card" (click)="navigateToProfile()">
+              <div class="action-icon">👤</div>
+              <h3 class="action-title">Mon Profil</h3>
+              <p class="action-description">
+                Gérez vos informations personnelles et personnalisez votre expérience
+              </p>
+              <div class="action-button">
+                <span>Modifier →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-section" *ngIf="recentTirages.length > 0">
+        <div class="container">
+          <h2 class="section-title">Vos derniers tirages</h2>
+          <div class="recent-tirages">
+            <div class="tirage-card card" *ngFor="let tirage of recentTirages.slice(0, 3)">
+              <div class="tirage-date">
+                {{ tirage.dateTirage | date:'dd/MM/yyyy HH:mm' }}
+              </div>
+              <h4 class="tirage-figure">{{ tirage.figures[0].nomFigure }}</h4>
+              <p class="tirage-description">{{ tirage.figures[0].description }}</p>
+              <button class="btn btn-secondary btn-small" (click)="viewTirage(tirage.id)">
+                Voir détails
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <div class="container">
+          <div class="info-card card">
+            <h2 class="info-title">À propos de la Science Ramli</h2>
+            <p class="info-text">
+              La géomancie Ramli est une science divinatoire traditionnelle qui utilise des figures 
+              formées par des points pour révéler des insights sur le passé, le présent et l'avenir. 
+              Chaque figure possède sa propre signification et symbolisme, offrant des guidance 
+              spirituelles profondes.
+            </p>
+            <div class="info-features">
+              <div class="feature">
+                <span class="feature-icon">⭐</span>
+                <span>Interprétations authentiques</span>
+              </div>
+              <div class="feature">
+                <span class="feature-icon">🎯</span>
+                <span>Guidance personnalisée</span>
+              </div>
+              <div class="feature">
+                <span class="feature-icon">🔒</span>
+                <span>Confidentialité assurée</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 

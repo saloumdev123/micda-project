@@ -1,0 +1,43 @@
+    <header class="header">
+      <div class="container">
+        <div class="nav-brand" (click)="navigateTo('/')">
+          <div class="logo">
+            <span class="logo-symbol">☪</span>
+            <span class="logo-text">Ramli</span>
+          </div>
+          <span class="subtitle">Science Divinatoire</span>
+        </div>
+        
+        <nav class="nav-menu" *ngIf="isAuthenticated">
+          <a (click)="navigateTo('/dashboard')" class="nav-link">
+            <span class="nav-icon">🏠</span>
+            Accueil
+          </a>
+          <a (click)="navigateTo('/tirage')" class="nav-link">
+            <span class="nav-icon">🔮</span>
+            Nouveau Tirage
+          </a>
+          <a (click)="navigateTo('/historique')" class="nav-link">
+            <span class="nav-icon">📚</span>
+            Historique
+          </a>
+          <div class="user-menu">
+            <div class="user-info" (click)="toggleUserMenu()">
+              <span class="user-avatar">{{ getCurrentUserInitials() }}</span>
+              <span class="user-name">{{ currentUser?.prenom }}</span>
+              <span class="dropdown-arrow">▼</span>
+            </div>
+            <div class="user-dropdown" [class.active]="showUserMenu">
+              <a (click)="navigateTo('/profile')" class="dropdown-item">
+                <span class="dropdown-icon">👤</span>
+                Mon Profil
+              </a>
+              <a (click)="logout()" class="dropdown-item logout">
+                <span class="dropdown-icon">🚪</span>
+                Déconnexion
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>

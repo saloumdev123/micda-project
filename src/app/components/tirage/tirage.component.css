@@ -1,0 +1,285 @@
+    .tirage-container {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-8) 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    .tirage-card, .loading-card, .result-card {
+      text-align: center;
+    }
+
+    .tirage-header {
+      margin-bottom: var(--space-8);
+    }
+
+    .tirage-title, .result-title {
+      font-size: 2.5rem;
+      margin-bottom: var(--space-4);
+      background: linear-gradient(135deg, var(--secondary-300), var(--primary-300));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tirage-subtitle {
+      font-size: 1.1rem;
+      color: var(--neutral-400);
+      line-height: 1.6;
+    }
+
+    .preparation-steps {
+      margin-bottom: var(--space-12);
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      text-align: left;
+      margin-bottom: var(--space-6);
+      padding: var(--space-4);
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 0.75rem;
+      border-left: 3px solid var(--primary-500);
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-right: var(--space-4);
+    }
+
+    .step-content h3 {
+      color: var(--primary-300);
+      margin-bottom: var(--space-2);
+      font-size: 1.1rem;
+    }
+
+    .step-content p {
+      color: var(--neutral-400);
+      line-height: 1.5;
+    }
+
+    .tirage-action {
+      margin-top: var(--space-8);
+    }
+
+    .tirage-button {
+      padding: var(--space-6) var(--space-12);
+      font-size: 1.2rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--secondary-500), var(--secondary-700));
+      border: 2px solid var(--secondary-300);
+      box-shadow: var(--shadow-mystical);
+      transition: all 0.3s ease;
+    }
+
+    .tirage-button:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 0 30px rgba(217, 119, 6, 0.5);
+    }
+
+    .mystical-symbol {
+      font-size: 1.5rem;
+      margin: 0 var(--space-3);
+    }
+
+    .loading-content {
+      padding: var(--space-12) 0;
+    }
+
+    .mystical-loader {
+      margin-bottom: var(--space-8);
+    }
+
+    .loader-symbol {
+      font-size: 4rem;
+      color: var(--secondary-300);
+      filter: drop-shadow(0 0 20px rgba(217, 119, 6, 0.8));
+    }
+
+    .loading-title {
+      font-size: 2rem;
+      margin-bottom: var(--space-4);
+      color: var(--primary-300);
+    }
+
+    .loading-message {
+      color: var(--neutral-400);
+      font-size: 1.1rem;
+      margin-bottom: var(--space-8);
+    }
+
+    .loading-progress {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, var(--primary-500), var(--secondary-500));
+      animation: progress 2s ease-in-out infinite;
+    }
+
+    @keyframes progress {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .result-header {
+      margin-bottom: var(--space-8);
+    }
+
+    .result-date {
+      color: var(--neutral-500);
+      font-size: 0.9rem;
+    }
+
+    .figure-display {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+      margin-bottom: var(--space-12);
+      align-items: center;
+    }
+
+    .figure-info {
+      text-align: left;
+    }
+
+    .figure-name {
+      font-size: 1.8rem;
+      color: var(--secondary-300);
+      margin-bottom: var(--space-4);
+    }
+
+    .figure-description {
+      color: var(--neutral-300);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .figure-visual {
+      display: flex;
+      justify-content: center;
+    }
+
+    .ramli-lines {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      padding: var(--space-8);
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 1rem;
+      border: 2px solid var(--primary-500);
+    }
+
+    .ramli-line {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .line-dots {
+      display: flex;
+      gap: var(--space-2);
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--neutral-600);
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--secondary-300);
+      box-shadow: 0 0 10px rgba(217, 119, 6, 0.8);
+    }
+
+    .line-position {
+      color: var(--neutral-500);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .interpretation-section {
+      text-align: left;
+      margin-bottom: var(--space-8);
+    }
+
+    .interpretation-title {
+      font-size: 1.5rem;
+      color: var(--primary-300);
+      margin-bottom: var(--space-6);
+      text-align: center;
+    }
+
+    .interpretation-content {
+      background: rgba(255, 255, 255, 0.03);
+      padding: var(--space-6);
+      border-radius: 0.75rem;
+      border-left: 4px solid var(--secondary-500);
+    }
+
+    .symbolisme {
+      font-style: italic;
+      color: var(--secondary-300);
+      margin-bottom: var(--space-4);
+      line-height: 1.7;
+    }
+
+    .interpretation-text p {
+      color: var(--neutral-300);
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+    }
+
+    .result-actions .btn {
+      padding: var(--space-3) var(--space-8);
+    }
+
+    @media (max-width: 767px) {
+      .figure-display {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .figure-info {
+        text-align: center;
+      }
+      
+      .interpretation-section {
+        text-align: center;
+      }
+      
+      .result-actions {
+        flex-direction: column;
+      }
+    }
