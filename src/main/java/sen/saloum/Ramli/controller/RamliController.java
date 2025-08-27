@@ -1,52 +1,59 @@
 package sen.saloum.Ramli.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sen.saloum.Ramli.dto.figure.FigureRamliDto;
-import sen.saloum.Ramli.dto.tirage.DonneesDeBaseDto;
-import sen.saloum.Ramli.dto.tirage.TirageDto;
-import sen.saloum.Ramli.models.Utilisateur;
-import sen.saloum.Ramli.service.FigureLigneService;
-import sen.saloum.Ramli.service.RamliService;
+import sen.saloum.Ramli.service.FigureRamliService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/ramli")
+@RequestMapping("/api/ramlis")
 public class RamliController {
-    private static final Logger logger = LoggerFactory.getLogger(FigureLigneService.class);
-    private final RamliService ramliService;
 
-    @Autowired
-    public RamliController(RamliService ramliService) {
+    private final FigureRamliService ramliService;
+
+    public RamliController(FigureRamliService ramliService) {
         this.ramliService = ramliService;
     }
 
-    // Endpoint to perform a draw and generate figures
-    @GetMapping("/figures/generation") // RESTful et explicite
-    public ResponseEntity<List<FigureRamliDto>> genererFiguresDepuisTirage() {
-        try {
-            List<FigureRamliDto> figures = ramliService.effectuerTirageEtGenererFigures();
-            return ResponseEntity.ok(figures);
-        } catch (Exception e) {
-            logger.error("Erreur lors de la génération des figures : {}", e.getMessage());
-            return ResponseEntity.status(500).build();
-        }
+
+    // 🔹 Créer un Ramli
+    @PostMapping
+    public ResponseEntity<FigureRamliDto> create(@RequestBody FigureRamliDto ramliDto) {
+        return ResponseEntity.ok(ramliService.create(ramliDto));
     }
 
-
-    // Endpoint to realize a draw and return a TirageDto
-    @PostMapping("/realiser-tirage")
-    public ResponseEntity<TirageDto> realiserTirage(@RequestBody Utilisateur utilisateur,
-                                                    @RequestBody DonneesDeBaseDto lignesDeDepart) {
-        try {
-            TirageDto tirageDto = ramliService.realiserTirage(utilisateur, lignesDeDepart);
-            return ResponseEntity.ok(tirageDto);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(null); 
-        }
+    // 🔹 Lister tous les Ramlis
+    @GetMapping
+    public ResponseEntity<List<FigureRamliDto>> getAll() {
+        return ResponseEntity.ok(ramliService.findAll());
     }
+
+    // 🔹 Récupérer un Ramli par ID
+    @GetMapping("/{id}")
+    public ResponseEntity<FigureRamliDto> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(ramliService.findById(id));
+    }
+
+    // 🔹 Mettre à jour un Ramli existant
+    @PutMapping("/{id}")
+    public ResponseEntity<FigureRamliDto> update(@PathVariable Long id, @RequestBody FigureRamliDto ramliDto) {
+        FigureRamliDto updated = ramliService.update(id, ramliDto);
+        return ResponseEntity.ok(updated);
+    }
+
+    // 🔹 Supprimer un Ramli
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        ramliService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // 🔹 Récupérer une figure aléatoire
+    @GetMapping("/random")
+    public ResponseEntity<FigureRamliDto> getRandom() {
+        return ResponseEntity.ok(ramliService.getRandom());
+    }
+
 }

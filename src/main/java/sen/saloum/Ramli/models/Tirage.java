@@ -3,52 +3,38 @@ package sen.saloum.Ramli.models;
 import jakarta.persistence.*;
 import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
+
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 
 @Entity
 public class Tirage {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private Long id;
-    private OffsetDateTime dateTirage;
-    @Column(columnDefinition = "TEXT")
-    private String interpretation;
-    private String question;
-    private String figureResultats;
-    private String nomConsultant;
-    private String valeurs;
+    private LocalDateTime dateTirage;
+
     @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
-    @Enumerated(EnumType.STRING)
-    private TypeFigure typeFigure;
-    
-    @Enumerated(EnumType.STRING)
-    private NomFigureBase nomFigureBase;
-    private Long version;
-    @OneToMany(mappedBy = "tirage", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Collection<FigureRamli> figures = new ArrayList<>();
+    @ManyToMany
+    private List<FigureRamli> figures;
+
+    @OneToOne(mappedBy = "tirage", cascade = CascadeType.ALL)
+    private Interpretation interpretation;
 
     public Tirage() {
     }
-    public Tirage(Long id,Long version,NomFigureBase nomFigureBase,TypeFigure typeFigure, OffsetDateTime dateTirage, String interpretation,
-                  String question, String figureResultats, String nomConsultant, String valeurs,
-                  Utilisateur utilisateur) {
+
+    public Tirage(Long id, LocalDateTime dateTirage, Utilisateur utilisateur, List<FigureRamli> figures, Interpretation interpretation) {
         this.id = id;
         this.dateTirage = dateTirage;
-        this.interpretation = interpretation;
-        this.question = question;
-        this.figureResultats = figureResultats;
-        this.nomConsultant = nomConsultant;
-        this.valeurs = valeurs;
         this.utilisateur = utilisateur;
-        this.nomFigureBase=nomFigureBase;
-        this.typeFigure=typeFigure;
-        this.version = version;
+        this.figures = figures;
+        this.interpretation = interpretation;
     }
 
     public Long getId() {
@@ -59,53 +45,12 @@ public class Tirage {
         this.id = id;
     }
 
-
-    public OffsetDateTime getDateTirage() {
+    public LocalDateTime getDateTirage() {
         return dateTirage;
     }
 
-    public void setDateTirage(OffsetDateTime dateTirage) {
+    public void setDateTirage(LocalDateTime dateTirage) {
         this.dateTirage = dateTirage;
-    }
-
-    public String getInterpretation() {
-        return interpretation;
-    }
-
-    public void setInterpretation(String interpretation) {
-        this.interpretation = interpretation;
-    }
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public String getFigureResultats() {
-        return figureResultats;
-    }
-
-    public void setFigureResultats(String figureResultats) {
-        this.figureResultats = figureResultats;
-    }
-
-    public String getNomConsultant() {
-        return nomConsultant;
-    }
-
-    public void setNomConsultant(String nomConsultant) {
-        this.nomConsultant = nomConsultant;
-    }
-
-    public String getValeurs() {
-        return valeurs;
-    }
-
-    public void setValeurs(String valeurs) {
-        this.valeurs = valeurs;
     }
 
     public Utilisateur getUtilisateur() {
@@ -116,36 +61,19 @@ public class Tirage {
         this.utilisateur = utilisateur;
     }
 
-    public TypeFigure getTypeFigure() {
-        return typeFigure;
-    }
-
-    public void setTypeFigure(TypeFigure typeFigure) {
-        this.typeFigure = typeFigure;
-    }
-
-    public NomFigureBase getNomFigureBase() {
-        return nomFigureBase;
-    }
-
-    public void setNomFigureBase(NomFigureBase nomFigureBase) {
-        this.nomFigureBase = nomFigureBase;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
-    public Collection<FigureRamli> getFigures() {
+    public List<FigureRamli> getFigures() {
         return figures;
     }
 
-    // 🔽 AJOUTE CECI :
-    public void setFigures(Collection<FigureRamli> figures) {
+    public void setFigures(List<FigureRamli> figures) {
         this.figures = figures;
+    }
+
+    public Interpretation getInterpretation() {
+        return interpretation;
+    }
+
+    public void setInterpretation(Interpretation interpretation) {
+        this.interpretation = interpretation;
     }
 }

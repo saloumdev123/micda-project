@@ -2,11 +2,13 @@ package sen.saloum.Ramli.repos;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import sen.saloum.Ramli.models.Utilisateur;
 
 import java.util.Optional;
 
-@Component
+@Repository
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
-    Optional<Utilisateur> findByUsername(String username);
+    boolean existsByEmail(String email);
+    Optional<Utilisateur> findByEmail(String email);
 }

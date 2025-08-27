@@ -6,39 +6,11 @@ import sen.saloum.Ramli.enums.TypeFigure;
 import java.util.List;
 public class FigureRamliDto {
     private Long id;
-    private int ordre;
-    private String nom;
-    private String image;
-    private String valeurs;
-    private Long tirageId;
-    private NomFigureBase nomFigureBase;
-    private TypeFigure typeFigure;
+    private String nomFigure;
+    private String description;
+    private String symbolisme;
     private List<FigureLignesDto> lignes;
 
-    public FigureRamliDto() {
-    }
-
-    public FigureRamliDto(Long id,List<FigureLignesDto> lignes, int ordre, String nom,
-                          String image,String valeurs, Long tirageId, NomFigureBase nomFigureBase,
-                          TypeFigure typeFigure) {
-        this.id = id;
-        this.ordre = ordre;
-        this.nom = nom;
-        this.image = image;
-        this.tirageId = tirageId;
-        this.nomFigureBase = nomFigureBase;
-        this.typeFigure = typeFigure;
-        this.lignes=lignes;
-        this.valeurs=valeurs;
-    }
-
-    public String getValeurs() {
-        return this.valeurs;
-    }
-
-    public void setValeurs(String valeurs) {
-        this.valeurs = valeurs;
-    }
 
     public Long getId() {
         return id;
@@ -48,52 +20,28 @@ public class FigureRamliDto {
         this.id = id;
     }
 
-    public int getOrdre() {
-        return ordre;
+    public String getNomFigure() {
+        return nomFigure;
     }
 
-    public void setOrdre(int ordre) {
-        this.ordre = ordre;
+    public void setNomFigure(String nomFigure) {
+        this.nomFigure = nomFigure;
     }
 
-    public String getNom() {
-        return nom;
+    public String getDescription() {
+        return description;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getImage() {
-        return image;
+    public String getSymbolisme() {
+        return symbolisme;
     }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public Long getTirageId() {
-        return tirageId;
-    }
-
-    public void setTirageId(Long tirageId) {
-        this.tirageId = tirageId;
-    }
-
-    public NomFigureBase getNomFigureBase() {
-        return nomFigureBase;
-    }
-
-    public void setNomFigureBase(NomFigureBase nomFigureBase) {
-        this.nomFigureBase = nomFigureBase;
-    }
-
-    public TypeFigure getTypeFigure() {
-        return typeFigure;
-    }
-
-    public void setTypeFigure(TypeFigure typeFigure) {
-        this.typeFigure = typeFigure;
+    public void setSymbolisme(String symbolisme) {
+        this.symbolisme = symbolisme;
     }
 
     public List<FigureLignesDto> getLignes() {

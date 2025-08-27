@@ -1,41 +1,24 @@
 package sen.saloum.Ramli.dto.tirage;
 
+import sen.saloum.Ramli.dto.figure.FigureRamliDto;
+import sen.saloum.Ramli.dto.figure.InterpretationDto;
+import sen.saloum.Ramli.dto.user.UtilisateurDto;
 import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
+import sen.saloum.Ramli.models.Utilisateur;
 
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 
 public class TirageDto {
-    
-    private Long id;
-    private String question;
-    private String nomConsultant;
-    private OffsetDateTime dateTirage;
-    private String interpretation;
-    private Long utilisateurId;
-    private String valeurs;
-    private NomFigureBase nomFigureBase;
-    private TypeFigure typeFigure;
-    private Long version;
-    public TirageDto() {
-    }
 
-    public TirageDto(Long id,Long version, NomFigureBase nomFigureBase,TypeFigure typeFigure, 
-                     String question, String nomConsultant, OffsetDateTime dateTirage,
-                     String interpretation, Long utilisateurId, String valeurs
-    ) {
-        this.id = id;
-        this.question = question;
-        this.nomConsultant = nomConsultant;
-        this.dateTirage = dateTirage;
-        this.interpretation = interpretation;
-        this.utilisateurId = utilisateurId;
-        this.valeurs = valeurs;
-        this.nomFigureBase=nomFigureBase;
-        this.typeFigure=typeFigure;
-        this.version=version;
-    }
+    private Long id;
+    private LocalDateTime dateTirage;
+    private UtilisateurDto utilisateur;
+    private List<FigureRamliDto> figures;
+    private InterpretationDto interpretation;
 
     public Long getId() {
         return id;
@@ -45,76 +28,35 @@ public class TirageDto {
         this.id = id;
     }
 
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public String getNomConsultant() {
-        return nomConsultant;
-    }
-
-    public void setNomConsultant(String nomConsultant) {
-        this.nomConsultant = nomConsultant;
-    }
-
-    public OffsetDateTime getDateTirage() {
+    public LocalDateTime getDateTirage() {
         return dateTirage;
     }
 
-    public void setDateTirage(OffsetDateTime dateTirage) {
+    public void setDateTirage(LocalDateTime dateTirage) {
         this.dateTirage = dateTirage;
     }
 
-    public String getInterpretation() {
+    public UtilisateurDto getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(UtilisateurDto utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public List<FigureRamliDto> getFigures() {
+        return figures;
+    }
+
+    public void setFigures(List<FigureRamliDto> figures) {
+        this.figures = figures;
+    }
+
+    public InterpretationDto getInterpretation() {
         return interpretation;
     }
 
-    public void setInterpretation(String interpretation) {
+    public void setInterpretation(InterpretationDto interpretation) {
         this.interpretation = interpretation;
-    }
-
-    public Long getUtilisateurId() {
-        return utilisateurId;
-    }
-
-    public void setUtilisateurId(Long utilisateurId) {
-        this.utilisateurId = utilisateurId;
-    }
-
-    public String getValeurs() {
-        return valeurs;
-    }
-
-    public void setValeurs(String valeurs) {
-        this.valeurs = valeurs;
-    }
-
-    public NomFigureBase getNomFigureBase() {
-        return nomFigureBase;
-    }
-
-    public void setNomFigureBase(NomFigureBase nomFigureBase) {
-        this.nomFigureBase = nomFigureBase;
-    }
-
-    public TypeFigure getTypeFigure() {
-        return typeFigure;
-    }
-
-    public void setTypeFigure(TypeFigure typeFigure) {
-        this.typeFigure = typeFigure;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
     }
 }

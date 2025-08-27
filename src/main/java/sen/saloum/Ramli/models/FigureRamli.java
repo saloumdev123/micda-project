@@ -9,77 +9,43 @@ import java.util.List;
 
 @Entity
 public class FigureRamli {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private Long id;
-    private String nom;
-    private Integer  ordre;
-    private String valeurs;
-    private String image;
+
+    private String nomFigure;
+    private String description;
+    private String symbolisme;
+
+    @OneToMany(mappedBy = "figure", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonManagedReference
+    private List<FigureLigne> lignes;
+
     @ManyToOne
     @JoinColumn(name = "tirage_id")
     private Tirage tirage;
 
-    @OneToMany(mappedBy = "figure", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<FigureLigne> lignes;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "figure_id")
+    @OneToMany(mappedBy = "ramli", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Interpretation> interpretations;
-    
-    @Enumerated(EnumType.STRING)
-    private TypeFigure typeFigure;
-    @Enumerated(EnumType.STRING)
-    private NomFigureBase nomFigureBase;
-    private String description;
-
 
     public FigureRamli() {
     }
-    public FigureRamli(Long id, String nom, Integer ordre, String image, Tirage tirage, List<FigureLigne> lignes, List<Interpretation> interpretations, TypeFigure typeFigure, NomFigureBase nomFigureBase, String description) {
+
+    public FigureRamli(Long id, String nomFigure, String description, String symbolisme, List<FigureLigne> lignes, Tirage tirage, List<Interpretation> interpretations) {
         this.id = id;
-        this.nom = nom;
-        this.ordre = ordre;
-        this.image = image;
-        this.tirage = tirage;
-        this.lignes = lignes;
-        this.interpretations = interpretations;
-        this.typeFigure = typeFigure;
-        this.nomFigureBase = nomFigureBase;
+        this.nomFigure = nomFigure;
         this.description = description;
+        this.symbolisme = symbolisme;
+        this.lignes = lignes;
+        this.tirage = tirage;
+        this.interpretations = interpretations;
     }
 
-    public Long getId() {
-        return id;
+    public List<Interpretation> getInterpretations() {
+        return interpretations;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public Integer getOrdre() {
-        return ordre;
-    }
-
-    public void setOrdre(Integer ordre) {
-        this.ordre = ordre;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+    public void setInterpretations(List<Interpretation> interpretations) {
+        this.interpretations = interpretations;
     }
 
     public Tirage getTirage() {
@@ -90,37 +56,20 @@ public class FigureRamli {
         this.tirage = tirage;
     }
 
-
-    public List<FigureLigne> getLignes() {
-        return this.lignes;
+    public Long getId() {
+        return id;
     }
 
-    public void setLignes(List<FigureLigne> lignes) {
-        this.lignes = lignes;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public List<Interpretation> getInterpretations() {
-        return this.interpretations;
+    public String getNomFigure() {
+        return nomFigure;
     }
 
-    public void setInterpretations(List<Interpretation> interpretations) {
-        this.interpretations = interpretations;
-    }   
-
-    public TypeFigure getTypeFigure() {
-        return typeFigure;
-    }
-
-    public void setTypeFigure(TypeFigure typeFigure) {
-        this.typeFigure = typeFigure;
-    }
-
-    public NomFigureBase getNomFigureBase() {
-        return nomFigureBase;
-    }
-
-    public void setNomFigureBase(NomFigureBase nomFigureBase) {
-        this.nomFigureBase = nomFigureBase;
+    public void setNomFigure(String nomFigure) {
+        this.nomFigure = nomFigure;
     }
 
     public String getDescription() {
@@ -131,12 +80,19 @@ public class FigureRamli {
         this.description = description;
     }
 
-
-    public String getValeurs() {
-        return valeurs;
+    public String getSymbolisme() {
+        return symbolisme;
     }
 
-    public void setValeurs(String valeurs) {
-        this.valeurs = valeurs;
+    public void setSymbolisme(String symbolisme) {
+        this.symbolisme = symbolisme;
+    }
+
+    public List<FigureLigne> getLignes() {
+        return lignes;
+    }
+
+    public void setLignes(List<FigureLigne> lignes) {
+        this.lignes = lignes;
     }
 }

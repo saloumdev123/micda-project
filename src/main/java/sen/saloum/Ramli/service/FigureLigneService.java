@@ -1,7 +1,5 @@
 package sen.saloum.Ramli.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import sen.saloum.Ramli.dto.figure.FigureLignesDto;
 import sen.saloum.Ramli.mapStruct.FigureLigneMapper;
@@ -16,36 +14,76 @@ import java.util.stream.Collectors;
 
 @Service
 public class FigureLigneService {
-    private static final Logger logger = LoggerFactory.getLogger(FigureLigneService.class);
     private final FigureLignesRepository figureLigneRepository;
     private final FigureRamliRepository figureRamliRepository;
     private final FigureLigneMapper figureLigneMapper;
 
-    public FigureLigneService(FigureLignesRepository figureLigneRepository,
-                              FigureRamliRepository figureRamliRepository,
-                              FigureLigneMapper figureLigneMapper) {
-        this.figureLigneRepository = figureLigneRepository;
-        this.figureRamliRepository = figureRamliRepository;
-        this.figureLigneMapper = figureLigneMapper;
+    public FigureLigneService(FigureLignesRepository repo, FigureRamliRepository figureRepo, FigureLigneMapper mapper) {
+        this.figureLigneRepository = repo;
+        this.figureRamliRepository = figureRepo;
+        this.figureLigneMapper = mapper;
+    }
 
+    // Créer une ligne
+    public FigureLignesDto create(FigureLignesDto dto, Long figureId) {
+        FigureRamli figure = figureRamliRepository.findById(figureId)
+                .orElseThrow(() -> new RuntimeException("FigureRamli not found"));
+
+        FigureLigne entity = figureLigneMapper.toEntity(dto);
+        entity.setFigure(figure); // nécessaire pour @ManyToOne
+
+        // Initialiser les points
+        initPoints(entity);
+
+        return figureLigneMapper.toDto(figureLigneRepository.save(entity));
+    }
+
+    // Méthode pour transformer les valeurs en points
+    private void initPoints(FigureLigne entity) {
+        String[] points = entity.getValeurs().split(" "); // suppose séparés par un espace
+        if (points.length >= 4) {
+            entity.setPoint1(parsePoint(points[0]));
+            entity.setPoint2(parsePoint(points[1]));
+            entity.setPoint3(parsePoint(points[2]));
+            entity.setPoint4(parsePoint(points[3]));
+        }
+    }
+
+    // Conversion • → 1, ○ → 0
+    private int parsePoint(String val) {
+        return "•".equals(val) ? 1 : 0;
     }
 
 
-    public FigureLignesDto create(FigureLignesDto dto) {
-    // Calcul explicite de la valeur avant conversion
-    int valeur = dto.getValeur();
 
-    FigureLigne entity = figureLigneMapper.toEntity(dto);
-    entity.setValeur(valeur); // S'assurer que l'entité a bien cette donnée
+    // Générer des lignes depuis un tirage
+    public List<FigureLignesDto> genererLignesDepuisTirage(List<Integer> tirage, Long figureId) {
+        if (tirage == null || tirage.size() % 4 != 0) {
+            throw new IllegalArgumentException("Le tirage doit contenir un multiple de 4 points.");
+        }
 
-    FigureRamli figure = figureRamliRepository.findById(dto.getFigureId())
-            .orElseThrow(() -> new RuntimeException("FigureRamli not found"));
-    entity.setFigure(figure);  // set the full entity
+        FigureRamli figure = figureRamliRepository.findById(figureId)
+                .orElseThrow(() -> new RuntimeException("FigureRamli not found"));
 
-    entity = figureLigneRepository.save(entity);
-    return figureLigneMapper.toDto(entity);
-}
+        List<FigureLigne> lignes = new ArrayList<>();
+        for (int i = 0; i < tirage.size(); i += 4) {
+            FigureLignesDto dto = new FigureLignesDto();
+            dto.setPosition(i / 4 + 1);
+            dto.setValeurs(tirage.get(i) + " " + tirage.get(i + 1) + " " + tirage.get(i + 2) + " " + tirage.get(i + 3));
+            dto.setFigureId(figureId);
 
+            FigureLigne entity = figureLigneMapper.toEntity(dto);
+            entity.setFigure(figure);
+            entity.setLigneIndex(entity.getPosition()); // <-- Ajouter ici
+            lignes.add(entity);
+        }
+
+        figureLigneRepository.saveAll(lignes);
+
+        return lignes.stream().map(figureLigneMapper::toDto).collect(Collectors.toList());
+    }
+
+    // Récupérer les lignes d'une figure
     public List<FigureLignesDto> getByFigureId(Long figureId) {
         return figureLigneRepository.findByFigureId(figureId)
                 .stream()
@@ -53,32 +91,23 @@ public class FigureLigneService {
                 .collect(Collectors.toList());
     }
 
-    public List<FigureLignesDto> genererLignesDepuisTirage(List<Integer> tirage, Long figureId) {
-        if (tirage == null || tirage.size() % 4 != 0) {
-            throw new IllegalArgumentException("Le tirage doit contenir un nombre de bits multiple de 4");
-        }
+    // Mettre à jour une ligne
+    public FigureLignesDto update(Long id, FigureLignesDto dto) {
+        FigureLigne existing = figureLigneRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("FigureLigne not found"));
 
-        List<FigureLignesDto> lignesDto = new ArrayList<>();
-        int ligneIndex = 0;
+        existing.setValeurs(dto.getValeurs());
+        existing.setPosition(dto.getPosition());
 
-        for (int i = 0; i < tirage.size(); i += 4) {
-            FigureLignesDto dto = new FigureLignesDto();
-            dto.setFigureId(figureId);
-            dto.setLigneIndex(ligneIndex);
-            dto.setPoint1(tirage.get(i));
-            dto.setPoint2(tirage.get(i + 1));
-            dto.setPoint3(tirage.get(i + 2));
-            dto.setPoint4(tirage.get(i + 3));
-            dto.setNomLigne("Ligne " + (ligneIndex + 1));
-
-            lignesDto.add(dto);
-            ligneIndex++;
-        }
-
-        return lignesDto;
+        return figureLigneMapper.toDto(figureLigneRepository.save(existing));
     }
 
-    public void saveAll(List<FigureLigne> lignes)  {
-        figureLigneRepository.saveAll(lignes);
+    // Supprimer une ligne
+    public void delete(Long id) {
+        figureLigneRepository.deleteById(id);
     }
+
+
+
+
 }

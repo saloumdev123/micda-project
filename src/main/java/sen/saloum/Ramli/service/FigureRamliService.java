@@ -23,307 +23,102 @@ import java.util.stream.Collectors;
 
 @Service
 public class FigureRamliService {
-    private final Map<String, Map<String, String>> interpretationsMap = new HashMap<>();
-    private final FigureRamliRepository figureRamliRepository;
-    private final FigureRamliMapper figureRamliMapper;
-    private final FigureLigneMapper figureLigneMapper;
-    private final InterpretationRepository interpretationRepository;
-    private final ImageConfig imageConfig;
-    private final TirageRepository tirageRepository;
+    private final FigureRamliRepository ramliRepository;
+    private final FigureRamliMapper ramliMapper;
 
-    // Map qui contient toutes les interprétations chargées une fois
-    private final Map<NomFigureBase, Map<TypeFigure, Interpretation>> interpretationMap = new HashMap<>();
-
-    public FigureRamliService(
-            FigureRamliRepository figureRamliRepository,
-            FigureRamliMapper figureRamliMapper,
-            FigureLigneMapper figureLigneMapper,
-            InterpretationRepository interpretationRepository, ImageConfig imageConfig, TirageRepository tirageRepository
-    ) {
-        this.figureRamliRepository = figureRamliRepository;
-        this.figureRamliMapper = figureRamliMapper;
-        this.figureLigneMapper = figureLigneMapper;
-        this.interpretationRepository = interpretationRepository;
-        this.imageConfig = imageConfig;
-        this.tirageRepository = tirageRepository;
+    public FigureRamliService(FigureRamliRepository ramliRepository, FigureRamliMapper ramliMapper) {
+        this.ramliRepository = ramliRepository;
+        this.ramliMapper = ramliMapper;
     }
 
-    @PostConstruct
-    public void initInterpretationMap() {
-        chargerInterpretations();
-        interpretationRepository.findAll().forEach(interp -> {
-            NomFigureBase nomBase = interp.getNomFigureBase();
-            TypeFigure type = interp.getTypeFigure();
 
-            interpretationMap
-                    .computeIfAbsent(nomBase, k -> new HashMap<>())
-                    .put(type, interp);
-        });
+    public FigureRamliDto create(FigureRamliDto dto) {
+        FigureRamli entity = ramliMapper.toEntity(dto);
+
+        if (entity.getLignes() != null) {
+            entity.getLignes().forEach(ligne -> {
+                ligne.setFigure(entity);          // @ManyToOne
+                ligne.setLigneIndex(ligne.getPosition()); // ligne_index
+                if (ligne.getValeurs() == null) { // valeurs par défaut
+                    ligne.setValeurs("• • • •");
+                }
+                initPoints(ligne); // point1..point4
+            });
+        }
+
+
+        return ramliMapper.toDto(ramliRepository.save(entity));
     }
 
-    public List<FigureRamliDto> getAll() {
-        return figureRamliRepository.findAllWithLignes()
+
+    public List<FigureRamliDto> findAll() {
+        return ramliRepository.findAll()
                 .stream()
-                .map(figureRamliMapper::toDto)
+                .map(ramliMapper::toDto)
                 .collect(Collectors.toList());
     }
-    private void validerPointsLigne(FigureLigne ligne) {
-        if (ligne == null) {
-            throw new IllegalArgumentException("La ligne ne peut pas être nulle.");
-        }
-        int[] points = {ligne.getPoint1(), ligne.getPoint2(), ligne.getPoint3(), ligne.getPoint4()};
-        for (int point : points) {
-            if (point < 0 || point > 4) { // adapte les bornes selon le contexte exact
-                throw new IllegalArgumentException("Les points doivent être entre 0 et 4.");
-            }
-        }
-    }
-    // Si tu veux un jour réactiver cette méthode :
-    public void reloadInterpretationMap() {
-        interpretationMap.clear();
-        chargerInterpretations();
+
+    public FigureRamliDto findById(Long id) {
+        return ramliRepository.findById(id)
+                .map(ramliMapper::toDto)
+                .orElseThrow(() -> new RuntimeException("Ramli not found"));
     }
 
-    private void chargerInterpretations() {
-        interpretationRepository.findAll().forEach(interp -> {
-            NomFigureBase nomBase = interp.getNomFigureBase();
-            TypeFigure type = interp.getTypeFigure();
+    public FigureRamliDto update(Long id, FigureRamliDto dto) {
+        FigureRamli existing = ramliRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("FigureRamli not found"));
 
-            interpretationMap
-                    .computeIfAbsent(nomBase, k -> new HashMap<>())
-                    .put(type, interp);
-        });
+        existing.setNomFigure(dto.getNomFigure());
+        existing.setDescription(dto.getDescription());
+        existing.setSymbolisme(dto.getSymbolisme());
+
+        if (dto.getLignes() != null) {
+            List<FigureLigne> lignes = dto.getLignes().stream()
+                    .map(ligneDto -> {
+                        FigureLigne ligne = new FigureLigne();
+                        ligne.setId(ligneDto.getId());
+                        ligne.setValeurs(ligneDto.getValeurs());
+                        ligne.setPosition(ligneDto.getPosition());
+                        ligne.setFigure(existing);
+                        ligne.setLigneIndex(ligne.getPosition()); // <-- Ajouter ici
+                        return ligne;
+                    }).collect(Collectors.toList());
+            existing.setLignes(lignes);
+        }
+
+        return ramliMapper.toDto(ramliRepository.save(existing));
     }
 
-    public void validerFigure(FigureRamli figure) {
-        if (figure == null) {
-            throw new IllegalArgumentException("La figure ne peut pas être nulle.");
-        }
-        if (figure.getLignes() == null || figure.getLignes().size() != 4) {
-            throw new IllegalArgumentException("Une figure doit avoir exactement 4 lignes.");
-        }
-        for (FigureLigne ligne : figure.getLignes()) {
-            validerPointsLigne(ligne);
-        }
+
+    public void delete(Long id) {
+        ramliRepository.deleteById(id);
     }
 
-    public List<FigureRamliDto> findByTirageIdWithLinesAndInterpretations(Long tirageId) {
-        List<FigureRamli> figures = figureRamliRepository.findByTirageIdWithLinesAndInterpretations(tirageId);
-
+    public FigureRamliDto getRandom() {
+        List<FigureRamli> figures = ramliRepository.findAllWithLignes();
         if (figures.isEmpty()) {
-            throw new IllegalArgumentException("Aucune figure trouvée pour le tirage ID: " + tirageId);
+            throw new RuntimeException("Aucune figure disponible");
         }
-
-        return figures.stream()
-                .map(figureRamliMapper::toDto)
-                .collect(Collectors.toList());
+        Random rand = new Random();
+        FigureRamli randomFigure = figures.get(rand.nextInt(figures.size()));
+        return ramliMapper.toDto(randomFigure);
     }
-
-    public FigureRamliDto getFigureRamliDto(FigureRamli figureRamli) {
-        if (figureRamli == null) {
-            throw new IllegalArgumentException("La figure ne peut pas être nulle.");
-        }
-        if (figureRamli.getTirage() == null) {
-            throw new IllegalStateException("Tirage non défini pour la figure");
-        }
-        return figureRamliMapper.toDto(figureRamli);
-    }
-
-    public void enrichirFigure(FigureRamli figure) {
-        validerFigure(figure);  // Valide la présence de 4 lignes
-
-        List<FigureLigne> lignes = figure.getLignes();
-
-        // Conversion temporaire en DTO pour utiliser les méthodes de détection
-        List<FigureLignesDto> lignesDto = lignes.stream()
-                .map(figureLigneMapper::toDto)
-                .collect(Collectors.toList());
-
-        NomFigureBase nomFigureBase = detectNomFigureBase(lignesDto);
-        TypeFigure typeFigure = determineTypeFigure(lignesDto.get(0));
-
-        figure.setNomFigureBase(nomFigureBase);
-        figure.setNom(nomFigureBase.getLabel());
-        figure.setTypeFigure(typeFigure);
-
-        Interpretation interpretation = Optional.ofNullable(interpretationMap.get(nomFigureBase))
-                .map(map -> map.get(typeFigure))
-                .orElse(null);
-
-        if (interpretation != null) {
-            figure.setDescription(interpretation.getSignification());
+    private void initPoints(FigureLigne ligne) {
+        if (ligne.getValeurs() != null) {
+            String[] points = ligne.getValeurs().split(" ");
+            ligne.setPoint1(points.length > 0 ? parsePoint(points[0]) : 0);
+            ligne.setPoint2(points.length > 1 ? parsePoint(points[1]) : 0);
+            ligne.setPoint3(points.length > 2 ? parsePoint(points[2]) : 0);
+            ligne.setPoint4(points.length > 3 ? parsePoint(points[3]) : 0);
         } else {
-            figure.setDescription("Description pour " + nomFigureBase.getLabel());
+            ligne.setPoint1(0);
+            ligne.setPoint2(0);
+            ligne.setPoint3(0);
+            ligne.setPoint4(0);
         }
-
-        String imageUrl = imageConfig.getBaseUrl() + nomFigureBase.name().toLowerCase() + ".png";
-        figure.setImage(imageUrl);
-    }
-    @Transactional
-    public List<FigureRamli> genererFigures(List<FigureLignesDto> lignesDto, Long  tirageId) {
-        if (lignesDto == null || lignesDto.isEmpty()) {
-            throw new IllegalArgumentException("La liste des lignes ne peut pas être vide.");
-        }
-        Tirage tirage = tirageRepository.findById(tirageId)
-                .orElseThrow(() -> new IllegalArgumentException("Tirage non trouvé avec ID: " + tirageId));
-
-        // Récupérer l'ordre maximum déjà existant
-        Integer maxOrdre = figureRamliRepository.findMaxOrdreByTirageId(tirageId);
-        if (maxOrdre == null) {
-            maxOrdre = 0;
-        }
-
-        // Diviser en groupes de 4
-        List<List<FigureLignesDto>> groupsOf4 = new ArrayList<>();
-        for (int i = 0; i < lignesDto.size(); i += 4) {
-            if (i + 4 <= lignesDto.size()) {
-                groupsOf4.add(lignesDto.subList(i, i + 4));
-            } else {
-                throw new IllegalArgumentException("Le nombre de lignes n'est pas un multiple de 4.");
-            }
-        }
-
-        // Grouper par NomFigureBase
-        Map<NomFigureBase, List<List<FigureLignesDto>>> grouped = groupsOf4.stream()
-                .collect(Collectors.groupingBy(this::detectNomFigureBase));
-
-        List<FigureRamli> figures = new ArrayList<>();
-
-        for (Map.Entry<NomFigureBase, List<List<FigureLignesDto>>> entry : grouped.entrySet()) {
-            List<List<FigureLignesDto>> groupes = entry.getValue();
-
-            for (List<FigureLignesDto> groupLignes : groupes) {
-                FigureRamli figure = new FigureRamli();
-                figure.setTirage(tirage);
-                maxOrdre++;
-                figure.setOrdre(maxOrdre);
-                List<FigureLigne> lignesEntity = groupLignes.stream()
-                        .map(figureLigneMapper::toEntity)
-                        .peek(ligne -> ligne.setFigure(figure))
-                        .collect(Collectors.toList());
-
-                figure.setLignes(lignesEntity);
-
-                enrichirFigure(figure);
-
-                figures.add(figure); // Pas de save ici
-            }
-        }
-
-        // Sauvegarde groupée à la fin
-        return figureRamliRepository.saveAll(figures);
     }
 
-
-
-
-    public List<FigureRamliDto> genererEtRetournerDto(List<FigureLignesDto> lignesDto, Long tirageId) {
-        Tirage tirage = tirageRepository.findById(tirageId)
-                .orElseThrow(() -> new IllegalArgumentException("Tirage non trouvé avec ID: " + tirageId));
-
-        // figures déjà persistées dans genererFigures via saveAll
-        List<FigureRamli> figures = genererFigures(lignesDto, tirage.getId());
-
-        // Suppression du save inutile
-        return figures.stream()
-                .map(figureRamliMapper::toDto)
-                .collect(Collectors.toList());
+    private int parsePoint(String val) {
+        return "•".equals(val) ? 1 : 0;
     }
-
-
-    private static final Map<String, NomFigureBase> FIGURE_MAP = Map.ofEntries(
-            Map.entry("1000", NomFigureBase.AMISSIO),
-            Map.entry("1001", NomFigureBase.CARCER),
-            Map.entry("0110", NomFigureBase.CONJUNCTIO),
-            Map.entry("1101", NomFigureBase.FORTUNA_MAJOR),
-            Map.entry("1011", NomFigureBase.FORTUNA_MINOR),
-            Map.entry("0101", NomFigureBase.LAETITIA),
-            Map.entry("0011", NomFigureBase.PUER),
-            Map.entry("1111", NomFigureBase.POPULUS),
-            Map.entry("1100", NomFigureBase.RUBEUS),
-            Map.entry("1110", NomFigureBase.TRISTITIA),
-            Map.entry("0001", NomFigureBase.VIA),
-            Map.entry("0010", NomFigureBase.ACQUISITIO),
-            Map.entry("0000", NomFigureBase.CAUDA_DRACONIS),
-            Map.entry("0111", NomFigureBase.CAPUT_DRACONIS),
-            Map.entry("0100", NomFigureBase.ALBUS)
-    );
-
-    // private NomFigureBase detectNomFigureBase(boolean p1, boolean p2, boolean p3, boolean p4) {
-    //     String key = "" + (p1 ? 1 : 0) + (p2 ? 1 : 0) + (p3 ? 1 : 0) + (p4 ? 1 : 0);
-    //     return FIGURE_MAP.getOrDefault(key, NomFigureBase.VIA);
-    // }
-
-    private NomFigureBase detectNomFigureBase(List<FigureLignesDto> lignesDto) {
-        if (lignesDto == null || lignesDto.size() != 4) {
-            throw new IllegalArgumentException("La liste des lignes doit contenir exactement 4 éléments.");
-        }
-
-        StringBuilder binaryKey = new StringBuilder();
-
-        for (FigureLignesDto ligne : lignesDto) {
-            if (ligne == null) {
-                throw new IllegalArgumentException("Une des lignes est nulle.");
-            }
-            binaryKey.append(ligne.getValeur() == 1 ? "1" : "0");
-        }
-
-        NomFigureBase nomFigure = FIGURE_MAP.get(binaryKey.toString());
-
-        if (nomFigure == null) {
-            throw new IllegalStateException("Aucune figure trouvée pour la clé binaire: " + binaryKey);
-        }
-
-        return nomFigure;
-    }
-
-
-
-    private TypeFigure determineTypeFigure(FigureLignesDto ligne) {
-        if (ligne == null) {
-            throw new IllegalArgumentException("La ligne ne peut pas être nulle pour déterminer le type");
-        }
-
-        int somme = ligne.getPoint1() + ligne.getPoint2() + ligne.getPoint3() + ligne.getPoint4();
-
-        return switch (somme) {
-            case 0, 1 -> TypeFigure.TEMOIN_DROIT;
-            case 2 -> TypeFigure.TEMOIN_GAUCHE;
-            case 3 -> TypeFigure.JUGE;
-            case 4 -> TypeFigure.TETE;
-            default -> TypeFigure.QUEUE;
-        };
-    }
-
-    public FigureRamliDto toDto(FigureRamli figure) {
-        if (figure == null) {
-            throw new IllegalArgumentException("La figure ne peut pas être nulle.");
-        }
-        return figureRamliMapper.toDto(figure);
-    }
-    @Transactional
-    public void save(FigureRamli figure) {
-        if (figure == null) {
-            throw new IllegalArgumentException("La figure ne peut pas être nulle.");
-        }
-        if (figure.getNom() == null || figure.getNom().trim().isEmpty()) {
-            throw new IllegalArgumentException("Le nom de la figure est obligatoire.");
-        }
-        validerFigure(figure);
-        enrichirFigure(figure);
-        figureRamliRepository.save(figure);
-    }
-    @Transactional
-    public FigureRamli saveAndReturn(FigureRamli figure) {
-        validerFigure(figure);
-        return figureRamliRepository.save(figure);
-    }
-
-    public String getInterpretation(NomFigureBase nomFigureBase, TypeFigure typeFigure) {
-        if (interpretationsMap.containsKey(nomFigureBase)) {
-            return interpretationsMap.get(nomFigureBase).get(typeFigure);
-        }
-        return null;
-    }
-
 }

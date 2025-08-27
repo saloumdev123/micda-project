@@ -17,28 +17,8 @@ public class TirageController {
         this.tirageService = tirageService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<TirageDto>> getAll() {
-        return ResponseEntity.ok(tirageService.getAllTirages());
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<TirageDto> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(tirageService.getTirageById(id));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        tirageService.deleteTirage(id);
-        return ResponseEntity.noContent().build();
-    }
-    @PostMapping("/aleatoire/{utilisateurId}")
-    public ResponseEntity<TirageDto> creerTirageAleatoire(@PathVariable Long utilisateurId,@RequestBody TirageDto dto) {
-        TirageDto tirageDto = tirageService.creerTirageAleatoire(utilisateurId,dto);
-        return ResponseEntity.ok(tirageDto);
-    }
-    @PostMapping("/generate")
-    public ResponseEntity<List<Integer>> generateTirage() {
-        return ResponseEntity.ok(tirageService.genererTirageBits());
+    @PostMapping("/user/{userId}/generate")
+    public ResponseEntity<TirageDto> generateTirage(@PathVariable Long userId) {
+        return ResponseEntity.ok(tirageService.effectuerTirage(userId));
     }
 }

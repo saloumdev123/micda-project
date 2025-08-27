@@ -1,53 +1,98 @@
-//package sen.saloum.Ramli.config;
-//
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.authentication.AuthenticationManager;
-//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.security.web.SecurityFilterChain;
-//
-//@Configuration
-//@EnableWebSecurity
-//public class SecurityConfig {
-//
-//
-//    private final CustomUserDetailsService userDetailsService;
-//
-//    public SecurityConfig(CustomUserDetailsService userDetailsService) {
-//        this.userDetailsService = userDetailsService;
-//    }
-//
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.csrf().disable()
-//            .authorizeHttpRequests(auth -> auth
-//                .requestMatchers("/admin/**").hasRole("ADMIN")
-//                .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
-//                .anyRequest().authenticated()
-//            )
-//            .formLogin()
-//            .and()
-//            .logout();
-//
-//        return http.build();
-//    }
-//
-//    @Bean
-//    public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder passwordEncoder)
-//            throws Exception {
-//        return http.getSharedObject(AuthenticationManagerBuilder.class)
-//                   .userDetailsService(userDetailsService)
-//                   .passwordEncoder(passwordEncoder)
-//                   .and()
-//                   .build();
-//    }
-//}
+package sen.saloum.Ramli.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import sen.saloum.Ramli.repos.UtilisateurRepository;
+
+import java.util.List;
+
+@Configuration
+@EnableMethodSecurity
+public class SecurityConfig {
+
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+
+                .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .authorizeHttpRequests(auth -> auth
+                        // Auth open endpoints
+                        .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/admin/**").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/utilisateurs/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/utilisateurs").permitAll()
+
+                        .requestMatchers(HttpMethod.POST, "/api/tirages/user/*/generate").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/tirages/user/*").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/tirages/all").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/ramlis").permitAll()
+
+
+                        // Endpoints TirageController
+                        .requestMatchers(HttpMethod.POST, "/api/tirages/user/*/generate").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/tirages/user/*").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/tirages/all").hasRole("ADMIN")
+
+                )
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
+
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
+    }
+    @Bean
+    public UserDetailsService userDetailsService(UtilisateurRepository utilisateurRepository) {
+        return username -> utilisateurRepository.findByEmail(username)
+                .map(user -> org.springframework.security.core.userdetails.User.withUsername(user.getEmail())
+                        .password(user.getPassword())
+                        .roles(user.getRole().name())
+                        .build())
+                .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé"));
+    }
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("http://localhost:4200"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}

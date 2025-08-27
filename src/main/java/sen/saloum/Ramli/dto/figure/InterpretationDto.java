@@ -4,49 +4,18 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
+import sen.saloum.Ramli.models.Interpretation;
+
+import java.time.LocalDateTime;
 
 public class InterpretationDto {
 
     private Long id;
-    @NotNull(message = "meaning is required")
-    @NotBlank
-    private String signification;
-    @NotBlank(message = "Culture is required")
-    private String culture;
-    private String source;
-    @NotNull(message = "Figure ID is required")
-    private Long figureId;
-    private NomFigureBase nomFigureBase;
-    private TypeFigure typeFigure;
+    private String texteInterpretation;
+    private LocalDateTime dateInterpretation;
+    private Long ramliId;
+    private Long tirageId;
 
-    public InterpretationDto() {
-    }
-
-    public InterpretationDto(Long id,NomFigureBase nomFigureBase,TypeFigure typeFigure, String signification, String culture, String source, Long figureId) {
-        this.id = id;
-        this.signification = signification;
-        this.culture = culture;
-        this.source = source;
-        this.figureId = figureId;
-        this.nomFigureBase=nomFigureBase;
-        this.typeFigure=typeFigure;
-    }
-
-    public NomFigureBase getNomFigureBase() {
-        return nomFigureBase;
-    }
-
-    public void setNomFigureBase(NomFigureBase nomFigureBase) {
-        this.nomFigureBase = nomFigureBase;
-    }
-
-    public TypeFigure getTypeFigure() {
-        return typeFigure;
-    }
-
-    public void setTypeFigure(TypeFigure typeFigure) {
-        this.typeFigure = typeFigure;
-    }
 
     public Long getId() {
         return id;
@@ -56,35 +25,37 @@ public class InterpretationDto {
         this.id = id;
     }
 
-    public String getSignification() {
-        return signification;
+    public String getTexteInterpretation() {
+        return texteInterpretation;
     }
 
-    public void setSignification(String signification) {
-        this.signification = signification;
+    public void setTexteInterpretation(String texteInterpretation) {
+        this.texteInterpretation = texteInterpretation;
     }
 
-    public String getCulture() {
-        return culture;
+    public LocalDateTime getDateInterpretation() {
+        return dateInterpretation;
     }
 
-    public void setCulture(String culture) {
-        this.culture = culture;
+    public void setDateInterpretation(LocalDateTime dateInterpretation) {
+        this.dateInterpretation = dateInterpretation;
     }
 
-    public String getSource() {
-        return source;
+    public Long getRamliId() {
+        return ramliId;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public void setRamliId(Long ramliId) {
+        this.ramliId = ramliId;
     }
 
-    public Long getFigureId() {
-        return figureId;
+    public Long getTirageId() {
+        return tirageId;
     }
 
-    public void setFigureId(Long figureId) {
-        this.figureId = figureId;
+    public void setTirageId(Long tirageId) {
+        this.tirageId = tirageId;
     }
+
+
 }

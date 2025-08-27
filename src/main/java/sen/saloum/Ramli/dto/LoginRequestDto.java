@@ -2,14 +2,14 @@ package sen.saloum.Ramli.dto;
 
 public class LoginRequestDto {
     private String email;
-    private String motDePasse;
+    private String password;
 
     public LoginRequestDto() {
     }
 
-    public LoginRequestDto(String email, String motDePasse) {
+    public LoginRequestDto(String email, String password) {
         this.email = email;
-        this.motDePasse = motDePasse;
+        this.password = password;
     }
 
     public String getEmail() {
@@ -21,10 +21,10 @@ public class LoginRequestDto {
     }
 
     public String getMotDePasse() {
-        return motDePasse;
+        return password;
     }
 
     public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
+        this.password = motDePasse;
     }
 }

@@ -10,13 +10,6 @@ import sen.saloum.Ramli.models.Utilisateur;
 @Mapper(componentModel = "spring")
 public interface UtilisateurMapper {
 
-    UtilisateurMapper INSTANCE = Mappers.getMapper(UtilisateurMapper.class);
-
-    UtilisateurDto toDto(Utilisateur utilisateur);
-
-    Utilisateur toEntity(UtilisateurDto utilisateurDto);
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "tirages", ignore = true)
-    @Mapping(target = "version", source = "version")
-    void updateEntityFromDto(UtilisateurDto dto, @MappingTarget Utilisateur entity);
+    Utilisateur toEntity(UtilisateurDto dto);
+    UtilisateurDto toDto(Utilisateur user);
 }

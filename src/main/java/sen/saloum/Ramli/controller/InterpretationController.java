@@ -1,16 +1,13 @@
 package sen.saloum.Ramli.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sen.saloum.Ramli.dto.figure.InterpretationDto;
-import sen.saloum.Ramli.enums.NomFigureBase;
-import sen.saloum.Ramli.enums.TypeFigure;
+import sen.saloum.Ramli.mapStruct.InterpretationMapper;
+import sen.saloum.Ramli.models.FigureRamli;
+import sen.saloum.Ramli.models.Interpretation;
+import sen.saloum.Ramli.models.InterpretationRequest;
 import sen.saloum.Ramli.service.InterpretationService;
-
-import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/interpretations")
@@ -22,66 +19,17 @@ public class InterpretationController {
         this.interpretationService = interpretationService;
     }
 
-    // Créer une nouvelle interprétation
-    @PostMapping
-    public ResponseEntity<InterpretationDto> createInterpretation(@RequestBody InterpretationDto dto) {
-        InterpretationDto created = interpretationService.addInterpretation(dto);
-        return new ResponseEntity<>(created, HttpStatus.CREATED);
-    }
-    @GetMapping("/search")
-    public ResponseEntity<InterpretationDto> search(
-            @RequestParam NomFigureBase nom,
-            @RequestParam TypeFigure type) {
-        return ResponseEntity.ok(interpretationService.findByNomFigureBaseAndTypeFigure(nom, type));
+    @PostMapping("/generate")
+    public ResponseEntity<InterpretationDto> genererInterpretation(
+            @RequestBody InterpretationRequest request
+    ) {
+        FigureRamli ramli = new FigureRamli();
+        ramli.setId(request.getRamliId());
+
+        Interpretation interpretation = interpretationService.genererPourFigure(ramli);
+
+        InterpretationDto dto = InterpretationMapper.INSTANCE.toDto(interpretation); // si tu as un mapper
+        return ResponseEntity.ok(dto);
     }
 
-    // Récupérer toutes les interprétations
-    @GetMapping
-    public ResponseEntity<List<InterpretationDto>> getAllInterpretations() {
-        List<InterpretationDto> list = interpretationService.getAllInterpretations();
-        return ResponseEntity.ok(list);
-    }
-
-    // Récupérer interprétations par figureId
-    @GetMapping("/figure/{figureId}")
-    public ResponseEntity<List<InterpretationDto>> getByFigureId(@PathVariable Long figureId) {
-        List<InterpretationDto> list = interpretationService.getByFigureId(figureId);
-        return ResponseEntity.ok(list);
-    }
-
-    // Récupérer interprétations par TypeFigure (ex: TYPE1, TYPE2...)
-    @GetMapping("/type/{type}")
-    public ResponseEntity<List<InterpretationDto>> getByTypeFigure(@PathVariable TypeFigure type) {
-        List<InterpretationDto> list = interpretationService.getByTypeFigure(type);
-        return ResponseEntity.ok(list);
-    }
-
-    // Mettre à jour une interprétation
-    @PutMapping("/{id}")
-    public ResponseEntity<InterpretationDto> updateInterpretation(@PathVariable Long id, @RequestBody InterpretationDto dto) {
-        InterpretationDto updated = interpretationService.updateInterpretation(id, dto);
-        return ResponseEntity.ok(updated);
-    }
-
-    // Supprimer une interprétation
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteInterpretation(@PathVariable Long id) {
-        interpretationService.deleteInterpretation(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @PostMapping("/generate-defaults")
-    public ResponseEntity<List<InterpretationDto>> generateDefaults() {
-        return ResponseEntity.ok(interpretationService.generateAllInterpretations());
-    }
-    @PostMapping("/import")
-        public ResponseEntity<List<InterpretationDto>> importFromJson() {
-            try {
-                List<InterpretationDto> result = interpretationService.importFromJson();
-                return ResponseEntity.ok(result);
-            } catch (IOException e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(Collections.emptyList());
-            }
-        }
 }

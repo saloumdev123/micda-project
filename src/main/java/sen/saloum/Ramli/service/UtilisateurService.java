@@ -14,56 +14,47 @@ import sen.saloum.Ramli.repos.UtilisateurRepository;
 @Service
 public class UtilisateurService {
 
-    private final UtilisateurRepository utilisateurRepository;
-    private final UtilisateurMapper utilisateurMapper;
+    private final UtilisateurRepository userRepository;
+    private final UtilisateurMapper userMapper;
 
-    public UtilisateurService(UtilisateurRepository utilisateurRepository, UtilisateurMapper utilisateurMapper) {
-        this.utilisateurRepository = utilisateurRepository;
-        this.utilisateurMapper = utilisateurMapper;
-    }
-
-    public List<UtilisateurDto> getAll() {
-    return utilisateurRepository.findAll()
-            .stream()
-            .map(utilisateurMapper::toDto)
-            .collect(Collectors.toList());
-    }
-    public UtilisateurDto searchByUsername(String username) {
-        Utilisateur utilisateur = utilisateurRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé avec le username: " + username));
-        return utilisateurMapper.toDto(utilisateur);
+    public UtilisateurService(UtilisateurRepository userRepository, UtilisateurMapper userMapper) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
 
     public UtilisateurDto create(UtilisateurDto dto) {
-        dto.setId(null);
-        dto.setVersion(null);
-
-        Utilisateur entity = utilisateurMapper.toEntity(dto);
-        entity = utilisateurRepository.save(entity);
-
-        return utilisateurMapper.toDto(entity);
+        Utilisateur entity = userMapper.toEntity(dto);
+        return userMapper.toDto(userRepository.save(entity));
     }
 
-
-    public UtilisateurDto getById(Long id) {
-        Utilisateur utilisateur = utilisateurRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Utilisateur not found"));
-        return utilisateurMapper.toDto(utilisateur);
+    public List<UtilisateurDto> findAll() {
+        return userRepository.findAll()
+                .stream()
+                .map(userMapper::toDto)
+                .collect(Collectors.toList());
     }
 
-    public UtilisateurDto update(Long id, UtilisateurDto dto) {
-        Utilisateur existing = utilisateurRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Utilisateur not found"));
-
-        // Applique les champs du DTO à l’entité existante (en gardant la version !)
-        utilisateurMapper.updateEntityFromDto(dto, existing);
-
-        Utilisateur updated = utilisateurRepository.save(existing);
-        return utilisateurMapper.toDto(updated);
+    public UtilisateurDto findById(Long id) {
+        return userRepository.findById(id)
+                .map(userMapper::toDto)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     public void delete(Long id) {
-        utilisateurRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
+    public UtilisateurDto update(Long id, UtilisateurDto dto) {
+        Utilisateur existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        existingUser.setNom(dto.getNom());
+        existingUser.setPrenom(dto.getPrenom());
+        existingUser.setEmail(dto.getEmail());
+        existingUser.setRole(dto.getRole());
+        existingUser.setDateInscription(dto.getDateInscription());
+
+        return userMapper.toDto(userRepository.save(existingUser));
+    }
+
 }

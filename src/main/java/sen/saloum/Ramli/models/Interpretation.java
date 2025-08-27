@@ -4,40 +4,36 @@ import jakarta.persistence.*;
 import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
 
+import java.time.LocalDateTime;
+
 
 @Entity
 public class Interpretation {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private Long id;
-
-    @Column(columnDefinition = "TEXT")
-    private String signification;
-
-    private String culture;
-
-    private String source;
+    private String texteInterpretation;
+    private LocalDateTime dateInterpretation;
 
     @ManyToOne
-    @JoinColumn(name = "figure_id")
-    private FigureRamli figure;
-    @Enumerated(EnumType.STRING)
-    private NomFigureBase nomFigureBase;
-    @Enumerated(EnumType.STRING)
-    private TypeFigure typeFigure;
+    private FigureRamli ramli;
+
+    @OneToOne
+    private Tirage tirage;
+
     public Interpretation() {
+
     }
-    public Interpretation(Long id, TypeFigure typeFigure,NomFigureBase nomFigureBase,
-                          String signification, String culture, String source,
-                          FigureRamli figure) {
+
+    public Interpretation(Long id, String texteInterpretation,
+                          LocalDateTime dateInterpretation, FigureRamli ramli, Tirage tirage) {
         this.id = id;
-        this.signification = signification;
-        this.culture = culture;
-        this.source = source;
-        this.figure = figure;
-        this.nomFigureBase=nomFigureBase;
-        this.typeFigure=typeFigure;
+        this.texteInterpretation = texteInterpretation;
+        this.dateInterpretation = dateInterpretation;
+        this.ramli = ramli;
+        this.tirage = tirage;
     }
+
+
 
     public Long getId() {
         return id;
@@ -47,51 +43,38 @@ public class Interpretation {
         this.id = id;
     }
 
-    public NomFigureBase getNomFigureBase() {
-        return nomFigureBase;
+    public String getTexteInterpretation() {
+        return texteInterpretation;
     }
 
-    public void setNomFigureBase(NomFigureBase nomFigureBase) {
-        this.nomFigureBase = nomFigureBase;
+    public void setTexteInterpretation(String texteInterpretation) {
+        this.texteInterpretation = texteInterpretation;
     }
 
-    public TypeFigure getTypeFigure() {
-        return typeFigure;
+    public LocalDateTime getDateInterpretation() {
+        return dateInterpretation;
     }
 
-    public void setTypeFigure(TypeFigure typeFigure) {
-        this.typeFigure = typeFigure;
+    public void setDateInterpretation(LocalDateTime dateInterpretation) {
+        this.dateInterpretation = dateInterpretation;
     }
 
-    public String getSignification() {
-        return signification;
+    public FigureRamli getRamli() {
+        return ramli;
     }
 
-    public void setSignification(String signification) {
-        this.signification = signification;
+    public void setRamli(FigureRamli ramli) {
+        this.ramli = ramli;
     }
 
-    public String getCulture() {
-        return culture;
+    public Tirage getTirage() {
+        return tirage;
     }
 
-    public void setCulture(String culture) {
-        this.culture = culture;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public FigureRamli getFigure() {
-        return figure;
+    public void setTirage(Tirage tirage) {
+        this.tirage = tirage;
     }
 
     public void setFigure(FigureRamli figure) {
-        this.figure = figure;
     }
 }

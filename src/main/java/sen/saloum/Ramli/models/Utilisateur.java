@@ -1,51 +1,37 @@
 package sen.saloum.Ramli.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import sen.saloum.Ramli.enums.Role;
-import java.util.List;
+
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 
 @Entity
 public class Utilisateur {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private Long id;
-
     private String nom;
-
-    @Column(unique = true)
-    private String username;
+    private String prenom;
+    private String email;
     private String password;
-    private boolean enabled = true;
     @Enumerated(EnumType.STRING)
     private Role role;
+    private OffsetDateTime dateInscription;
 
-    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
-    private List<Tirage> tirages;
-    @Version
-    private Long version;
 
     public Utilisateur() {
     }
 
-    public Utilisateur(Long id,Long version, String nom, String username, String password,
-                       boolean enabled,Role role, List<Tirage> tirages) {
+    public Utilisateur(Long id,String password, String nom, String prenom, String email, Role role, OffsetDateTime dateInscription) {
         this.id = id;
         this.nom = nom;
-        this.username = username;
-        this.password = password;
-        this.enabled = enabled;
+        this.prenom = prenom;
+        this.email = email;
         this.role = role;
-        this.tirages = tirages;
-        this.version=version;
-    }
-
-    public Role getRoles() {
-        return role;
-    }
-
-    public void setRoles(Role roles) {
-        this.role = roles;
+        this.dateInscription = dateInscription;
+        this.password = password;
     }
 
     public Long getId() {
@@ -64,28 +50,20 @@ public class Utilisateur {
         this.nom = nom;
     }
 
-    public String getUsername() {
-        return username;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Role getRole() {
@@ -96,19 +74,19 @@ public class Utilisateur {
         this.role = role;
     }
 
-    public List<Tirage> getTirages() {
-        return tirages;
+    public OffsetDateTime getDateInscription() {
+        return dateInscription;
     }
 
-    public void setTirages(List<Tirage> tirages) {
-        this.tirages = tirages;
+    public void setDateInscription(OffsetDateTime dateInscription) {
+        this.dateInscription = dateInscription;
     }
 
-    public Long getVersion() {
-        return version;
+    public String getPassword() {
+        return password;
     }
 
-    public void setVersion(Long version) {
-        this.version = version;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
