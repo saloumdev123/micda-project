@@ -1,56 +1,71 @@
-    <div class="auth-container mystical-pattern">
-      <div class="auth-card card fade-in">
-        <div class="auth-header">
-          <h1 class="auth-title">Connexion</h1>
-          <p class="auth-subtitle">Accédez à votre espace spirituel</p>
-        </div>
-
-        <form (ngSubmit)="onSubmit()" class="auth-form">
-          <div class="input-group">
-            <label for="email">Adresse email</label>
-            <input
-              id="email"
-              type="email"
-              class="form-input"
-              [(ngModel)]="email"
-              name="email"
-              placeholder="votre@email.com"
-              required
-            />
-          </div>
-
-          <div class="input-group">
-            <label for="password">Mot de passe</label>
-            <input
-              id="password"
-              type="password"
-              class="form-input"
-              [(ngModel)]="password"
-              name="password"
-              placeholder="••••••••"
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            class="btn btn-primary auth-button"
-            [disabled]="loading"
-          >
-            <span *ngIf="loading" class="loading-spinner">⟳</span>
-            {{ loading ? 'Connexion...' : 'Se connecter' }}
-          </button>
-
-          <div class="auth-links">
-            <a (click)="navigateToRegister()" class="auth-link">
-              Pas encore de compte ? S'inscrire
-            </a>
-          </div>
-        </form>
-
-        <div class="mystical-quote">
-          <p>"La connaissance de soi est le commencement de toute sagesse"</p>
-          <cite>- Aristote</cite>
-        </div>
-      </div>
+<div class="auth-container mystical-pattern">
+  <div class="auth-card card fade-in">
+    <div class="auth-header">
+      <h1 class="auth-title">Connexion</h1>
+      <p class="auth-subtitle">Accédez à votre espace spirituel</p>
     </div>
+
+    <!-- 🔹 Formulaire login classique -->
+    <form *ngIf="!showForgotForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <div class="input-group">
+        <label for="email">Adresse email</label>
+        <input
+          id="email"
+          type="email"
+          class="form-input"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="votre@email.com"
+          required
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="password">Mot de passe</label>
+        <input
+          id="password"
+          type="password"
+          class="form-input"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="••••••••"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary auth-button" [disabled]="loading">
+        <span *ngIf="loading" class="loading-spinner">⟳</span>
+        {{ loading ? 'Connexion...' : 'Se connecter' }}
+      </button>
+
+      <div class="auth-links">
+        <a (click)="navigateToRegister()" class="auth-link">Pas encore de compte ? S'inscrire</a>
+        <a (click)="onForgotPassword()" class="auth-link">Mot de passe oublié ?</a>
+      </div>
+    </form>
+
+    <!-- 🔹 Formulaire forgot password -->
+    <form *ngIf="showForgotForm" (ngSubmit)="submitForgotPassword()" class="auth-form">
+      <div class="input-group">
+        <label for="forgotEmail">Adresse email</label>
+        <input
+          id="forgotEmail"
+          type="email"
+          class="form-input"
+          [(ngModel)]="forgotEmail"
+          name="forgotEmail"
+          placeholder="Entrez votre email"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary auth-button">Envoyer le lien</button>
+      <button type="button" class="btn btn-secondary auth-button" (click)="showForgotForm=false">Annuler</button>
+    </form>
+
+    <div class="mystical-quote">
+      <p>"La connaissance de soi est le commencement de toute sagesse"</p>
+      <cite>- Aristote</cite>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+
+<div class="ramli-list">
+  <div class="ramli-card card fade-in" *ngFor="let fig of figures">
+    <h3 class="figure-name">{{ fig.nomFigure }}</h3>
+    <p class="figure-description">{{ fig.description }}</p>
+    <p class="figure-symbolisme">{{ fig.symbolisme }}</p>
+
+    <div class="ramli-visual">
+      <div class="ramli-line" *ngFor="let ligne of fig.lignes">
+        <span 
+          class="dot" 
+          *ngFor="let dot of getDots(ligne.valeurs)"
+          [class.active]="dot"
+        ></span>
+        <span class="line-position">({{ ligne.position }})</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
-import { Ramli } from "./ramli";
+import { Ramli } from '../modele/ramli';
+
 
 export interface Interpretation {
   id: number;

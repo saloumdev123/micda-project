@@ -15,5 +15,9 @@ export const routes: Routes = [
   { path: 'tirage', component: TirageComponent },
   { path: 'historique', component: HistoriqueComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: '**', redirectTo: '/dashboard' }
+  { path: '**', redirectTo: '/dashboard' },
+  {
+  path: 'reset-password',
+  loadComponent: () => import('./components/reset-password/reset-password.component').then(m => m.ResetPasswordComponent)
+}
 ];

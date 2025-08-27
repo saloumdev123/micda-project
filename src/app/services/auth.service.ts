@@ -1,88 +1,79 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { User } from '../modele/user';
-import { AuthResponse } from '../modele/auth-response';
+import { HttpClient } from '@angular/common/http';
+import { AuthResponse, ForgotPasswordRequest, LoginRequest } from '../modele/authResponse';
+import { RegisterRequest } from '../modele/registerRequest ';
+import { ResetPasswordRequest } from '../modele/resetPasswordRequest ';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private currentUserSubject = new BehaviorSubject<User | null>(null);
+   private apiUrl = 'http://localhost:22000/api/auth';
+
+  // ⚡ BehaviorSubject pour user courant et auth
+  private currentUserSubject = new BehaviorSubject<User | null>(this.getCurrentUser());
   public currentUser$ = this.currentUserSubject.asObservable();
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.hasToken());
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
-  constructor() {
-    // Check for stored user on service initialization
-    const storedUser = localStorage.getItem('currentUser');
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
-      this.currentUserSubject.next(user);
-      this.isAuthenticatedSubject.next(true);
-    }
+  constructor(private http: HttpClient) {}
+
+  // 🔑 LOGIN
+  login(data: LoginRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/login`, data).pipe(
+      tap(res => {
+        localStorage.setItem('accessToken', res.accessToken);
+        localStorage.setItem('refreshToken', res.refreshToken);
+        this.isAuthenticatedSubject.next(true);
+      })
+    );
   }
 
-  login(email: string, password: string): Observable<AuthResponse> {
-    // Mock authentication - replace with actual API call
-    const mockUser: User = {
-      id: 1,
-      nom: 'Doe',
-      prenom: 'John',
-      email: email,
-      role: 'CLIENT',
-      dateInscription: new Date()
-    };
-
-    const response: AuthResponse = {
-      token: 'mock-jwt-token',
-      user: mockUser
-    };
-
-    localStorage.setItem('currentUser', JSON.stringify(mockUser));
-    localStorage.setItem('token', response.token);
-    this.currentUserSubject.next(mockUser);
-    this.isAuthenticatedSubject.next(true);
-
-    return of(response);
+  // 🔹 Gestion du user courant
+  setCurrentUser(user: User): void {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    this.currentUserSubject.next(user);
   }
 
-  register(userData: any): Observable<AuthResponse> {
-    // Mock registration - replace with actual API call
-    const mockUser: User = {
-      id: Date.now(),
-      nom: userData.nom,
-      prenom: userData.prenom,
-      email: userData.email,
-      role: 'CLIENT',
-      dateInscription: new Date()
-    };
-
-    const response: AuthResponse = {
-      token: 'mock-jwt-token',
-      user: mockUser
-    };
-
-    localStorage.setItem('currentUser', JSON.stringify(mockUser));
-    localStorage.setItem('token', response.token);
-    this.currentUserSubject.next(mockUser);
-    this.isAuthenticatedSubject.next(true);
-
-    return of(response);
+  getCurrentUser(): User | null {
+    const userStr = localStorage.getItem('currentUser');
+    return userStr ? JSON.parse(userStr) : null;
   }
 
   logout(): void {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
     localStorage.removeItem('currentUser');
-    localStorage.removeItem('token');
     this.currentUserSubject.next(null);
     this.isAuthenticatedSubject.next(false);
   }
 
-  getCurrentUser(): User | null {
-    return this.currentUserSubject.value;
+  isAuthenticated(): boolean {
+    return this.hasToken();
   }
 
-  isAuthenticated(): boolean {
-    return this.isAuthenticatedSubject.value;
+  private hasToken(): boolean {
+    return !!localStorage.getItem('accessToken');
+  }
+
+  register(data: RegisterRequest): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, data);
+  }
+
+  refreshToken(refreshToken: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/refresh-token`, { refreshToken });
+  }
+
+  forgotPassword(data: ForgotPasswordRequest): Observable<any> {
+    return this.http.post(`${this.apiUrl}/forgot-password`, data);
+  }
+
+
+  resetPassword(data: ResetPasswordRequest): Observable<any> {
+    return this.http.post(`${this.apiUrl}/reset-password`, data);
   }
 }

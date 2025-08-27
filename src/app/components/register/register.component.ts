@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class RegisterComponent {
-  userData = {
+userData = {
     prenom: '',
     nom: '',
     email: '',
@@ -29,7 +29,7 @@ export class RegisterComponent {
 
   onSubmit(): void {
     if (this.userData.password !== this.confirmPassword) {
-      alert('Les mots de passe ne correspondent pas');
+      window.alert('Passwords do not match');
       return;
     }
 
@@ -38,11 +38,20 @@ export class RegisterComponent {
       this.authService.register(this.userData).subscribe({
         next: (response) => {
           this.loading = false;
-          this.router.navigate(['/dashboard']);
+
+          // ⚡ Popup succès
+          
+          window.alert('Registration failed. Please try again.');
+
+          // ⚡ Vider le formulaire
+          this.userData = { prenom: '', nom: '', email: '', password: '' };
+          this.confirmPassword = '';
+
+          this.router.navigate(['/login']);
         },
         error: (error) => {
           this.loading = false;
-          console.error('Registration error:', error);
+          window.alert('User successfully created!');
         }
       });
     }

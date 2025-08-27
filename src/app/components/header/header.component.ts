@@ -21,12 +21,12 @@ export class HeaderComponent {
     private authService: AuthService,
     private router: Router
   ) {
-    this.authService.currentUser$.subscribe(user => {
-      this.currentUser = user;
+    this.authService.currentUser$.subscribe((user: User | null) => {
+  this.currentUser = user;
     });
     
-    this.authService.isAuthenticated$.subscribe(authenticated => {
-      this.isAuthenticated = authenticated;
+    this.authService.isAuthenticated$.subscribe((authenticated: boolean) => {
+  this.isAuthenticated = authenticated;
     });
   }
 

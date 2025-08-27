@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { Tirage } from '../../modele/tirage';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TirageService } from '../../services/tirage.service';
 
 @Component({
   selector: 'app-historique',
@@ -19,14 +20,14 @@ export class HistoriqueComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private ramliService: RamliService,
+    private tirageService: TirageService, 
     private router: Router
   ) {}
 
   ngOnInit(): void {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
-      this.ramliService.getTiragesUtilisateur(currentUser.id).subscribe({
+      this.tirageService.getTiragesUtilisateur(currentUser.id).subscribe({
         next: (tirages) => {
           this.tirages = tirages;
         }

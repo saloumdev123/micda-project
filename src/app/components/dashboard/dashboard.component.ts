@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { RamliService } from '../../services/ramli.service';
 import { User } from '../../modele/user';
 import { Tirage } from '../../modele/tirage';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+import { TirageService } from '../../services/tirage.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrls: ['./dashboard.component.css']
+
 })
 
 
@@ -22,14 +23,14 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private ramliService: RamliService,
+    private tirageService: TirageService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
     if (this.currentUser) {
-      this.ramliService.getTiragesUtilisateur(this.currentUser.id).subscribe({
+      this.tirageService.getTiragesUtilisateur(this.currentUser.id).subscribe({
         next: (tirages) => {
           this.recentTirages = tirages;
         }

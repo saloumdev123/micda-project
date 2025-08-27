@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Tirage } from '../../modele/tirage';
 import { AuthService } from '../../services/auth.service';
-import { RamliService } from '../../services/ramli.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TirageService } from '../../services/tirage.service';
  
 
 @Component({
@@ -19,19 +19,19 @@ export class TirageComponent {
 
   constructor(
     private authService: AuthService,
-    private ramliService: RamliService,
+     private tirageService: TirageService, 
     private router: Router
   ) {}
 
   startTirage(): void {
     const currentUser = this.authService.getCurrentUser();
     if (!currentUser) {
-      this.router.navigate(['/login']);
+    this.router.navigate(['/login']);
       return;
     }
 
     this.loading = true;
-    this.ramliService.effectuerTirage(currentUser.id).subscribe({
+    this.tirageService.effectuerTirage(currentUser.id).subscribe({
       next: (tirage) => {
         this.loading = false;
         this.currentTirage = tirage;

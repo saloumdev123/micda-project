@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouterOutlet, Router } from '@angular/router';
-import { provideRouter } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { routes } from './app/app.routes';
 import { HeaderComponent } from './app/components/header/header.component';
 import { AuthService } from './app/services/auth.service';
+import { appConfig } from './app/app.config';  // ✅ importe ton appConfig
 
 @Component({
   selector: 'app-root',
@@ -23,7 +22,6 @@ import { AuthService } from './app/services/auth.service';
     .app-container {
       min-height: 100vh;
     }
-
     .main-content {
       position: relative;
     }
@@ -36,7 +34,6 @@ export class App {
     private authService: AuthService,
     private router: Router
   ) {
-    // Check authentication status and navigate accordingly
     this.authService.isAuthenticated$.subscribe(isAuthenticated => {
       this.showHeader = isAuthenticated;
       if (!isAuthenticated && !this.isPublicRoute()) {
@@ -44,7 +41,6 @@ export class App {
       }
     });
 
-    // Check current route to show/hide header
     this.router.events.subscribe(() => {
       this.updateHeaderVisibility();
     });
@@ -62,8 +58,6 @@ export class App {
   }
 }
 
-bootstrapApplication(App, {
-  providers: [
-    provideRouter(routes)
-  ]
-});
+// ✅ ici on passe appConfig
+bootstrapApplication(App, appConfig)
+  .catch(err => console.error(err));
