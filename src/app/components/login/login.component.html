@@ -1,71 +1,112 @@
-<div class="auth-container mystical-pattern">
-  <div class="auth-card card fade-in">
-    <div class="auth-header">
-      <h1 class="auth-title">Connexion</h1>
-      <p class="auth-subtitle">Accédez à votre espace spirituel</p>
+<div class="auth-page">
+  <!-- 🔮 HEADER RAMLI SCIENCE DEVINATOIRE -->
+  <header class="ramli-header">
+    <div class="ramli-overlay"></div>
+    <div class="header-content">
+      <img
+        src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/246180702/original/5d510760b40b2e97824771d937e0e8f04eadf9d7/pray-and-you-get-a-24hrs-miracle.jpg"
+        alt="Symbole Ramli"
+        class="ramli-logo"
+      />
+      <h1 class="ramli-title">RAMLI SCIENCE DIVINATOIRE</h1>
+      <p class="ramli-subtitle">L’art sacré de la connaissance invisible</p>
     </div>
+  </header>
 
-    <!-- 🔹 Formulaire login classique -->
-    <form *ngIf="!showForgotForm" (ngSubmit)="onSubmit()" class="auth-form">
-      <div class="input-group">
-        <label for="email">Adresse email</label>
-        <input
-          id="email"
-          type="email"
-          class="form-input"
-          [(ngModel)]="email"
-          name="email"
-          placeholder="votre@email.com"
-          required
-        />
+  <!-- 🌌 CONTAINER PRINCIPAL -->
+  <div class="auth-container mystical-pattern">
+    <div class="auth-card card fade-in">
+      <div class="auth-header">
+        <h2 class="auth-title">Connexion</h2>
+        <p class="auth-subtitle">Accédez à votre espace spirituel</p>
       </div>
 
-      <div class="input-group">
-        <label for="password">Mot de passe</label>
-        <input
-          id="password"
-          type="password"
-          class="form-input"
-          [(ngModel)]="password"
-          name="password"
-          placeholder="••••••••"
-          required
-        />
+      <!-- 🔹 Formulaire login -->
+      <form
+        *ngIf="!showForgotPassword"
+        (ngSubmit)="onSubmit()"
+        class="auth-form"
+      >
+        <div class="input-group">
+          <label for="email">Adresse email</label>
+          <input
+            id="email"
+            type="email"
+            class="form-input"
+            [(ngModel)]="credentials.email"
+            name="email"
+            placeholder="votre@email.com"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="password">Mot de passe</label>
+          <input
+            id="password"
+            type="password"
+            class="form-input"
+            [(ngModel)]="credentials.password"
+            name="password"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary auth-button"
+          [disabled]="isLoading"
+        >
+          <span *ngIf="isLoading" class="loading-spinner">⟳</span>
+          {{ isLoading ? 'Connexion...' : 'Se connecter' }}
+        </button>
+
+        <div class="auth-links">
+          <a (click)="navigateToRegister()" class="auth-link"
+            >Pas encore de compte ? S'inscrire</a
+          >
+          <a (click)="toggleForgotPassword($event)" class="auth-link"
+            >Mot de passe oublié ?</a
+          >
+        </div>
+      </form>
+
+      <!-- 🔹 Formulaire mot de passe oublié -->
+      <form
+        *ngIf="showForgotPassword"
+        (ngSubmit)="onForgotPassword()"
+        class="auth-form"
+      >
+        <div class="input-group">
+          <label for="forgotEmail">Adresse email</label>
+          <input
+            id="forgotEmail"
+            type="email"
+            class="form-input"
+            [(ngModel)]="forgotEmail"
+            name="forgotEmail"
+            placeholder="Entrez votre email"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary auth-button">
+          Envoyer le lien
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary auth-button"
+          (click)="showForgotPassword=false"
+        >
+          Annuler
+        </button>
+      </form>
+
+      <div class="mystical-quote">
+        <p>"La connaissance de soi est le commencement de toute sagesse"</p>
+        <cite>- Aristote</cite>
       </div>
-
-      <button type="submit" class="btn btn-primary auth-button" [disabled]="loading">
-        <span *ngIf="loading" class="loading-spinner">⟳</span>
-        {{ loading ? 'Connexion...' : 'Se connecter' }}
-      </button>
-
-      <div class="auth-links">
-        <a (click)="navigateToRegister()" class="auth-link">Pas encore de compte ? S'inscrire</a>
-        <a (click)="onForgotPassword()" class="auth-link">Mot de passe oublié ?</a>
-      </div>
-    </form>
-
-    <!-- 🔹 Formulaire forgot password -->
-    <form *ngIf="showForgotForm" (ngSubmit)="submitForgotPassword()" class="auth-form">
-      <div class="input-group">
-        <label for="forgotEmail">Adresse email</label>
-        <input
-          id="forgotEmail"
-          type="email"
-          class="form-input"
-          [(ngModel)]="forgotEmail"
-          name="forgotEmail"
-          placeholder="Entrez votre email"
-          required
-        />
-      </div>
-
-      <button type="submit" class="btn btn-primary auth-button">Envoyer le lien</button>
-      <button type="button" class="btn btn-secondary auth-button" (click)="showForgotForm=false">Annuler</button>
-    </form>
-
-    <div class="mystical-quote">
-      <p>"La connaissance de soi est le commencement de toute sagesse"</p>
-      <cite>- Aristote</cite>
     </div>
   </div>
 </div>

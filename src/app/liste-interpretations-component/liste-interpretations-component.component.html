@@ -1,0 +1,29 @@
+<section class="interpretation-list-section">
+  <h2>📜 Liste des Interprétations</h2>
+
+  <div *ngIf="loading" class="loading">Chargement...</div>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <table *ngIf="!loading && interpretations.length > 0" class="interpretation-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Figure</th>
+        <th>Texte d'interprétation</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of interpretations; let index = index">
+        <td>{{ index + 1 }}</td>
+        <td>{{ i.ramli.nomFigure || '—' }}</td>
+        <td>{{ i.texteInterpretation }}</td>
+        <td>{{ i.dateInterpretation | date:'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && interpretations.length === 0" class="empty">
+    Aucune interprétation trouvée.
+  </div>
+</section>

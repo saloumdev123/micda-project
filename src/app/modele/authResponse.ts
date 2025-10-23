@@ -8,12 +8,6 @@ export interface LoginRequest {
   password: string;
 }
 
-export interface RegisterRequest {
-  email: string;
-  password: string;
-  nom: string;
-  prenom: string;
-}
 
 export interface ForgotPasswordRequest {
   email: string;

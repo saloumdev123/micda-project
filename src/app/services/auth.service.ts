@@ -1,48 +1,99 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../modele/user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthResponse, ForgotPasswordRequest, LoginRequest } from '../modele/authResponse';
 import { RegisterRequest } from '../modele/registerRequest ';
 import { ResetPasswordRequest } from '../modele/resetPasswordRequest ';
-
+import { Role } from '../enums/role';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-   private apiUrl = 'http://localhost:22000/api/auth';
-
-  // ⚡ BehaviorSubject pour user courant et auth
-  private currentUserSubject = new BehaviorSubject<User | null>(this.getCurrentUser());
+  private API_URL = 'http://localhost:22000/api/auth';
+  
+ private currentUserSubject = new BehaviorSubject<User | null>(this.getCurrentUser());
   public currentUser$ = this.currentUserSubject.asObservable();
 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.hasToken());
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
-
-  // 🔑 LOGIN
-  login(data: LoginRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/login`, data).pipe(
-      tap(res => {
-        localStorage.setItem('accessToken', res.accessToken);
-        localStorage.setItem('refreshToken', res.refreshToken);
-        this.isAuthenticatedSubject.next(true);
-      })
-    );
+   private isBrowser(): boolean {
+    return typeof window !== 'undefined' && !!window.localStorage;
   }
 
-  // 🔹 Gestion du user courant
+    getToken(): string | null {
+      return this.getAccessToken();
+    }
+
+ getAccessToken(): string | null {
+  return this.isBrowser() ? localStorage.getItem('accessToken') : null;
+}
+
+
+  getRefreshToken(): string | null {
+    return this.isBrowser() ? localStorage.getItem('refreshToken') : null;
+  }
+
+  constructor(private http: HttpClient) {
+  if (this.isBrowser()) {
+    const user = this.getCurrentUser();
+    const auth = this.hasToken();
+    this.currentUserSubject.next(user);
+    this.isAuthenticatedSubject.next(auth);
+  }
+}
+
+ login(data: LoginRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.API_URL}/login`, data).pipe(
+      tap(res => {
+  localStorage.setItem('accessToken', res.accessToken);
+  localStorage.setItem('refreshToken', res.refreshToken);
+  this.isAuthenticatedSubject.next(true);
+
+  // Récupérer le profil après login
+  this.getProfile().subscribe({
+    next: user => this.setCurrentUser(user),
+    error: err => console.error('Erreur récupération profil après login', err)
+  });
+})
+
+    );
+  }
+   private decodeJwt(token: string): any {
+    const base64 = token.split('.')[1];
+    return JSON.parse(atob(base64.replace(/-/g, '+').replace(/_/g, '/')));
+  }
+  getRole(): Role | null {
+  const token = this.getAccessToken();
+  if (!token) return null;
+  try {
+    const payload = this.decodeJwt(token);
+    return payload.role as Role;
+  } catch {
+    return null;
+  }
+}
+
+ hasRole(role: Role): boolean {
+    return this.getRole() === role;
+  }
+
+    hasAnyRole(roles: Role[]): boolean {
+    const currentRole = this.getRole();
+    return currentRole ? roles.includes(currentRole) : false;
+  }
   setCurrentUser(user: User): void {
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.currentUserSubject.next(user);
   }
 
   getCurrentUser(): User | null {
-    const userStr = localStorage.getItem('currentUser');
-    return userStr ? JSON.parse(userStr) : null;
-  }
+  if (!this.isBrowser()) return null;
+  const userStr = localStorage.getItem('currentUser');
+  return userStr ? JSON.parse(userStr) : null;
+}
 
   logout(): void {
     localStorage.removeItem('accessToken');
@@ -56,24 +107,42 @@ export class AuthService {
     return this.hasToken();
   }
 
-  private hasToken(): boolean {
-    return !!localStorage.getItem('accessToken');
-  }
+ private hasToken(): boolean {
+  if (!this.isBrowser()) return false;
+  return !!localStorage.getItem('accessToken');
+}
 
   register(data: RegisterRequest): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, data);
+    return this.http.post(`${this.API_URL}/register`, data);
   }
 
   refreshToken(refreshToken: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/refresh-token`, { refreshToken });
+    return this.http.post<AuthResponse>(`${this.API_URL}/refresh-token`, { refreshToken });
   }
 
   forgotPassword(data: ForgotPasswordRequest): Observable<any> {
-    return this.http.post(`${this.apiUrl}/forgot-password`, data);
+    return this.http.post(`${this.API_URL}/forgot-password`, data);
   }
-
 
   resetPassword(data: ResetPasswordRequest): Observable<any> {
-    return this.http.post(`${this.apiUrl}/reset-password`, data);
+    return this.http.post(`${this.API_URL}/reset-password`, data);
   }
+
+  getProfile(): Observable<User> {
+  const token = this.getAccessToken();
+  if (!token) {
+    throw new Error('Token manquant');
+  }
+
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get<User>(`${this.API_URL}/profile`, { headers }).pipe(
+  tap(user => this.setCurrentUser(user))
+);
+
+}
+
+get currentUser(): User | null {
+  return this.currentUserSubject.value;
+}
+
 }

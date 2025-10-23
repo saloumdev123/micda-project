@@ -1,75 +1,76 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ForgotPasswordRequest, LoginRequest } from '../../modele/authResponse';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'] 
 })
-
 export class LoginComponent {
-   email = '';
-  password = '';
-  loading = false;
+credentials: LoginRequest = { email: '', password: '' };
+  forgotEmail: string = '';
+  showForgotPassword: boolean = false;
+  isLoading = false;
+  loginError: string | null = null;
+  showPassword: boolean = false;
 
-  // ⚡ Pour afficher le formulaire forgot password
-  showForgotForm = false;
-  forgotEmail = '';
+  constructor(private authService: AuthService, private router: Router) {}
+ 
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  toggleForgotPassword(event: Event): void {
+    event.preventDefault();
+    this.showForgotPassword = !this.showForgotPassword;
+    this.loginError = null;
+    this.isLoading = false;
+  }
 
   onSubmit(): void {
-    if (this.email && this.password) {
-      this.loading = true;
-      this.authService.login({ email: this.email, password: this.password }).subscribe({
-        next: (response) => {
-          this.loading = false;
-          this.router.navigate(['/dashboard']);
-        },
-        error: (error) => {
-          this.loading = false;
-          console.error('Login error:', error);
-          window.alert('Login failed. Check your credentials.');
-        }
-      });
-    }
-  }
+    this.isLoading = true;
+    this.loginError = null;
 
-  navigateToRegister(): void {
-    this.router.navigate(['/register']);
-  }
-
-  // ⚡ Afficher le formulaire forgot password
-  onForgotPassword(): void {
-    this.showForgotForm = true;
-    this.forgotEmail = '';
-  }
-
-  // ⚡ Soumettre le formulaire forgot password
-  submitForgotPassword(): void {
-    if (!this.forgotEmail) {
-      window.alert('Please enter your email.');
-      return;
-    }
-
-    this.authService.forgotPassword({ email: this.forgotEmail }).subscribe({
-      next: (response) => {
-        window.alert('A password reset link has been sent to your email.');
-        this.showForgotForm = false; // cacher le formulaire
-        this.forgotEmail = ''; // vider le champ
+    this.authService.login(this.credentials).subscribe({
+      next: () => {
+        this.isLoading = false;
+        this.router.navigate(['/home']);
       },
-      error: (error) => {
-        console.error('Forgot password error:', error);
-        window.alert('Error sending reset link. Please try again.');
+      error: (err: HttpErrorResponse) => {
+        this.isLoading = false;
+        if (err.status === 401) this.loginError = "Email ou mot de passe incorrect.";
+        else if (err.status === 404) this.loginError = "Utilisateur introuvable.";
+        else this.loginError = "Une erreur est survenue. Veuillez réessayer.";
       }
     });
   }
+
+  onForgotPassword(): void {
+    this.isLoading = true;
+
+    const request: ForgotPasswordRequest = { email: this.forgotEmail };
+    this.authService.forgotPassword(request).subscribe({
+      next: () => {
+        alert('Lien de réinitialisation envoyé ! Vérifiez votre email.');
+        this.isLoading = false;
+        this.toggleForgotPassword(new Event('click'));
+      },
+      error: () => {
+        alert('Erreur lors de l\'envoi du lien.');
+        this.isLoading = false;
+      }
+    });
+  }
+
+    togglePassword(): void {
+  this.showPassword = !this.showPassword;
+  }
+  navigateToRegister(): void {
+  this.router.navigate(['/register']);
+}
+
 }

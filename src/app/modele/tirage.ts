@@ -6,5 +6,5 @@ export interface Tirage {
   dateTirage: Date;
   utilisateurId: number;
   figures: Ramli[];
-  interpretation?: Interpretation;
+  interpretation: Interpretation;
 }

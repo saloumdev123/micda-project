@@ -1,0 +1,41 @@
+.interpretation-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #3f51b5;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #303f9f;
+}
+
+.result-section {
+  margin-top: 20px;
+  padding: 15px;
+  background: #e8f5e9;
+  border-left: 4px solid #4caf50;
+}

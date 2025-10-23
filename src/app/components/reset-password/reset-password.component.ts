@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ResetPasswordRequest } from '../../modele/resetPasswordRequest ';
 
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './reset-password.component.html',
-  styleUrl: './reset-password.component.css'
+  styleUrls: ['./reset-password.component.css'] 
 })
 export class ResetPasswordComponent {
-  token = '';
+ token = '';
   newPassword = '';
   confirmPassword = '';
   loading = false;
@@ -38,10 +41,19 @@ export class ResetPasswordComponent {
     }
 
     this.loading = true;
-    this.authService.resetPassword({ token: this.token, newPassword: this.newPassword }).subscribe({
-      next: () => {
+
+    // 🔹 Construire l'objet ResetPasswordRequest
+    const request: ResetPasswordRequest = {
+      token: this.token,
+      newPassword: this.newPassword
+    };
+
+    this.authService.resetPassword(request).subscribe({
+      next: (response: any) => {
         this.loading = false;
-        window.alert('Password reset successfully! Please login.');
+        // 🔹 Affiche le message du backend
+        window.alert(response.message || 'Password reset successfully! Please login.');
+        // 🔹 Redirection vers la page login
         this.router.navigate(['/login']);
       },
       error: (err) => {

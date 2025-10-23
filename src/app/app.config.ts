@@ -3,7 +3,6 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
-import { provideClientHydration } from '@angular/platform-browser';
 import { JwtInterceptor } from './security/jwtInterceptor';
 
 export const appConfig: ApplicationConfig = {

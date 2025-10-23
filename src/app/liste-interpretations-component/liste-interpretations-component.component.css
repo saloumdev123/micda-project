@@ -1,0 +1,35 @@
+.interpretation-list-section {
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 1000px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.interpretation-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.interpretation-table th, .interpretation-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.interpretation-table th {
+  background: #f7f7f7;
+}
+
+.loading, .error, .empty {
+  text-align: center;
+  margin-top: 1rem;
+  color: #666;
+}

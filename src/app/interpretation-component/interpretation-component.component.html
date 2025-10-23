@@ -1,0 +1,25 @@
+<div class="interpretation-container">
+  <h2>🔮 Génération d'Interprétation</h2>
+
+  <div class="input-section">
+    <label for="ramliId">ID Ramli :</label>
+    <input type="number" id="ramliId" [(ngModel)]="ramliId" placeholder="Entrez l'ID Ramli" />
+
+    <label for="tirageId">ID Tirage (optionnel) :</label>
+    <input type="number" id="tirageId" [(ngModel)]="tirageId" placeholder="Entrez l'ID Tirage" />
+
+    <button (click)="genererInterpretation()" [disabled]="loading">
+      {{ loading ? 'Génération...' : 'Générer l’interprétation' }}
+    </button>
+
+    <!-- ✅ NEW BUTTON: Navigate to Interpretation List -->
+    <button class="list-btn" routerLink="interpretations-list">
+      📜 Voir la liste des interprétations
+    </button>
+  </div>
+
+  <div *ngIf="interpretationText" class="result-section">
+    <h3>Résultat :</h3>
+    <p>{{ interpretationText }}</p>
+  </div>
+</div>

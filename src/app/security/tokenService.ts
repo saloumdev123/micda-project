@@ -3,7 +3,7 @@ import { AuthResponse } from "../modele/authResponse";
 
 @Injectable({ providedIn: 'root' })
 export class TokenService {
-  saveTokens(auth: AuthResponse) {
+    saveTokens(auth: AuthResponse) {
     localStorage.setItem('accessToken', auth.accessToken);
     localStorage.setItem('refreshToken', auth.refreshToken);
   }
