@@ -5,6 +5,8 @@ import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -14,11 +16,16 @@ public class Interpretation {
     private String texteInterpretation;
     private LocalDateTime dateInterpretation;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ramli_id")
     private FigureRamli ramli;
 
-    @OneToOne
+    // ✅ Nouvelle relation vers le tirage
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tirage_id")
     private Tirage tirage;
+
+
 
     public Interpretation() {
 

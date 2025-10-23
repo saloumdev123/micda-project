@@ -13,6 +13,7 @@ import sen.saloum.Ramli.repos.UtilisateurRepository;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class TirageService {
@@ -23,10 +24,14 @@ public class TirageService {
     private final UtilisateurRepository utilisateurRepository;
     private final TirageMapper tirageMapper;
 
-    public TirageService(FigureRamliRepository figureRepo,
-                         FigureLigneService ligneService,
-                         InterpretationService interpretationService,
-                         TirageRepository tirageRepo, UtilisateurRepository utilisateurRepository, TirageMapper tirageMapper) {
+    public TirageService(
+            FigureRamliRepository figureRepo,
+            FigureLigneService ligneService,
+            InterpretationService interpretationService,
+            TirageRepository tirageRepo,
+            UtilisateurRepository utilisateurRepository,
+            TirageMapper tirageMapper
+    ) {
         this.figureRepo = figureRepo;
         this.ligneService = ligneService;
         this.interpretationService = interpretationService;
@@ -36,50 +41,70 @@ public class TirageService {
     }
 
     public TirageDto effectuerTirage(Long userId) {
-        // 1. Générer 4 lignes aléatoires
-        List<Integer> tirage = genererPoints(16); // 4 x 4 points
+        // 1️⃣ Générer les points aléatoires
+        List<Integer> tirage = genererPoints(16);
 
-        // 2. Créer une Figure
+        // 2️⃣ Créer et sauvegarder une figure
         FigureRamli figure = new FigureRamli();
-        figure.setNomFigure("Al-Lahjah"); // ou déterminer dynamiquement
+        figure.setNomFigure("Al-Lahjah");
         figure.setDescription("Description auto...");
-        figureRepo.save(figure);
+        figure = figureRepo.save(figure);
 
-        // 3. Associer les lignes
+        // 3️⃣ Générer les lignes associées
         ligneService.genererLignesDepuisTirage(tirage, figure.getId());
 
-        // 4. Créer une interprétation
+        // 4️⃣ Recharger la figure complète
+        figure = figureRepo.findById(figure.getId())
+                .orElseThrow(() -> new RuntimeException("Figure non trouvée après création."));
+
+        // 5️⃣ Créer une interprétation pour la figure
         Interpretation interpretation = interpretationService.genererPourFigure(figure);
 
-        // 5. Récupérer utilisateur
+        // 6️⃣ Récupérer l'utilisateur
         Utilisateur user = utilisateurRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé avec id " + userId));
 
-        // 6. Créer le tirage
+        // 7️⃣ Créer le tirage et lier les entités
         Tirage tirageEntity = new Tirage();
         tirageEntity.setUtilisateur(user);
         tirageEntity.setDateTirage(LocalDateTime.now());
         tirageEntity.setFigures(List.of(figure));
-        tirageEntity.setInterpretation(interpretation);
 
+        // ✅ Lier interprétation et tirage
+        interpretation.setTirage(tirageEntity);
+        tirageEntity.setInterpretations(List.of(interpretation));
+
+        // 8️⃣ Sauvegarder et retourner
         tirageRepo.save(tirageEntity);
 
-        // ⚡ ICI on mappe bien l'entité, pas la liste d’entiers
         return tirageMapper.toDto(tirageEntity);
     }
-
 
     private List<Integer> genererPoints(int nb) {
         Random rand = new Random();
         List<Integer> points = new ArrayList<>();
         for (int i = 0; i < nb; i++) {
-            points.add(rand.nextBoolean() ? 1 : 0); // 1 = •, 0 = ○
+            points.add(rand.nextBoolean() ? 1 : 0);
         }
         return points;
     }
+
     public List<TirageDto> getTiragesByUser(Long userId) {
         List<Tirage> tirages = tirageRepo.findByUtilisateurId(userId);
         return tirageMapper.toDtoList(tirages);
+    }
+
+    public TirageDto getTirageById(Long tirageId) {
+        Tirage tirage = tirageRepo.findById(tirageId)
+                .orElseThrow(() -> new RuntimeException("Tirage non trouvé"));
+        return tirageMapper.toDto(tirage);
+    }
+
+    public List<TirageDto> getAllTirages() {
+        return tirageRepo.findAll()
+                .stream()
+                .map(tirageMapper::toDto)
+                .collect(Collectors.toList());
     }
 
 }

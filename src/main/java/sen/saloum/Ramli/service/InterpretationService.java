@@ -32,14 +32,65 @@ public class InterpretationService {
             "Al-Nasrah", "La victoire est à portée de main !"
     );
 
-    public Interpretation genererPourFigure(FigureRamli figure) {
-        Interpretation i = new Interpretation();
-        i.setTexteInterpretation(interpretations.getOrDefault(
-                figure.getNomFigure(),
-                "Interprétation en cours de développement."
-        ));
-        i.setFigure(figure);
-        i.setDateInterpretation(LocalDateTime.now());
-        return i;
+    private final InterpretationRepository interpretationRepository;
+    private final FigureRamliRepository figureRamliRepository;
+
+    public InterpretationService(InterpretationRepository interpretationRepository, FigureRamliRepository figureRamliRepository) {
+        this.interpretationRepository = interpretationRepository;
+        this.figureRamliRepository = figureRamliRepository;
     }
+
+    public Interpretation genererPourFigureId(Long ramliId) {
+        FigureRamli entity = figureRamliRepository.findById(ramliId)
+                .orElseThrow(() -> new RuntimeException("FigureRamli introuvable avec ID: " + ramliId));
+
+        Interpretation interpretation = new Interpretation();
+        interpretation.setRamli(entity);
+        interpretation.setTexteInterpretation("Interpretation généré avec succès...");
+        interpretation.setDateInterpretation(LocalDateTime.now());
+
+        return interpretationRepository.save(interpretation);
+    }
+
+    public Interpretation genererPourFigure(FigureRamli figure) {
+        if (figure == null || figure.getId() == null) {
+            throw new IllegalArgumentException("La figure Ramli ne peut pas être nulle.");
+        }
+
+        Interpretation interpretation = new Interpretation();
+        interpretation.setRamli(figure);
+        interpretation.setTexteInterpretation(
+                interpretations.getOrDefault(
+                        figure.getNomFigure(),
+                        "Aucune interprétation disponible pour cette figure."
+                )
+        );
+        interpretation.setDateInterpretation(LocalDateTime.now());
+
+        return interpretationRepository.save(interpretation);
+    }
+
+    public Interpretation genererPourFigureEtTirage(FigureRamli figure, Tirage tirage) {
+        if (figure == null || figure.getId() == null) {
+            throw new IllegalArgumentException("La figure Ramli ne peut pas être nulle.");
+        }
+
+        Interpretation interpretation = new Interpretation();
+        interpretation.setRamli(figure);
+        interpretation.setTirage(tirage); // ✅ relation établie
+        interpretation.setTexteInterpretation(
+                interpretations.getOrDefault(
+                        figure.getNomFigure(),
+                        "Aucune interprétation disponible pour cette figure."
+                )
+        );
+        interpretation.setDateInterpretation(LocalDateTime.now());
+
+        return interpretationRepository.save(interpretation);
+    }
+
+    public List<Interpretation> getAllInterpretations() {
+        return interpretationRepository.findAll();
+    }
+
 }

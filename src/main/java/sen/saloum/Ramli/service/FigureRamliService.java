@@ -31,25 +31,22 @@ public class FigureRamliService {
         this.ramliMapper = ramliMapper;
     }
 
-
     public FigureRamliDto create(FigureRamliDto dto) {
         FigureRamli entity = ramliMapper.toEntity(dto);
 
         if (entity.getLignes() != null) {
             entity.getLignes().forEach(ligne -> {
-                ligne.setFigure(entity);          // @ManyToOne
+                ligne.setFigure(entity);                 // @ManyToOne
                 ligne.setLigneIndex(ligne.getPosition()); // ligne_index
-                if (ligne.getValeurs() == null) { // valeurs par défaut
-                    ligne.setValeurs("• • • •");
+                if (ligne.getValeurs() == null) {        // valeurs par défaut -> binaire
+                    ligne.setValeurs("0 0 0 0");
                 }
                 initPoints(ligne); // point1..point4
             });
         }
 
-
         return ramliMapper.toDto(ramliRepository.save(entity));
     }
-
 
     public List<FigureRamliDto> findAll() {
         return ramliRepository.findAll()
@@ -80,7 +77,8 @@ public class FigureRamliService {
                         ligne.setValeurs(ligneDto.getValeurs());
                         ligne.setPosition(ligneDto.getPosition());
                         ligne.setFigure(existing);
-                        ligne.setLigneIndex(ligne.getPosition()); // <-- Ajouter ici
+                        ligne.setLigneIndex(ligne.getPosition());
+                        initPoints(ligne);
                         return ligne;
                     }).collect(Collectors.toList());
             existing.setLignes(lignes);
@@ -88,7 +86,6 @@ public class FigureRamliService {
 
         return ramliMapper.toDto(ramliRepository.save(existing));
     }
-
 
     public void delete(Long id) {
         ramliRepository.deleteById(id);
@@ -103,22 +100,20 @@ public class FigureRamliService {
         FigureRamli randomFigure = figures.get(rand.nextInt(figures.size()));
         return ramliMapper.toDto(randomFigure);
     }
+
+    // ⚡ Maintenant on parse directement les 0/1
     private void initPoints(FigureLigne ligne) {
         if (ligne.getValeurs() != null) {
             String[] points = ligne.getValeurs().split(" ");
-            ligne.setPoint1(points.length > 0 ? parsePoint(points[0]) : 0);
-            ligne.setPoint2(points.length > 1 ? parsePoint(points[1]) : 0);
-            ligne.setPoint3(points.length > 2 ? parsePoint(points[2]) : 0);
-            ligne.setPoint4(points.length > 3 ? parsePoint(points[3]) : 0);
+            ligne.setPoint1(points.length > 0 ? Integer.parseInt(points[0]) : 0);
+            ligne.setPoint2(points.length > 1 ? Integer.parseInt(points[1]) : 0);
+            ligne.setPoint3(points.length > 2 ? Integer.parseInt(points[2]) : 0);
+            ligne.setPoint4(points.length > 3 ? Integer.parseInt(points[3]) : 0);
         } else {
             ligne.setPoint1(0);
             ligne.setPoint2(0);
             ligne.setPoint3(0);
             ligne.setPoint4(0);
         }
-    }
-
-    private int parsePoint(String val) {
-        return "•".equals(val) ? 1 : 0;
     }
 }

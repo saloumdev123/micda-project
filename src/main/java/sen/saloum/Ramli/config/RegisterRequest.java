@@ -1,11 +1,23 @@
 package sen.saloum.Ramli.config;
 
+import sen.saloum.Ramli.enums.Role;
+
+import java.time.OffsetDateTime;
+
 public class RegisterRequest {
     private String email;
     private String password;
     private String nom;
     private String prenom;
+    private OffsetDateTime dateInscription;
 
+    public OffsetDateTime getDateInscription() {
+        return dateInscription;
+    }
+
+    public void setDateInscription(OffsetDateTime dateInscription) {
+        this.dateInscription = dateInscription;
+    }
 
     public String getEmail() {
         return email;

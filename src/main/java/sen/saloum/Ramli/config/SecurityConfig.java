@@ -42,20 +42,22 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Auth open endpoints
                         .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/profile").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/profile").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/admin/**").hasRole("ADMIN")
 
                         .requestMatchers(HttpMethod.GET, "/api/utilisateurs/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/utilisateurs").permitAll()
 
-                        .requestMatchers(HttpMethod.POST, "/api/tirages/user/*/generate").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/tirages/user/*").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/tirages/all").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/interpretations/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/interpretations/**").permitAll()
+
+
                         .requestMatchers(HttpMethod.POST, "/api/ramlis").permitAll()
 
-
-                        // Endpoints TirageController
-                        .requestMatchers(HttpMethod.POST, "/api/tirages/user/*/generate").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/tirages/user/*").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/tirages/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/tirages/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/tirages/user/{userId}").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/tirages/all").hasRole("ADMIN")
 
                 )

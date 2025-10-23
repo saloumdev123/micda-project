@@ -1,6 +1,8 @@
 package sen.saloum.Ramli.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import sen.saloum.Ramli.enums.NomFigureBase;
 import sen.saloum.Ramli.enums.TypeFigure;
 
@@ -12,6 +14,8 @@ import java.util.List;
 
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Tirage {
     @Id @GeneratedValue
     private Long id;
@@ -23,19 +27,10 @@ public class Tirage {
     @ManyToMany
     private List<FigureRamli> figures;
 
-    @OneToOne(mappedBy = "tirage", cascade = CascadeType.ALL)
-    private Interpretation interpretation;
+    @OneToMany(mappedBy = "tirage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Interpretation> interpretations = new ArrayList<>();
 
-    public Tirage() {
-    }
 
-    public Tirage(Long id, LocalDateTime dateTirage, Utilisateur utilisateur, List<FigureRamli> figures, Interpretation interpretation) {
-        this.id = id;
-        this.dateTirage = dateTirage;
-        this.utilisateur = utilisateur;
-        this.figures = figures;
-        this.interpretation = interpretation;
-    }
 
     public Long getId() {
         return id;
@@ -69,11 +64,11 @@ public class Tirage {
         this.figures = figures;
     }
 
-    public Interpretation getInterpretation() {
-        return interpretation;
+    public List<Interpretation> getInterpretations() {
+        return interpretations;
     }
 
-    public void setInterpretation(Interpretation interpretation) {
-        this.interpretation = interpretation;
+    public void setInterpretations(List<Interpretation> interpretations) {
+        this.interpretations = interpretations;
     }
 }

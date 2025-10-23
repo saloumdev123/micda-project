@@ -38,49 +38,56 @@ public class FigureLigneService {
         return figureLigneMapper.toDto(figureLigneRepository.save(entity));
     }
 
-    // Méthode pour transformer les valeurs en points
+    // Initialisation des points à partir des valeurs binaires
     private void initPoints(FigureLigne entity) {
         String[] points = entity.getValeurs().split(" "); // suppose séparés par un espace
         if (points.length >= 4) {
-            entity.setPoint1(parsePoint(points[0]));
-            entity.setPoint2(parsePoint(points[1]));
-            entity.setPoint3(parsePoint(points[2]));
-            entity.setPoint4(parsePoint(points[3]));
+            entity.setPoint1(Integer.parseInt(points[0]));
+            entity.setPoint2(Integer.parseInt(points[1]));
+            entity.setPoint3(Integer.parseInt(points[2]));
+            entity.setPoint4(Integer.parseInt(points[3]));
         }
     }
 
-    // Conversion • → 1, ○ → 0
-    private int parsePoint(String val) {
-        return "•".equals(val) ? 1 : 0;
-    }
 
-
-
-    // Générer des lignes depuis un tirage
+    /**
+     * 🔹 Génère les 4 lignes d’une figure à partir d’une liste de 16 points binaires
+     */
     public List<FigureLignesDto> genererLignesDepuisTirage(List<Integer> tirage, Long figureId) {
-        if (tirage == null || tirage.size() % 4 != 0) {
-            throw new IllegalArgumentException("Le tirage doit contenir un multiple de 4 points.");
+        if (tirage == null || tirage.size() < 16) {
+            throw new IllegalArgumentException("Le tirage doit contenir au moins 16 valeurs binaires (0 ou 1).");
         }
 
         FigureRamli figure = figureRamliRepository.findById(figureId)
-                .orElseThrow(() -> new RuntimeException("FigureRamli not found"));
+                .orElseThrow(() -> new RuntimeException("Figure non trouvée avec ID : " + figureId));
 
-        List<FigureLigne> lignes = new ArrayList<>();
-        for (int i = 0; i < tirage.size(); i += 4) {
+        List<FigureLignesDto> lignesDtos = new ArrayList<>();
+
+        // Générer 4 lignes à partir des 16 valeurs
+        for (int i = 0; i < 16; i += 4) {
             FigureLignesDto dto = new FigureLignesDto();
-            dto.setPosition(i / 4 + 1);
-            dto.setValeurs(tirage.get(i) + " " + tirage.get(i + 1) + " " + tirage.get(i + 2) + " " + tirage.get(i + 3));
-            dto.setFigureId(figureId);
 
-            FigureLigne entity = figureLigneMapper.toEntity(dto);
-            entity.setFigure(figure);
-            entity.setLigneIndex(entity.getPosition()); // <-- Ajouter ici
-            lignes.add(entity);
+            // Concatène les 4 valeurs séparées par un espace
+            dto.setValeurs(tirage.get(i) + " " + tirage.get(i + 1) + " " + tirage.get(i + 2) + " " + tirage.get(i + 3));
+            dto.setPosition(i / 4 + 1);
+            dto.setLigneIndex(i / 4);
+            dto.setFigureId(figure.getId());
+
+            // Affichage console pour debug
+            System.out.println("Valeurs générées (ligne " + dto.getPosition() + ") : " + dto.getValeurs());
+
+            // Sauvegarde en base
+            FigureLigne ligne = new FigureLigne();
+            ligne.setValeurs(dto.getValeurs());
+            ligne.setPosition(dto.getPosition());
+            ligne.setLigneIndex(dto.getLigneIndex());
+            ligne.setFigure(figure);
+            figureLigneRepository.save(ligne);
+
+            lignesDtos.add(dto);
         }
 
-        figureLigneRepository.saveAll(lignes);
-
-        return lignes.stream().map(figureLigneMapper::toDto).collect(Collectors.toList());
+        return lignesDtos;
     }
 
     // Récupérer les lignes d'une figure
@@ -106,8 +113,4 @@ public class FigureLigneService {
     public void delete(Long id) {
         figureLigneRepository.deleteById(id);
     }
-
-
-
-
 }

@@ -4,6 +4,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +21,8 @@ import java.util.Collections;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
+    private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
+
     private final JwtUtil jwtUtil;
     private final UtilisateurRepository utilisateurRepository;
 
@@ -32,10 +36,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        // ✅ Ignorer certaines routes publiques
         String path = request.getServletPath();
-        if (path.startsWith("/api/auth") ||
-                (path.equals("/api/utilisateurs") && request.getMethod().equalsIgnoreCase("POST"))) {
+        // Ignorer les endpoints publics
+        if (path.equals("/api/auth/login")
+                || path.equals("/api/auth/register")
+                || path.equals("/api/auth/forgot-password")
+                || path.equals("/api/auth/reset-password")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -44,25 +50,45 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String username = null;
         String jwt = null;
 
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            jwt = authHeader.substring(7);
-            if (jwtUtil.validateToken(jwt)) {
-                username = jwtUtil.getUsernameFromToken(jwt);
-            }
-        }
+        try {
+            if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                jwt = authHeader.substring(7);
 
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            Utilisateur utilisateur = utilisateurRepository.findByEmail(username).orElse(null);
-            if (utilisateur != null) {
-                UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(utilisateur, null,
-                                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + utilisateur.getRole().name())));
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authToken);
+                // Vérification du token
+                if (jwtUtil.validateToken(jwt)) {
+                    username = jwtUtil.getUsernameFromToken(jwt);
+                } else {
+                    logger.warn("JWT invalide : {}", jwt);
+                }
             }
+
+            // Authentification si pas encore faite
+            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                Utilisateur utilisateur = utilisateurRepository.findByEmail(username).orElse(null);
+
+                if (utilisateur != null) {
+                    String roleName = "ROLE_" + (utilisateur.getRole() != null ? utilisateur.getRole().name() : "CLIENT");
+
+                    // ✅ Modification : principal = email
+                    UsernamePasswordAuthenticationToken authToken =
+                            new UsernamePasswordAuthenticationToken(
+                                    utilisateur.getEmail(), // ici on passe l'email comme principal
+                                    null,
+                                    Collections.singletonList(new SimpleGrantedAuthority(roleName))
+                            );
+
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+
+                    logger.info("Utilisateur authentifié : {} avec rôle {}", utilisateur.getEmail(), roleName);
+                } else {
+                    logger.warn("Utilisateur non trouvé pour username : {}", username);
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Erreur dans JwtAuthenticationFilter : {}", e.getMessage(), e);
         }
 
         filterChain.doFilter(request, response);
     }
-
 }

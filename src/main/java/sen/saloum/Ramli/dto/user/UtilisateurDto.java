@@ -1,6 +1,7 @@
 package sen.saloum.Ramli.dto.user;
 
 import sen.saloum.Ramli.enums.Role;
+import sen.saloum.Ramli.models.Utilisateur;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
@@ -13,6 +14,20 @@ public class UtilisateurDto {
     private String password;
     private Role role;
     private OffsetDateTime dateInscription;
+
+    public UtilisateurDto(Long id, String nom, String prenom, String email, String password, Role role, OffsetDateTime dateInscription) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.dateInscription = dateInscription;
+    }
+
+    public UtilisateurDto() {
+
+    }
 
     public Long getId() {
         return id;

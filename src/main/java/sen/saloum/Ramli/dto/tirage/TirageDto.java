@@ -16,10 +16,10 @@ public class TirageDto {
 
     private Long id;
     private LocalDateTime dateTirage;
+
     private UtilisateurDto utilisateur;
     private List<FigureRamliDto> figures;
-    private InterpretationDto interpretation;
-
+    private List<InterpretationDto> interpretations;
     public Long getId() {
         return id;
     }
@@ -52,11 +52,11 @@ public class TirageDto {
         this.figures = figures;
     }
 
-    public InterpretationDto getInterpretation() {
-        return interpretation;
+    public List<InterpretationDto> getInterpretations() {
+        return interpretations;
     }
 
-    public void setInterpretation(InterpretationDto interpretation) {
-        this.interpretation = interpretation;
+    public void setInterpretations(List<InterpretationDto> interpretations) {
+        this.interpretations = interpretations;
     }
 }

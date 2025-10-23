@@ -11,6 +11,7 @@ public class FigureLigne {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "valeur")
     private String valeurs;
     private int position;
     private int ligneIndex;
